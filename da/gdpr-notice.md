@@ -213,7 +213,7 @@ Du kan desuden kontakte tilsynsmyndigheden i den EU-medlemsstat, hvor du har sæ
 
 ## 10. Ændringer af denne meddelelse
 
-Vi kan med jævne mellemrum opdatere denne meddelelse for at afspejle ændringer i vores databehandlingsaktiviteter eller gældende ret. Vi underretter dig om **væsentlige ændringer** senest **30 dage** i forvejen via e-mail til din registrerede adresse. Datoen "Sidst opdateret" øverst i meddelelsen angiver, hvornår den senest er blevet revideret. Ikke-væsentlige ændringer (såsom rettelse af slåfejl eller præciseringer, der ikke berører dine rettigheder) kan foretages uden forudgående varsel.
+Vi kan med jævne mellemrum opdatere denne meddelelse for at afspejle ændringer i vores databehandlingsaktiviteter eller gældende ret. Vi underretter dig om **væsentlige ændringer** senest **7 dage** i forvejen via e-mail til din registrerede adresse. Datoen "Sidst opdateret" øverst i meddelelsen angiver, hvornår den senest er blevet revideret. Ikke-væsentlige ændringer (såsom rettelse af slåfejl eller præciseringer, der ikke berører dine rettigheder) kan foretages uden forudgående varsel.
 
 ---
 

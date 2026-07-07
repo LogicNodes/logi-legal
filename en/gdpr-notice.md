@@ -213,7 +213,7 @@ You may also contact the supervisory authority of the EU Member State in which y
 
 ## 10. Changes to This Notice
 
-We may update this Notice from time to time to reflect changes in our data processing activities or applicable law. We will notify you of any **material changes** at least **30 days** in advance by email to your registered address. The "Last Updated" date at the top of this Notice indicates when it was most recently revised. Non-material changes (such as corrections of typographical errors or clarifications that do not affect your rights) may be made without advance notice.
+We may update this Notice from time to time to reflect changes in our data processing activities or applicable law. We will notify you of any **material changes** at least **7 days** in advance by email to your registered address. The "Last Updated" date at the top of this Notice indicates when it was most recently revised. Non-material changes (such as corrections of typographical errors or clarifications that do not affect your rights) may be made without advance notice.
 
 ---
 

@@ -171,7 +171,7 @@ Our services are intended exclusively for business users. LogicNodes is a B2B pl
 
 ## 10. Changes to This Privacy Policy
 
-We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. We will notify you of any material changes by:
+We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. We will notify you of any material changes at least **7 days** before they take effect by:
 
 - Updating the "Last Updated" date at the top of this policy
 - Sending an email notification to your registered email address (for significant changes)

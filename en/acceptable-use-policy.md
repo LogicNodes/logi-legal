@@ -128,7 +128,7 @@ We take all reports seriously and will investigate as appropriate. Reporting in 
 
 ## 10. Changes to This Policy
 
-We may update this AUP from time to time. We will provide at least **30 days' notice** of any material changes by email or by displaying a prominent notice on our website. Continued use of the platform after the notice period constitutes acceptance of the updated AUP. If you do not accept the changes, you may terminate your account before the changes take effect in accordance with Section 10.2 of the Terms & Conditions.
+We may update this AUP from time to time. We will provide at least **7 days' notice** of any material changes by email or by displaying a prominent notice on our website. Continued use of the platform after the notice period constitutes acceptance of the updated AUP. If you do not accept the changes, you may terminate your account before the changes take effect in accordance with Section 10.2 of the Terms & Conditions.
 
 ---
 

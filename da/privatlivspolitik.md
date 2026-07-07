@@ -173,7 +173,7 @@ Vores tjenester er udelukkende rettet mod erhvervsbrugere. LogicNodes er en B2B-
 
 ## 10. Ændringer af denne privatlivspolitik
 
-Vi kan opdatere denne privatlivspolitik fra tid til anden for at afspejle ændringer i vores praksis eller juridiske krav. Vi vil underrette dig om væsentlige ændringer ved at:
+Vi kan opdatere denne privatlivspolitik fra tid til anden for at afspejle ændringer i vores praksis eller juridiske krav. Vi vil underrette dig om væsentlige ændringer mindst **7 dage** inden de træder i kraft ved at:
 
 - Opdatere "Sidst opdateret" datoen øverst i denne politik
 - Sende en e-mailmeddelelse til din registrerede e-mailadresse (for væsentlige ændringer)

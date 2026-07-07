@@ -208,7 +208,7 @@ All documents are version-controlled and updated regularly:
 
 **Update Frequency:**
 - Security Architecture: Quarterly (or after major changes)
-- Privacy Policy: As needed (30-day notice for material changes)
+- Privacy Policy: As needed (7-day notice for material changes)
 - DPA: As needed (in sync with Privacy Policy)
 - Responsible Disclosure: Annually (or as bug bounty program evolves)
 

@@ -128,7 +128,7 @@ Vi tager alle indberetninger alvorligt og vil undersøge sagen i relevant omfang
 
 ## 10. Ændringer til Denne Politik
 
-Vi kan løbende opdatere denne AUP. Vi vil give mindst **30 dages varsel** om væsentlige ændringer via e-mail eller ved at vise en fremtrædende meddelelse på vores hjemmeside. Fortsat brug af platformen efter varselsperiodens udløb udgør accept af den opdaterede AUP. Accepterer du ikke ændringerne, kan du opsige din konto inden ikrafttrædelsen i overensstemmelse med afsnit 10.2 i Vilkår og Betingelser.
+Vi kan løbende opdatere denne AUP. Vi vil give mindst **7 dages varsel** om væsentlige ændringer via e-mail eller ved at vise en fremtrædende meddelelse på vores hjemmeside. Fortsat brug af platformen efter varselsperiodens udløb udgør accept af den opdaterede AUP. Accepterer du ikke ændringerne, kan du opsige din konto inden ikrafttrædelsen i overensstemmelse med afsnit 10.2 i Vilkår og Betingelser.
 
 ---
 
