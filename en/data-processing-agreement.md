@@ -457,20 +457,7 @@ LogicNodes will maintain industry-standard security practices and provide docume
 
 Each party is liable for losses directly caused by a breach of this DPA. Neither party is liable for indirect losses, consequential damages, or loss of data, unless the loss is caused by willful misconduct or gross negligence. These limitations do not apply where prohibited by law, including in the event of a breach of the GDPR.
 
-### 9.2 Indemnification
-
-LogicNodes shall indemnify and hold harmless Partner from:
-- Claims arising from LogicNodes' breach of this DPA
-- Fines imposed by Supervisory Authorities due to LogicNodes' non-compliance with GDPR
-- Data Subject claims arising from LogicNodes' unauthorized processing
-
-**Exclusions:**
-LogicNodes is NOT liable for claims arising from:
-- Processing undertaken at Partner's documented instructions that contravene Data Protection Laws;
-- Partner's breach of this DPA, the Terms & Conditions, or Data Protection Laws;
-- Events caused by Partner's systems, integrations, or end-users.
-
-### 9.3 Controller Indemnity
+### 9.2 Controller Indemnity
 
 Notwithstanding §9.1, Partner shall indemnify, defend, and hold harmless LogicNodes from any claims, losses, fines, penalties, and reasonable legal costs arising from Partner's failure to comply with its obligations under §2.3, including Supervisory Authority investigations or enforcement actions and Data Subject claims under GDPR Article 82 directed at LogicNodes. Where LogicNodes is held jointly liable under GDPR Article 82 in connection with Personal Data introduced by Partner in breach of §2.3, Partner shall reimburse LogicNodes for any amounts paid to Data Subjects or authorities.
 

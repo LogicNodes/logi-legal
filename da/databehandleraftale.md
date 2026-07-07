@@ -474,22 +474,7 @@ LogicNodes vil opretholde industri-standard sikkerhedspraksis og levere dokument
 
 Begge parter er ansvarlige for tab, der direkte skyldes overtrædelse af denne DPA. Ingen af parterne er ansvarlig for indirekte tab, følgeskader eller tab af data, medmindre tabet skyldes forsæt eller grov uagtsomhed. Disse begrænsninger gælder ikke, hvor lovgivningen forbyder dem, herunder ved overtrædelse af GDPR.
 
-### 9.2 Erstatning
-
-LogicNodes skal skadesløsholde og holde den Dataansvarlige fri for:
-- Krav opstået fra LogicNodes' brud på denne DPA
-- Bøder pålagt af Tilsynsmyndigheder på grund af LogicNodes' manglende overholdelse af GDPR
-- Registreredes krav opstået fra LogicNodes' uautoriserede behandling
-
-**Undtagelser:**
-LogicNodes er IKKE ansvarlig for krav opstået fra:
-- Behandling foretaget på den Dataansvarliges dokumenterede instruktioner, som strider mod Databeskyttelseslovgivningen
-- Den Dataansvarliges brud på denne DPA, Vilkår & Betingelser eller Databeskyttelseslovgivning
-- Hændelser forårsaget af den Dataansvarliges systemer, integrationer eller slutbrugere
-
----
-
-### 9.3 Den Dataansvarliges Erstatningsforpligtelse
+### 9.2 Den Dataansvarliges Erstatningsforpligtelse
 
 Uanset §9.1 skal den Dataansvarlige skadesløsholde, forsvare og holde LogicNodes fri for ethvert krav, tab, bøder, sanktioner og rimelige sagsomkostninger opstået som følge af den Dataansvarliges manglende overholdelse af sine forpligtelser i henhold til §2.3, herunder Tilsynsmyndigheders undersøgelser eller håndhævelsesforanstaltninger og krav fra Registrerede i henhold til GDPR artikel 82 rettet mod LogicNodes. Hvor LogicNodes holdes solidarisk ansvarlig i henhold til GDPR artikel 82 i forbindelse med Personoplysninger introduceret af den Dataansvarlige i strid med §2.3, skal den Dataansvarlige godtgøre LogicNodes for ethvert beløb betalt til Registrerede eller myndigheder.
 
