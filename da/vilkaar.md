@@ -3,7 +3,7 @@ layout: legal
 title: Vilkår & Betingelser
 lang: da
 lang_equivalent: /en/terms
-last_updated: 2026-04-23
+last_updated: 2026-06-25
 ---
 
 # Vilkår & Betingelser
@@ -14,6 +14,23 @@ last_updated: 2026-04-23
 Disse Vilkår & Betingelser ("Vilkår") regulerer din adgang til og brug af LogicNodes-platformen og relaterede services leveret af **LogicNodes ApS** (CVR: DK45318362), Sletvej 2D, 8310 Tranbjerg, Danmark ("LogicNodes", "vi", "os" eller "vores").
 
 Ved at tilgå eller bruge LogicNodes accepterer du at være bundet af disse Vilkår. Hvis du ikke accepterer, må du ikke bruge platformen.
+
+---
+
+## 0. Definitioner
+
+Nedenstående begreber har de angivne betydninger, uanset hvor de anvendes i disse Vilkår:
+
+- **"Tjenester"** — LogicNodes-platformen, herunder webapplikationen, API'er, integrationer og enhver relateret funktionalitet, der stilles til rådighed under et Abonnement.
+- **"Konto"** — den registrerede konto, der er oprettet for at tilgå Tjenesterne, og som er knyttet til en Organisation.
+- **"Organisation"** — en juridisk person eller fysisk person, der er registreret som bruger af Tjenesterne.
+- **"Administrator"** — en bruger inden for en Organisation med tilladelse til at administrere kontoen.
+- **"Kundeindhold"** — data, tekst, lyd, filer eller andet materiale, der uploades til eller behandles via Tjenesterne af dig eller dine brugere.
+- **"Output"** — indhold genereret af AI-modeller via Tjenesterne som svar på Kundeindhold.
+- **"Abonnement"** — en betalt eller gratis plan, der giver adgang til Tjenesterne i en fastsat periode.
+- **"Forbrug"** — den monetære værdi af AI-inferensanmodninger, der er forbrugt, angivet i kontoens faktureringsvaluta og opgjort mod Abonnementsplanens inkluderede forbrugsgrænse.
+- **"Fortrolige oplysninger"** — enhver ikke-offentlig information, som den ene part videregiver til den anden i forbindelse med disse Vilkår, herunder forretningsplaner, priser, teknisk dokumentation og Kundeindhold.
+- **"Politik for acceptabel brug"** — politikken på [/da/acceptable-use-policy/](/da/acceptable-use-policy/), der regulerer tilladt og forbudt brug af Tjenesterne.
 
 ---
 
@@ -48,13 +65,11 @@ Du er ansvarlig for at opretholde fortroligheden af dine kontooplysninger og for
 
 LogicNodes tilbyder et gratis niveau og betalte abonnementer. Betalte planer faktureres månedligt. Aktuelle priser fremgår ved checkout og i dine kontoindstillinger.
 
-### 3.2 Kreditter
+### 3.2 Forbrugsgrænser
 
-Platformen opererer med et kreditsystem med to uafhængige puljer, der nulstilles månedligt:
-- **Inkluderede kreditter**: tilgængelige på alle planer og kan bruges med enhver AI-udbyder.
-- **Premiumkreditter**: tilgængelige ved brug af egne API-nøgler (Bring Your Own Key), forbruges først.
+Hvert abonnement inkluderer en månedlig forbrugsgrænse angivet i kontoens faktureringsvaluta. Forbrug opgøres som den monetære omkostning af AI-inferensanmodninger behandlet via platformen og fratrækkes denne grænse i realtid.
 
-Betalte planer giver mulighed for køb af yderligere overskridelseskreditter. Gratis konti er underlagt faste brugsgrænser uden mulighed for overskridelse.
+Betalte planer tillader forbrug ud over den inkluderede grænse (overskridelse), som faktureres til de priser, der fremgår af dine kontoindstillinger. Gratis konti er underlagt faste brugsgrænser uden mulighed for overskridelse.
 
 ### 3.3 Fakturering og Betaling
 
@@ -80,6 +95,8 @@ Du accepterer ikke at:
 - Anvende legitimationsoplysninger, API-nøgler eller adgangstoken tilhørende andre uden deres udtrykkelige godkendelse;
 - Indføre data i platformen, som du ikke har ret til at behandle;
 - Overtræde brugsbetingelserne for tredjepartstjenester integreret med platformen.
+
+Din brug af Tjenesterne er endvidere underlagt vores [Politik for acceptabel brug](/da/acceptable-use-policy/), som ved denne henvisning udgør en integreret del af disse Vilkår.
 
 ---
 
@@ -118,6 +135,26 @@ Du, som dataansvarlig, er ansvarlig for at modtage og besvare anmodninger om reg
 
 Vi anvender underbehandlere til at levere vores services. Ved at bruge LogicNodes giver du os tilladelse til at anvende underbehandlere til dette formål. En aktuel liste over underbehandlere vedligeholdes på [/da/underbehandlere/](/da/underbehandlere/).
 
+### 5.7 Databehandling udelukkende inden for EU
+
+Hvis du ønsker, at alle personoplysninger — herunder AI-inferenskald — behandles udelukkende inden for Den Europæiske Union, kan du anmode om dette ved at kontakte kontakt@logicnodes.ai. Når funktionen er aktiv, er AI-inferens begrænset til EU-baserede udbydere (Mistral AI, Google Cloud EU, Microsoft Azure OpenAI EU, Amazon Bedrock Frankfurt), og stemmetransskription via ElevenLabs er ikke tilgængelig.
+
+### 5.5 Forbud mod AI-træning
+
+LogicNodes anvender ikke Kundeindhold eller Output til at træne, finjustere, benchmarke eller evaluere AI- eller maskinlæringsmodeller. Forbuddet gælder uanset, om dataene er pseudonymiserede eller aggregerede. For en ordens skyld indskrænker dette ikke LogicNodes' adgang til at anvende fuldt anonymiserede, aggregerede platformsbrugstatistikker — såsom adoptionsrater for funktioner, anmodningsvolumener eller hyppighed af modelvalg — til intern produktudvikling og roadmap-planlægning, forudsat at sådanne statistikker ikke kan anvendes til at identificere enkeltpersoner eller en enkelt Organisations indhold.
+
+### 5.8 Automatiseret beslutningstagning (GDPR artikel 22)
+
+Hvor dine automatiserede workflows medfører retsvirkninger eller på tilsvarende måde i betydelig grad berører registrerede, er du som dataansvarlig ansvarlig for at sikre overholdelse af GDPR artikel 22 — herunder implementering af eventuelle påkrævede mekanismer for menneskelig gennemgang eller mulighed for at anfægte beslutninger. LogicNodes behandler alene personoplysninger som databehandler efter dine instrukser og stiller ikke disse sikkerhedsforanstaltninger til rådighed på dine vegne. Se [GDPR-meddelelse §4](/da/gdpr-notice/) for den fulde redegørelse.
+
+### 5.6 Personoplysninger — Den Dataansvarliges Ansvar
+
+Du kan indføre alle former for personoplysninger i Tjenesterne — herunder særlige kategorier af personoplysninger i henhold til GDPR artikel 9(1) og personoplysninger underlagt særlig national ret. Ved at gøre dette accepterer du, at du er **dataansvarlig** for de pågældende oplysninger og bærer eneansvar for overholdelse af al gældende lovgivning. LogicNodes handler udelukkende som din databehandler og verificerer ikke lovligheden af de data, du indfører.
+
+Du er eneansvarlig for at etablere og opretholde et gyldigt retsgrundlag i henhold til GDPR artikel 6(1) og, hvor det er relevant, artikel 9(2); at overholde eventuelle krav i gældende national ret; at informere registrerede; at håndtere deres anmodninger om udøvelse af rettigheder; og at implementere sikkerhedsforanstaltninger, der er passende for de behandlede datas karakter. Voiceprints er reguleret i §5.3 i disse Vilkår.
+
+Du holder LogicNodes skadesløs for ethvert krav, enhver bøde, ethvert gebyr eller tab som følge af din manglende overholdelse af gældende lovgivning i forbindelse med personoplysninger, du indfører i Tjenesterne.
+
 ---
 
 ## 6. Intellektuel Ejendomsret
@@ -134,6 +171,10 @@ Du beholder ejerskabet af alle data, input og indhold, du indfører i platformen
 
 Outputs genereret af AI-automatiseringer på dine vegne ejes af dig, med forbehold for betingelserne hos den AI-udbyder, der er anvendt til at generere dem. Når du bruger LogicNodes' egne AI API-nøgler, kan den gældende AI-underbehandlers betingelser ligeledes regulere ejerskab af output — se [/da/underbehandlere/](/da/underbehandlere/) for links til den enkelte udbyders betingelser. Når du anvender dine egne API-nøgler (Bring Your Own Key), gælder AI-udbyderens betingelser direkte mellem dig og den pågældende udbyder.
 
+### 6.4 IP-skadesløsholdelse
+
+LogicNodes forsvarer og holder dig skadesløs over for tredjepartskrav om, at Tjenesterne, som de leveres af LogicNodes og anvendes i overensstemmelse med disse Vilkår, krænker et gyldigt patent, ophavsret, varemærke eller forretningshemmelighed. Skadesløsholdelsen gælder ikke for krav, der udspringer af: (a) Kundeindhold eller Output; (b) dine ændringer af Tjenesterne; (c) din brug af Tjenesterne uden for det omfang, der er tilladt i henhold til disse Vilkår eller Politikken for acceptabel brug; (d) kombinationen af Tjenesterne med tredjepartsprodukter, integrationer eller services, der ikke er leveret af LogicNodes; eller (e) din fortsatte brug af Tjenesterne, efter at LogicNodes har stillet et ikke-krænkende alternativ til rådighed. Denne bestemmelse finder udelukkende anvendelse på betalte Abonnementer. Som LogicNodes' eksklusive afhjælpning ved et krænkelseskrav kan LogicNodes efter eget valg: (i) indhente en licens, der tillader fortsat brug; (ii) ændre Tjenesterne, så de ikke krænker; eller (iii) opsige dit Abonnement med forholdsmæssig tilbagebetaling af forudbetalte gebyrer.
+
 ---
 
 ## 7. AI-genererede Outputs og Nøjagtighed
@@ -144,21 +185,35 @@ Du er ansvarlig for, hvordan du konfigurerer platformen, for at overvåge AI'ens
 
 Du bør ikke udelukkende basere dig på AI-genererede outputs til kritiske forretningsmæssige, juridiske, finansielle eller medicinske beslutninger uden uafhængig verificering.
 
+**Platformsneutralitet.** Kvaliteten og nøjagtigheden af Output afhænger primært af den AI-model, du har valgt, de instruktioner og prompter, du har angivet, samt de data, du har indført. LogicNodes yder ingen garanti for ydeevnen af AI-modeller og er ikke ansvarlig for kvaliteten, nøjagtigheden eller egnetheden af Output.
+
+**Højrisikoanvendelse — menneskelig overvågning er påkrævet.** Du må ikke anvende Tjenesterne som det primære automatiserede beslutningssystem for: (a) medicinske eller kliniske beslutninger, herunder diagnosticering, behandlingsanbefalinger eller triage; (b) juridisk rådgivning til tredjeparter, herunder automatiserede juridiske vurderinger eller dokumentgenerering med karakter af juridisk rådgivning; (c) finansiel rådgivning til forbrugere, herunder investeringsanbefalinger eller kreditbeslutninger (dette er ikke til hinder for betalingsbehandling, fakturering eller bogføringsautomatisering); eller (d) styring af kritisk infrastruktur, herunder elnet, vandforsyningssystemer eller transportnet. Hvis din anvendelse falder inden for et af disse områder, er du ansvarlig for at sikre, at kvalificeret menneskelig overvågning opretholdes, og at alle gældende regulatoriske krav overholdes. Se endvidere [Politikken for acceptabel brug](/da/acceptable-use-policy/).
+
 ---
 
-## 8. Tredjepartsintegrationer
+## 8. Tredjepartsintegrationer og Connectorer
 
 Platformen integrerer med tredjepartstjenester såsom regnskabssoftware, kommunikationsværktøjer og AI-udbydere. LogicNodes er ikke ansvarlig for tredjepartstjenesters tilgængelighed, ydeevne eller ændringer i disse tjenester og API'er. LogicNodes vil gøre rimelige bestræbelser på at opretholde integrationer og reagere på ændringer i tredjepartstjenester, men kan ikke garantere uafbrudt tilgængelighed af tredjepartstjenester.
 
-Din brug af integrerede tredjepartstjenester er ligeledes underlagt disse tjenesters egne vilkår og privatlivspolitikker.
+### 8.1 Connector-Compliance
+
+Ved at aktivere en connector til en tredjepartstjeneste accepterer du den pågældende tjenestes vilkår og privatlivspolitik. Data vil blive overført til og fra tjenesten på dine vegne, og du er udelukkende ansvarlig for, at adgangen til dine data er lovlig — herunder overholdelse af krav til datahåndtering, samtykke og anvendelsesbegrænsninger fastsat af udbyderen.
+
+LogicNodes fungerer alene som teknisk formidler af forbindelsen og påtager sig intet ansvar for tredjepartstjenesters indhold, funktionalitet, tilgængelighed, compliance eller håndtering af de data, du overfører via deres connectorer. Den pågældende udbyders vilkår og privatlivspolitik regulerer enhver sådan dataoverførsel.
 
 ---
 
 ## 9. Ansvarsbegrænsning
 
+**Force majeure.** Ingen af parterne er ansvarlig for manglende opfyldelse eller forsinkelse forårsaget af omstændigheder, der ligger uden for den pågældende parts rimelige kontrol, herunder: distribuerede denial-of-service-angreb; nedbrud hos leverandører af cloud-infrastruktur (herunder AWS, Vercel, Hetzner eller andre underbehandlere); naturkatastrofer; krigshandlinger eller terrorisme; myndighedspåbud; epidemier; eller strejker. Den berørte part skal give hurtig meddelelse herom og gøre rimelige bestræbelser på at genoptage opfyldelsen.
+
+**Gratis niveau.** Hvis du anvender Tjenesterne under et gratis Abonnement, leveres Tjenesterne **"SOM DE FOREFINDES"** og **"EFTER TILGÆNGELIGHED"** uden nogen form for erklæringer, garantier eller skadesløsholdelser.
+
 I den maksimale udstrækning tilladt af gældende dansk og EU-lovgivning er LogicNodes ikke ansvarlig for skader, tab eller hændelser opstået som følge af handlinger udført på eller via platformen, herunder handlinger udført af AI-automatiseringer på dine vegne, integrationer med tredjepartstjenester eller beslutninger truffet på baggrund af AI-genererede outputs.
 
 Vores samlede ansvar over for dig må ikke overstige de gebyrer, du har betalt til LogicNodes i de tolv (12) måneder forud for kravet.
+
+Ansvarsbegrænsningen i dette afsnit finder ikke anvendelse på: (a) forpligtelser i henhold til §6.4 (IP-skadesløsholdelse); (b) krav, der ikke kan begrænses i henhold til gældende lovgivning, herunder grov uagtsomhed eller forsætligt misligholdelse.
 
 ---
 
@@ -180,8 +235,12 @@ Ved opsigelse ophører din adgang til platformen. Du kan til enhver tid eksporte
 
 | Data | Opbevaring | Formål | Retsgrundlag |
 |------|-----------|---------|-------------|
-| Revisionslogfiler | 1 år | Sikkerhedsovervågning og compliance | Legitim interesse (GDPR Art. 6(1)(f)) |
+| Revisionslogfiler | 5 år | Compliance | Art. 6(1)(f) GDPR + art. 17(3)(e) GDPR |
 | Fakturerings- og transaktionsregistreringer | 5 år fra regnskabsårets afslutning | Overholdelse af dansk bogføringslovgivning | Retlig forpligtelse (GDPR Art. 6(1)(c), Bogføringsloven) |
+
+### 10.4 Inaktive Konti
+
+LogicNodes kan slette konti, der ikke har haft loginaktivitet i en sammenhængende periode på 12 måneder, efter at have givet mindst 30 dages skriftligt varsel til den e-mailadresse, der er knyttet til kontoen. Inden sletning kan du eksportere dine data i overensstemmelse med §10.3.
 
 ---
 
@@ -191,20 +250,56 @@ Disse Vilkår er underlagt **dansk ret**. Eventuelle tvister er underlagt de dan
 
 ---
 
-## 12. Ændringer af Disse Vilkår
+## 12. Fortrolige Oplysninger
+
+**Hvad forbliver privat**
+
+Hver part behandler den andens fortrolige oplysninger fortroligt og deler dem ikke med tredjeparter. Deling er kun tilladt med medarbejdere, konsulenter eller rådgivere, der har et tjenstligt behov herfor og er bundet af tilsvarende fortrolighedsforpligtelser.
+
+Hvis det kræves ved lov eller kendelse, kan en part videregive fortrolige oplysninger — men skal give den anden part rimeligt forudgående varsel, i det omfang dette er tilladt ved lov.
+
+**Bemærk:** Dit indhold (Kundeindhold) behandles som Fortrolige oplysninger, som LogicNodes er berettiget til at kræve fortrolighed om i henhold til disse Vilkår.
+
+Disse forpligtelser gælder i **3 år** efter disse Vilkårs ophør.
+
+---
+
+## 13. Overdragelse
+
+**Overførsel af denne aftale**
+
+Ingen af parterne må overføre disse Vilkår til en anden part uden den andens skriftlige samtykke.
+
+**Undtagelse:** Begge parter kan overføre disse Vilkår i forbindelse med en fusion, erhvervelse eller salg af i det væsentlige alle aktiver, forudsat at:
+- Den nye part skriftligt forpligter sig til alle Vilkår; og
+- Den overdragende part giver mindst **30 dages skriftligt varsel**.
+
+Enhver overførsel, der ikke følger disse regler, er ugyldig.
+
+---
+
+## 14. Ændringer af Disse Vilkår
 
 Vi kan opdatere disse Vilkår fra tid til anden. Vi vil underrette dig om væsentlige ændringer via e-mail mindst **30 dage** inden de træder i kraft. Datoen "Senest opdateret" ovenfor afspejler den seneste revision. Fortsat brug af platformen efter varselsperioden udgør accept af de opdaterede Vilkår. Hvis du ikke accepterer ændringerne, kan du opsige din konto inden ændringerne træder i kraft.
 
 ---
 
-## 13. Kontakt
+## 15. Kontakt
 
 **LogicNodes ApS**
 Sletvej 2D, 8310 Tranbjerg, Danmark
 CVR: DK45318362
 
-E-mail: [kontakt@logicnodes.ai](mailto:kontakt@logicnodes.ai)
+E-mail: [legal@logicnodes.ai](mailto:legal@logicnodes.ai)
 
 ---
 
-**© 2026 LogicNodes ApS. Alle rettigheder forbeholdes.**
+## Ændringslog
+
+| Dato | Afsnit |
+|---|---|
+| 2026-07-07 | §5.6; §5.8 |
+| 2026-05-18 | Første offentliggørelse |
+
+---
+

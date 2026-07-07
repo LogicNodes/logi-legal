@@ -20,6 +20,30 @@ lang: en
         </div>
 
         <div class="doc-card">
+            <h2>Acceptable Use Policy</h2>
+            <p>Permitted and prohibited uses of the LogicNodes platform, including high-risk use restrictions.</p>
+            <a href="{{ '/en/acceptable-use-policy/' | relative_url }}" class="btn">Read AUP</a>
+        </div>
+
+        <div class="doc-card">
+            <h2>Cookie Notice</h2>
+            <p>What cookies we use, why, and what we do not track.</p>
+            <a href="{{ '/en/cookie-notice/' | relative_url }}" class="btn">Read Cookie Notice</a>
+        </div>
+
+        <div class="doc-card">
+            <h2>GDPR Notice</h2>
+            <p>Full explanation of legal bases, your rights under GDPR, and how to exercise them.</p>
+            <a href="{{ '/en/gdpr-notice/' | relative_url }}" class="btn">Read GDPR Notice</a>
+        </div>
+
+        <div class="doc-card">
+            <h2>Data Retention & Deletion</h2>
+            <p>How long we keep your data, how to export it, and how to request deletion.</p>
+            <a href="{{ '/en/data-retention/' | relative_url }}" class="btn">Read Data Retention Policy</a>
+        </div>
+
+        <div class="doc-card">
             <h2>Support</h2>
             <p>Get help with LogicNodes. Contact our support team for technical or account issues.</p>
             <a href="{{ '/en/support/' | relative_url }}" class="btn">Contact Support</a>
@@ -34,12 +58,6 @@ lang: en
             <h2>Data Processing Agreement</h2>
             <p>GDPR Article 28 compliant DPA for partners processing EU personal data through LogicNodes.</p>
             <a href="{{ '/en/data-processing-agreement/' | relative_url }}" class="btn">View DPA</a>
-        </div>
-
-        <div class="doc-card">
-            <h2>Partner Privacy Policy</h2>
-            <p>Privacy policy covering end users accessing LogicNodes features embedded in partner products.</p>
-            <a href="{{ '/en/partner-privacy-policy/' | relative_url }}" class="btn">Read Policy</a>
         </div>
 
         <div class="doc-card">

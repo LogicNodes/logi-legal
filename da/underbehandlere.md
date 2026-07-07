@@ -3,7 +3,7 @@ layout: legal
 title: Underbehandlere
 lang: da
 lang_equivalent: /en/subprocessors
-last_updated: 2026-04-23
+last_updated: 2026-07-07
 description: "Komplet liste over tredjepartsunderbehandlere engageret af LogicNodes ApS til servicelevering. GDPR-kompatibel notifikationsside."
 ---
 
@@ -35,6 +35,13 @@ Kopier af alle underskrevne eller klikbaserede DPA'er opbevares internt og kan u
 | **ElevenLabs** | Tale-til-tekst transskription |
 | **Pyannote** | Talaridentifikation (valgfrit; involverer biometriske data — GDPR Art. 9) |
 | **OpenAI / Anthropic / Google / xAI** | AI-sprogmodelsinferens |
+| **Mistral AI** | AI-sprogmodelsinferens — kun ved databehandling udelukkende inden for EU (Frankrig) |
+| **Hugging Face, Inc.** | AI-modelhosting og inferens |
+| **Amazon Web Services (Bedrock)** | AI-sprogmodelsinferens — kun ved databehandling udelukkende inden for EU (eu-central-1, Frankfurt) |
+
+ElevenLabs og Pyannote engageres kun, når funktionerne til taletranskription og talaridentifikation er eksplicit aktiveret. De anvendes ikke ved almindelige agentkørsler.
+
+> **Databehandling udelukkende inden for EU:** Når en organisation har aktiveret databehandling udelukkende inden for EU (jf. DPA §2.4), håndteres al AI-inferens udelukkende af EU-baserede modeller via Amazon Bedrock (Frankfurt), Mistral AI (Frankrig), Google Cloud Gemini (EU-region) eller Microsoft Azure OpenAI Service (EU-region). ElevenLabs-transskription er ikke tilgængelig i denne konfiguration. Data overføres ikke til US-baserede LLM-udbydere. Amazon Web Services (Bedrock) engageres kun i denne konfiguration; kontakt: aws-privacy@amazon.com.
 
 ---
 
@@ -57,11 +64,22 @@ Partnere kan vælge at levere egne API-nøgler til LLM-services. I denne konfigu
 - LogicNodes er ikke ansvarlig for LLM-udbyderes datahåndtering i denne konfiguration
 
 **Partnerkontrol:**
-Partnere kan specificere hvilke LLM-udbydere der anvendes, eller deaktivere LLM-funktioner helt. Denne fleksibilitet giver Partnere mulighed for at:
+Partnere kan specificere hvilke LLM-udbydere der anvendes. Denne fleksibilitet giver Partnere mulighed for at:
 - Anvende LogicNodes-administrerede nøgler (standard, dækket under denne underbehandlerliste)
 - Levere egne nøgler (Partnerens direkte relation til LLM-udbyderen)
 - Deaktivere specifikke LLM-udbydere
 - Udelukkende anvende EU-baserede udbydere (f.eks. Google Cloud EU-regioner)
+
+### Forbud mod AI-træning
+
+Ingen underdatabehandler engageret af LogicNodes må anvende kundeindhold, output eller data afledt heraf til træning, finjustering, benchmarking eller evaluering af AI- eller maskinlæringsmodeller. Hvor LLM-udbydere tilbyder nul-datalagring (ZDR) eller tilsvarende funktioner uden træning, aktiverer LogicNodes disse indstillinger.
+
+| Udbyder | Forebyggelse af træning | Nul-datalagring (ZDR) |
+|---|---|---|
+| OpenAI | Træning deaktiveret via API-aftale | ZDR tilgængelig på Enterprise; aktiveret for LogicNodes-administreret trafik |
+| Anthropic | Træning deaktiveret via API-aftale | Ingen træning på API-trafik som standard |
+| Google Cloud | Træning deaktiveret via API-aftale | Opt-out tilgængeligt per anmodning |
+| xAI | Træning deaktiveret via DPA | I henhold til DPA |
 
 ---
 
@@ -94,22 +112,14 @@ Tilgængelig på partneranmodning. Tillægsgebyrer kan forekomme. Kontakt kontak
 **LLM-behandling:**
 Når partnere konfigurerer LLM-udbydere, kan databehandling finde sted i udbyderens globale infrastruktur (typisk USA for OpenAI, Anthropic, xAI; EU/globalt for Google). Partnere bør gennemgå den enkelte udbyders muligheder for datalokalitet.
 
+**Databehandling udelukkende inden for EU:**
+Når en organisation har aktiveret databehandling udelukkende inden for EU, er al AI-inferens begrænset til EU-baserede modeller. Data overføres ikke til US-baserede udbydere i denne konfiguration. Kontakt kontakt@logicnodes.ai for at aktivere funktionen.
+
 ---
 
 ## Sikkerhed & Compliance
 
-Alle underbehandlere opfylder eller overstiger LogicNodes' sikkerhedskrav:
-
-| Krav | Status |
-|-------------|--------|
-| GDPR-overensstemmelse | ✅ Alle underbehandlere |
-| Standardkontraktbestemmelser (SCC'er) | ✅ Alle internationale overførsler |
-| SOC 2 Type II | ✅ Mailgun, OpenAI, Anthropic, Google |
-| ISO 27001 | ✅ Mailgun, Google, AWS (via Supabase) |
-| EU-US Data Privacy Framework (DPF) | ✅ ElevenLabs |
-| HIPAA-egnet infrastruktur | ✅ Mailgun, AWS (via Supabase), Google |
-| Kryptering i hvile (AES-256) | ✅ Alle datalagerudbydere |
-| Kryptering under overførsel (TLS 1.2+) | ✅ Alle underbehandlere |
+Alle underbehandlere opfylder eller overstiger LogicNodes' sikkerhedskrav, herunder GDPR-overensstemmelse, passende overførselsmekanismer (SCC'er eller tilstrækkeligheds­afgørelser) samt kryptering under overførsel og i hvile.
 
 ---
 
@@ -124,20 +134,12 @@ Alle underbehandlere opfylder eller overstiger LogicNodes' sikkerhedskrav:
 **Seneste fuld gennemgang:** April 2026
 **Næste planlagte gennemgang:** Oktober 2026
 
-**Ændringslog:**
-- **2025-11-04:** Første publikation med komplet underbehandlerliste
-- **2025-11-04:** Tilføjet LLM-udbydere (OpenAI, Anthropic, Google, xAI)
-- **2025-11-04:** Præciseret EU-datalokalisering og routing
-- **2026-04-23:** Erstattet Render med Hetzner Online GmbH til backend-hosting
-- **2026-04-23:** Tilføjet ElevenLabs Inc. (taletranskription) og Pyannote SAS (talaridentifikation)
-- **2026-04-23:** Opdateret xAI enterprise-kontakt-e-mail
-
 ---
 
 ## Meddelelse om Ændringer
 
-**30 dages forudgående varsel:**
-LogicNodes ApS opdaterer denne side mindst **30 dage forud** for:
+**7 dages forudgående varsel:**
+LogicNodes ApS opdaterer denne side mindst **7 dage forud** for:
 - Tilføjelse af en ny underbehandler
 - Væsentlig ændring af en eksisterende underbehandlerrelation
 - Ændring af databehandlingslokationer
@@ -148,11 +150,7 @@ LogicNodes ApS opdaterer denne side mindst **30 dage forud** for:
 3. Versionshistorik spores via GitHub Pages-commit-log
 
 **Partnerens indsigelsesret:**
-Partnere kan gøre indsigelse mod nye underbehandlere på rimelige databeskyttelsesgrunde ved at underrette LogicNodes inden for 30 dage. Se din Databehandleraftale (DPA) for fulde detaljer.
-
-**Overvågning af denne side:**
-- Bogmærk denne side: [/da/underbehandlere](/da/underbehandlere)
-- Overvåg GitHub Pages-commit-historik for versionssporing
+Partnere kan gøre indsigelse mod nye underbehandlere på rimelige databeskyttelsesgrunde ved at underrette LogicNodes inden for 7 dage. Se din Databehandleraftale (DPA) for fulde detaljer.
 
 ---
 
@@ -160,12 +158,11 @@ Partnere kan gøre indsigelse mod nye underbehandlere på rimelige databeskyttel
 
 **Centrale juridiske dokumenter:**
 - [Databehandleraftale (DPA)](/da/databehandleraftale/) – GDPR Art. 28-kompatibel databehandleraftale
-- [Partner Privatlivspolitik](/da/partner-privatlivspolitik/) – Privatlivspolitik for partner-indlejrede brugere
 - [Ansvarlig Offentliggørelse](/da/ansvarlig-offentliggorelse/) – Retningslinjer for sikkerhedssårbarhedsrapportering
 - **Sikkerhedsarkitektur** – Tilgængelig på anmodning (kontakt kontakt@logicnodes.ai)
 
 **Partnerressourcer:**
-- [Partnerdokumentation](https://docs.logicnodes.ai/partners) – Integrationsvejledninger og API-dokumentation
+- **Partnerdokumentation** – Integrationsvejledninger fås på anmodning via kontakt@logicnodes.ai
 - [Sikkerhedsspørgeskemaer](mailto:kontakt@logicnodes.ai) – Anmod om udfyldte sikkerhedsvurderinger
 
 ---
@@ -208,6 +205,9 @@ Til direkte henvendelser til underbehandlere vedrørende deres databehandlingspr
 | Anthropic PBC | privacy@anthropic.com | [Anthropic Privatliv](https://www.anthropic.com/legal/privacy) |
 | Google Cloud | cloud-privacy@google.com | [Google Cloud Privatliv](https://cloud.google.com/privacy) |
 | xAI Corp. | privacy+enterprise@x.ai | [xAI Privatliv](https://x.ai/privacy/) |
+| Mistral AI SAS | privacy@mistral.ai | [Mistral AI Privatliv](https://mistral.ai/terms/#privacy-policy) |
+| Hugging Face, Inc. | privacy@huggingface.co | [Hugging Face Privatliv](https://huggingface.co/privacy) |
+| Amazon Web Services Inc. | aws-privacy@amazon.com | [AWS GDPR Center](https://aws.amazon.com/compliance/gdpr-center/) |
 | ElevenLabs Inc. | legal@elevenlabs.io | [ElevenLabs Trust Center](https://compliance.elevenlabs.io/) |
 | Pyannote SAS | support@pyannote.ai | [PyAnnoteAI](https://pyannote.ai/) |
 
@@ -215,9 +215,9 @@ Til direkte henvendelser til underbehandlere vedrørende deres databehandlingspr
 
 ---
 
-**Version:** 1.1
+**Version:** 1.2
 **Ikrafttrædelsesdato:** 23. april 2026
-**Sidst opdateret:** 23. april 2026
+**Sidst opdateret:** 7. juli 2026
 
 **© 2025 LogicNodes ApS. Alle rettigheder forbeholdes.**
 

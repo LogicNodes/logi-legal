@@ -1,7 +1,7 @@
 ---
 layout: legal
 title: Partner Documentation Hub
-last_updated: 2025-11-03
+last_updated: 2026-06-25
 lang: en
 lang_equivalent: /da/partner-dokumentation/
 ---
@@ -28,7 +28,7 @@ This documentation hub provides everything you need to evaluate, integrate, and 
 - Multi-tenant security architecture (triple-layer defense)
 - Secrets management (Supabase Vault encryption)
 - Data retention & automated cleanup
-- Audit logging (1-year retention)
+- Audit logging (5 years)
 - Partner admin capabilities (org/user management)
 - Infrastructure security (encryption, RLS, rate limiting)
 - Compliance status (GDPR, SOC 2 roadmap)
@@ -120,7 +120,7 @@ This documentation hub provides everything you need to evaluate, integrate, and 
 - Are you GDPR compliant? → Yes (see Privacy Policy)
 - Can we sign a DPA? → Yes (see DPA template)
 - Where is data stored? → EU (AWS EU-North-1, Stockholm)
-- How long is data retained? → 1-90 days (configurable), audit logs 1 year
+- How long is data retained? → 1-90 days (configurable), audit logs 5 years
 
 ### For Developers
 **Start Here:**
@@ -142,7 +142,7 @@ This documentation hub provides everything you need to evaluate, integrate, and 
 **Key Questions Answered:**
 - Is LogicNodes secure? → Yes (enterprise-grade architecture)
 - Are we GDPR compliant if we use LogicNodes? → Yes (DPA available)
-- What certifications do you have? → SOC 2 ready, pen test planned Q2 2026
+- What certifications do you have? → SOC 2 ready, pen test planned Q1 2027
 - Can we delete user data on demand? → Yes (API-driven deletion, 24hr timeline)
 
 ## 📞 Contact Information
@@ -214,9 +214,9 @@ All documents are version-controlled and updated regularly:
 
 **Notification:**
 Partners will be notified via email of material changes to:
-- Privacy Policy (30 days advance notice)
-- DPA (30 days advance notice)
-- Sub-processor list (30 days advance notice)
+- Privacy Policy (7 days advance notice)
+- DPA (7 days advance notice)
+- Sub-processor list (7 days advance notice)
 
 ## 📚 Additional Resources
 
@@ -224,7 +224,7 @@ Partners will be notified via email of material changes to:
 
 **Supabase (Infrastructure Provider):**
 - [SOC 2 Report](https://supabase.com/security)
-- [Security Docs](https://supabase.com/docs/guides/platform/security)
+- [Security Docs](https://supabase.com/docs/guides/security)
 
 **GDPR Resources:**
 - [Official Text](https://gdpr-info.eu/)
@@ -236,7 +236,7 @@ Partners will be notified via email of material changes to:
 
 ## 🎓 Glossary
 
-**Shadow User:** Synthetic user account created during partner authentication (no password, email is `{platform_user_id}@{partner_id}.embed.logicnodes.internal`)
+**Shadow User:** Synthetic user account created during partner authentication (no password; uses synthetic, non-routable email addresses generated from user and partner identifiers)
 
 **RLS (Row-Level Security):** Database security policies that enforce multi-tenant isolation at the row level
 

@@ -34,7 +34,6 @@ Use this PGP key to encrypt sensitive security reports or communications to the 
 **Key ID:** `707941C4`
 **Fingerprint:** `FD15 E817 5925 8403 5F53  0A4A 389B 966F 7079 41C4`
 **Created:** April 24, 2026
-**Expires:** April 23, 2028
 
 ---
 
@@ -146,7 +145,6 @@ keybase pgp pull kontakt@logicnodes.ai
 **Check via Multiple Channels:**
 - This page: /en/pgp
 - Security.txt: /.well-known/security.txt
-- Keybase: https://keybase.io/logicnodes (if published)
 - Contact us directly: kontakt@logicnodes.ai (we'll confirm via signed email)
 
 ### 3. Encrypt Your Message
@@ -205,87 +203,23 @@ gpg: Good signature from "LogicNodes Security Team <kontakt@logicnodes.ai>"
 
 ### Key Rotation
 
-This key will be rotated according to the following schedule:
-
-- **Standard rotation:** Every 2 years
-- **Emergency rotation:** Immediately if compromised
-- **Advance notice:** 60 days before planned rotation (announced via this page and email)
-
-### Key Revocation
-
-If this key is compromised or needs to be revoked:
-
-1. A revocation certificate will be published on this page
-2. Email notification sent to all registered security contacts
-3. New key published within 24 hours
-4. All signed communications will reference the revocation
-
-**Check for revocations:**
-```bash
-gpg --refresh-keys kontakt@logicnodes.ai
-```
+Keys are rotated approximately every two years and may be rotated at any time for other reasons. This page always reflects the current key.
 
 ---
 
 ## Alternative Secure Communication Methods
 
-If you cannot use PGP encryption, consider these alternatives:
-
-### 1. Signal
-**Contact:** [TO BE ADDED - IF AVAILABLE]
-**Verification:** [TO BE ADDED - SAFETY NUMBER]
-
-### 2. Encrypted Form
-**URL:** [TO BE ADDED - IF AVAILABLE]
-**Note:** Uses HTTPS + end-to-end encryption
-
-### 3. Keybase
-**Profile:** [TO BE ADDED - IF AVAILABLE]
-**Note:** Encrypted chat and file sharing
-
-### 4. Unencrypted Email
-**Email:** kontakt@logicnodes.ai
-**Note:** Use for non-sensitive communications only
+If you cannot use PGP encryption, you can send unencrypted email to kontakt@logicnodes.ai for non-sensitive communications.
 
 ---
 
-## Security.txt
+## Key File
 
-This PGP key is also published in our security.txt file per RFC 9116:
-
-**URL:** /.well-known/security.txt
-
-**Contents:**
-```
-Contact: mailto:kontakt@logicnodes.ai
-Encryption: /en/pgp
-Expires: [TO BE ADDED]
-Preferred-Languages: en, da
-Canonical: /.well-known/security.txt
-Policy: /en/responsible-disclosure
-```
+This key is also available as a plain-text file at [/en/pgp.txt](/en/pgp.txt), suitable for direct import via `curl` or similar tools.
 
 ---
 
-## Frequently Asked Questions
-
-**Q: Do I need to use PGP to report security issues?**
-A: No. PGP is optional. You can send unencrypted email to kontakt@logicnodes.ai. Use PGP for sensitive information like proof-of-concept exploits.
-
-**Q: How do I know this key is authentic?**
-A: Verify the fingerprint via multiple channels (this page, security.txt, signed email from us). We will also confirm via alternative communication methods if requested.
-
-**Q: What if I lose your public key?**
-A: It's always available at /en/pgp. You can also request it via email.
-
-**Q: Can I send you my PGP key?**
-A: Yes! Include your public key or key ID in your first email. We'll encrypt all replies to you.
-
-**Q: How long do you keep the key?**
-A: This key is valid until [TO BE ADDED - EXPIRY DATE]. We'll rotate it at least 60 days before expiration.
-
-**Q: What if the key expires?**
-A: A new key will be published before expiration. Check this page for the latest key.
+You are welcome to include your own PGP public key or key ID in your first email — we will encrypt all replies to you.
 
 ---
 
@@ -293,7 +227,6 @@ A: A new key will be published before expiration. Check this page for the latest
 
 **Copy from this page:** See ASCII-armored key above
 **Text-only version:** Change `.html` to `.txt` in the URL: /en/pgp.txt
-**QR Code:** [TO BE ADDED - IF DESIRED]
 
 ---
 
@@ -324,5 +257,4 @@ CVR: DK45318362
 **Last Updated:** April 24, 2026
 **Next Review:** October 2026
 
-**© 2026 LogicNodes ApS. All rights reserved.**
 

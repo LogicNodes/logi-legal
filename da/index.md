@@ -20,6 +20,30 @@ lang: da
         </div>
 
         <div class="doc-card">
+            <h2>Politik for Acceptabel Brug</h2>
+            <p>Tilladte og forbudte anvendelser af LogicNodes-platformen, herunder restriktioner for højrisikoanvendelse.</p>
+            <a href="{{ '/da/acceptable-use-policy/' | relative_url }}" class="btn">Læs AUP</a>
+        </div>
+
+        <div class="doc-card">
+            <h2>Cookiepolitik</h2>
+            <p>Hvilke cookies vi bruger, hvorfor, og hvad vi ikke sporer.</p>
+            <a href="{{ '/da/cookie-notice/' | relative_url }}" class="btn">Læs Cookiepolitik</a>
+        </div>
+
+        <div class="doc-card">
+            <h2>GDPR-meddelelse</h2>
+            <p>Fuld forklaring af retsgrundlag, dine rettigheder under GDPR, og hvordan du udøver dem.</p>
+            <a href="{{ '/da/gdpr-notice/' | relative_url }}" class="btn">Læs GDPR-meddelelse</a>
+        </div>
+
+        <div class="doc-card">
+            <h2>Dataopbevaring og sletning</h2>
+            <p>Hvor længe vi opbevarer dine data, hvordan du eksporterer dem, og hvordan du anmoder om sletning.</p>
+            <a href="{{ '/da/data-retention/' | relative_url }}" class="btn">Læs Dataopbevaringspolitik</a>
+        </div>
+
+        <div class="doc-card">
             <h2>Support</h2>
             <p>Få hjælp med LogicNodes. Kontakt vores supportteam for teknisk support eller kontorelaterede problemer.</p>
             <a href="{{ '/da/support/' | relative_url }}" class="btn">Kontakt Support</a>
@@ -34,12 +58,6 @@ lang: da
             <h2>Databehandleraftale</h2>
             <p>GDPR Artikel 28-kompatibel DPA for partnere der behandler EU-persondata via LogicNodes.</p>
             <a href="{{ '/da/databehandleraftale/' | relative_url }}" class="btn">Se DPA</a>
-        </div>
-
-        <div class="doc-card">
-            <h2>Partner Privatlivspolitik</h2>
-            <p>Privatlivspolitik for slutbrugere der tilgår LogicNodes-funktioner indlejret i partnerprodukter.</p>
-            <a href="{{ '/da/partner-privatlivspolitik/' | relative_url }}" class="btn">Læs Politik</a>
         </div>
 
         <div class="doc-card">
@@ -74,7 +92,7 @@ lang: da
         <div class="doc-card">
             <h2>PGP-nøgle</h2>
             <p>Vores offentlige PGP-nøgle til krypteret kommunikation med sikkerhedsteamet.</p>
-            <a href="{{ '/en/pgp/' | relative_url }}" class="btn">Hent PGP-nøgle</a>
+            <a href="{{ '/da/pgp/' | relative_url }}" class="btn">Hent PGP-nøgle</a>
         </div>
     </div>
 </section>

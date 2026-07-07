@@ -2,7 +2,7 @@
 layout: legal
 title: Security Overview
 description: "LogicNodes Platform – Enterprise security overview, data protection, and compliance commitments."
-last_updated: 2026-05-14
+last_updated: 2026-07-03
 lang: en
 lang_equivalent: /da/sikkerhedsarkitektur/
 ---
@@ -18,7 +18,7 @@ lang_equivalent: /da/sikkerhedsarkitektur/
 
 ## Executive Summary
 
-The LogicNodes embeddable AI agent platform is designed with enterprise-grade security to protect your data and your customers' data. This overview explains our security guarantees, data handling practices, and compliance capabilities. LogicNodes is designed for secure embedding and integration within partner SaaS platforms, following the principles of least privilege and data minimization.
+The LogicNodes AI agent platform is designed with enterprise-grade security to protect your data and your customers' data. This overview explains our security guarantees, data handling practices, and compliance capabilities. LogicNodes is used both directly through the LogicNodes frontend and embedded within partner SaaS platforms, and follows the principles of least privilege and data minimization in both configurations.
 
 We do **not** use customer data for training or fine-tuning AI models.
 
@@ -30,9 +30,9 @@ We do **not** use customer data for training or fine-tuning AI models.
 
 **Configurable Retention** - You control data retention periods; automated cleanup handles GDPR compliance
 
-**Comprehensive Audit Logging** - Security events logged and retained for compliance
+**Audit Logging** — retained 5 years
 
-**Secure Authentication** - JWT-based authentication; you control user access
+**Secure Authentication** - Supabase Auth for direct users; JWT-based authentication for partner-embedded users
 
 **Rate Limiting** - Protection against abuse and unauthorized access attempts
 
@@ -42,15 +42,26 @@ We do **not** use customer data for training or fine-tuning AI models.
 
 ### How It Works
 
-You authenticate your users to LogicNodes via signed JWTs:
-- **You control authentication** - Users never create LogicNodes passwords
-- **Immediate revocation** - Stop issuing tokens to revoke access
-- **Zero credential sharing** - We never see your users' passwords
-- **Full audit trail** - All authentication attempts logged
+LogicNodes supports two authentication models depending on how the platform is accessed:
 
-**Authentication Method:** RS256-signed JWTs (RSA with SHA-256)
+**Direct users (LogicNodes frontend)**
+Users sign in via email/password or OAuth (Google, Microsoft Azure). Credentials are managed exclusively by Supabase Auth — LogicNodes does not implement its own password storage or verification. Supabase Auth is SOC 2 Type II certified and handles hashing, salting, and secure storage. OAuth users never provide a password to LogicNodes at all.
+
+**Partner-embedded users (integration JWT)**
+Partners embedding LogicNodes into their own platform authenticate users by issuing a signed JWT from their own backend. LogicNodes validates the JWT signature using the partner's RSA public key and provisions a session automatically — the user never interacts with LogicNodes directly and no LogicNodes account or password is created.
+
+**In both cases:**
+- **Full audit trail** - All authentication attempts logged
+- **Immediate revocation** - Sessions expire automatically; partners can revoke embedded access by stopping JWT issuance
+- **Zero cross-tenant access** - Authentication is always scoped to a single organization
+
+**Authentication Method:** Supabase Auth (direct users) / RS256-signed JWTs (partner-embedded users)
 
 **Session Security:** Token-based sessions with automatic expiration and refresh capability
+
+**Revoking access:** For direct users, delete or disable the account via the platform UI. For partner-embedded users, stop issuing JWTs — existing sessions expire automatically within 1 hour.
+
+**Compromised partner signing secret:** Contact kontakt@logicnodes.ai immediately. We will rotate the signing secret and invalidate all active sessions for that integration.
 
 ## Data Security
 
@@ -90,7 +101,7 @@ Production data is strictly isolated from development, staging, and testing envi
 **Data in Transit:**
 - TLS 1.2 or higher for all API communication
 - HTTPS enforcement
-- Certificate pinning recommended for mobile apps
+
 
 ### Access Controls
 
@@ -103,6 +114,18 @@ Production data is strictly isolated from development, staging, and testing envi
 - Secure API keys for backend-to-backend communication
 - Secrets scoped by organization
 - All API access logged to audit logs
+
+### Staff and Admin Access
+
+A limited number of authorised LogicNodes staff have access to internal management tools for operational and support purposes. Before access is granted, every staff member must:
+
+- Sign a Non-Disclosure Agreement (NDA) covering confidential customer data
+- Complete mandatory security awareness training
+- Complete mandatory personal data and GDPR training
+
+Access is provisioned only after all three requirements are verified and is revoked immediately upon termination of employment or contractor agreement. Every action taken through internal management tools is tied to an accountable staff member and is audit-logged. MFA is mandatory for all staff with management access.
+
+**Account Support Access:** In limited circumstances, authorised staff may access and act within a user's account to provide effective technical support or to investigate unintended platform behaviour — inspecting the relevant agent run(s) solely to identify the root cause and resolve the platform issue. All such access is audit-logged and disclosed in our Privacy Policy (§6a).
 
 ### Data Loss Prevention
 
@@ -130,25 +153,34 @@ Our data loss prevention strategy combines preventive, recoverable, and operatio
 
 | Data Type | Retention | Purpose | Your Control |
 |-----------|-----------|---------|--------------|
-| User profile (email, name) | Until deletion | Account management | DELETE API |
-| Agent execution history | Configurable (1-90 days) | Conversation continuity, debugging | Configurable retention |
-| API requests/responses | Configurable (1-90 days) | Agent context, transparency | Configurable retention |
-| AI model interactions | Configurable (1-90 days) | Improve agent continuity and debugging | Configurable retention; **not used for model training** |
-| Encrypted secrets | Until deletion | Tool execution | DELETE API |
-| Audit logs | 1 year (fixed) | Security monitoring, compliance | Read-only |
+| User profile (email, name) | Until deletion | Account management | Platform UI |
+| Agent execution history | Configurable (1-90 days, default: 90 days) | Conversation continuity, debugging | Configurable retention |
+| API requests/responses | Configurable (1-90 days, default: 90 days) | Agent context, transparency | Configurable retention |
+| AI model interactions | Configurable (1-90 days, default: 90 days) | Improve agent continuity and debugging | Configurable retention; **not used for model training** |
+| Encrypted secrets | Until deletion | Tool execution | Platform UI |
+| Audit logs | 5 years | Compliance | Read-only |
 
 ### Automated Cleanup
 
-**Daily automated cleanup** removes data older than your configured retention period. We handle GDPR compliance automatically - no manual intervention required.
+**Daily automated cleanup** (runs at 02:00 UTC via database scheduler) removes agent run records and associated events older than your configured retention period.
+
+Storage file retention follows the lifecycle of the element the file belongs to:
+- **Agent run files** (uploaded documents, audio recordings tied to a specific run) are deleted together with their parent agent run when it expires
+- **App and platform files** (files attached to apps or other persistent platform elements) are retained for the lifetime of that app or element, and deleted when the app or element is deleted
+- **Audit logs** are excluded from automated cleanup and retained for 5 years
 
 ### Data Deletion
 
 **User and Organization Deletion APIs** support GDPR right to deletion:
-- Immediate deletion from production database (synchronous)
-- Purged from encrypted backups within 30 days
-- Cascading deletes ensure complete data removal
+- Immediate deletion of user record and profile data from production database (synchronous)
+- Agent runs, events, conversation history, and organization memberships deleted via database cascade
+- Uploaded files (documents, avatars) deleted from storage as part of the deletion flow
+- Encrypted secrets deleted on organization deletion
+- All data purged from encrypted backups within 30 days
 
-**Exception:** Audit logs retained for 1 year for compliance (contain only user IDs, no PII)
+**Exception for voiceprints:** Voiceprints created by the voice feature are stored separately and are not covered by the automated account deletion flow. Voiceprints can be deleted directly from the platform UI under the associated trigger on the chat page.
+
+**Exception:** Audit logs are retained for 5 years for fraud investigation purposes (Art. 17(3)(e) GDPR). See [Privacy Policy Section 6a - Internal Staff Access](/en/privacy-policy/#6a-internal-staff-access) for details. They are permanently deleted at the end of the 5-year period.
 
 **Audit Log Protection:**
 - Tamper-resistant and write-protected via Row-Level Security
@@ -160,23 +192,28 @@ Our data loss prevention strategy combines preventive, recoverable, and operatio
 ### GDPR Compliance
 
 **Data Controller vs Processor:**
-- **You** are the Data Controller (you determine purposes and means of processing)
-- **We** are the Data Processor (we process data on your behalf)
+
+For **partner-embedded deployments:** You (the partner) are the Data Controller; LogicNodes is the Data Processor processing data on your behalf.
+
+For **direct platform use:** LogicNodes acts as Data Controller for account and profile data (email, name, login history) and as Data Processor for the content your organization processes through the platform (agent runs, uploaded documents, AI interactions).
 
 **GDPR Rights We Support:**
-- Right to Access (via dashboard and API)
-- Right to Deletion (DELETE APIs, cascading deletes)
-- Right to Data Portability (via dashboard and API)
+
+For a full legal description of your rights under the GDPR, see the [GDPR Notice](/en/gdpr-notice/).
+
+- Right to Access — dashboard export of profile, organization membership, run metadata, and transcription list; full agent run content available upon written request to kontakt@logicnodes.ai (delivered within 30 days)
+- Right to Deletion — platform UI with cascading deletes for all standard data records; voiceprints can be deleted directly from the platform UI under the associated trigger on the chat page
+- Right to Data Portability — same scope as Right to Access; full content export available upon written request
 - Right to Rectification (update via dashboard and API)
 - Data Minimization (retention policies, automated cleanup)
 
-**Data Processing Agreement:** Template available at [data-processing-agreement.md](./data-processing-agreement.md)
+**Data Processing Agreement:** Template available at [Data Processing Agreement](/en/data-processing-agreement/)
 - GDPR Article 28 compliant
 - Standard Contractual Clauses (SCCs) for international transfers
 
 ### Data Location
 
-**Primary Data Residency:** European Union (AWS EU-North-1, Stockholm)
+**Primary Data Residency:** European Union (Sweden)
 
 **US Residency:** Available upon request (additional fees may apply)
 
@@ -184,7 +221,7 @@ Our data loss prevention strategy combines preventive, recoverable, and operatio
 - Standard Contractual Clauses (EU Commission approved)
 - Adequate safeguards per GDPR Article 46
 
-All data is stored in AWS EU-North-1 (Stockholm) by default, and no data is transferred outside the EU unless explicitly requested.
+Primary data storage is EU-based by default (Sweden). However, standard agent runs transmit prompts and responses to AI model providers — OpenAI, Anthropic, and xAI have servers in the USA, which constitutes an international transfer covered by Standard Contractual Clauses. Partners who require that all processing stays within the EU can request EU-only data processing (see below).
 
 ### Infrastructure Compliance
 
@@ -194,7 +231,8 @@ LogicNodes' infrastructure runs on Supabase (built on AWS). Supabase operates on
 - SOC 2 Type II certified
 - ISO 27001 certified
 - GDPR compliant
-- HIPAA available (on request)
+
+
 
 **Cloud Provider (AWS):**
 - SOC 1, 2, 3
@@ -204,37 +242,29 @@ LogicNodes' infrastructure runs on Supabase (built on AWS). Supabase operates on
 ### LogicNodes Certifications
 
 **Current:**
-- SOC 2 Aligned (built on SOC 2 Trust Service Principles)
-- Comprehensive security documentation
-- Annual penetration testing (conducted annually)
+- Designed to meet SOC 2 Trust Service Criteria — formal audit targeted for Q1 2027
+- Comprehensive security documentation available to qualified partners under NDA; custom security questionnaires accepted (send to kontakt@logicnodes.ai, response time 5-10 business days)
+- Penetration testing planned (first engagement scheduled Q1 2027, annual cadence thereafter)
 
 **Planned:**
-- SOC 2 Type II audit (as part of our 2026 compliance milestone)
-- ISO 27001 (for EU customers, estimated 2026)
-- Bug bounty program (planned)
+- SOC 2 Type II audit (targeted Q1 2027)
+- ISO 27001 (for EU customers, targeted Q1 2027)
+- Bug bounty program (targeted Q1 2027)
 
 ### Sub-Processors
 
-The authoritative, current list of sub-processors is maintained below. We provide 30-day advance notice before adding new sub-processors.
+The authoritative, current list of sub-processors is maintained below. We provide 7-day advance notice before adding new sub-processors. The complete and always-current list is maintained at [/en/subprocessors/](/en/subprocessors/).
 
-| Provider | Service | Location | Certifications |
-|----------|---------|----------|----------------|
-| Supabase | Database, Auth, Storage | EU (Stockholm) | GDPR DPA (relies on AWS SOC 2/ISO 27001) |
-| AWS | Cloud Infrastructure (via Supabase) | EU (Stockholm) | SOC 1/2/3, ISO 27001 |
-| Vercel | Web & Edge Hosting | EU (Frankfurt) | GDPR DPA |
-| Render | Backend Hosting & APIs | EU (Frankfurt) | EU-US DPF, GDPR DPA |
-| Mailgun | Transactional Email | USA/EU | SOC 2 Type I & II, ISO 27001, GDPR DPA |
-| OpenAI | AI Model Inference (LLM) | Global / USA | SOC 2 Type II, GDPR DPA |
-| Anthropic | AI Model Inference (LLM) | Global / USA | SOC 2, GDPR DPA |
-| Google Cloud | AI Model Inference (Gemini) | EU / Global | SOC 2, ISO 27001, GDPR DPA |
-| xAI | AI Model Inference (Grok) | Global / USA | GDPR DPA |
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRHy76XGvurEqCuaIjMYAKlogtBJg4Maz1EOIptwtBQth89Vyaq3CM929kRdwEEf8mSbESwZrfnd9o7/pubhtml?gid=0&single=true" width="100%" height="550" frameborder="0" scrolling="no"></iframe>
+
+Full details, DPA status, and contact information for each sub-processor are available on our [Sub-Processor List](/en/subprocessors/).
 
 ## Incident Response
 
 ### Security Contact
 
 **Email:** kontakt@logicnodes.ai  
-**PGP Fingerprint:** Published at [https://logicnodes.ai/.well-known/security.txt](https://logicnodes.ai/.well-known/security.txt)  
+**PGP Fingerprint:** Published at [https://legal.logicnodes.ai/en/pgp.txt](https://legal.logicnodes.ai/en/pgp.txt)  
 **Response Time:** Within 24 hours for critical issues
 
 ### Data Breach Notification
@@ -264,64 +294,9 @@ Security researchers can report vulnerabilities:
 - **90-Day Embargo:** Allow us 90 days to fix before public disclosure
 - **Recognition:** Public acknowledgment in our Security Hall of Fame
 
-Full policy: [https://logicnodes.ai/responsible-disclosure](https://logicnodes.ai/responsible-disclosure)
+Full policy: [https://legal.logicnodes.ai/en/responsible-disclosure/](https://legal.logicnodes.ai/en/responsible-disclosure/)
 
-Please review our full [Responsible Disclosure Policy](https://logicnodes.ai/responsible-disclosure) for scope and testing guidelines before conducting security research.
-
-## Frequently Asked Questions
-
-### General Security
-
-**Q: Where is data stored?**  
-A: European Union (AWS EU-North-1, Stockholm). US data residency available upon request.
-
-**Q: Is data encrypted?**  
-A: Yes. Encrypted at rest (database, secrets, storage) and in transit (TLS 1.2+).
-
-**Q: Do you have SOC 2?**  
-A: We're SOC 2 Aligned (built on SOC 2 Trust Service Principles). Formal SOC 2 Type II audit is part of our 2026 compliance roadmap.
-
-**Q: Can you sign custom security questionnaires?**
-A: Yes. Send to kontakt@logicnodes.ai. Response time: 5-10 business days.
-
-**Q: How is access to production systems controlled?**
-A: Access to production data and infrastructure requires backend access, protected by MFA and fully audit-logged. All backend access is restricted to authorized engineers.
-
-### Authentication
-
-**Q: Can users login directly to LogicNodes?**  
-A: Users authenticated via your JWT cannot (by design). They can only access through your platform.
-
-**Q: How do I revoke access for a user?**  
-A: Stop issuing JWTs for that user. Existing sessions expire automatically.
-
-**Q: What if my signing secret is compromised?**  
-A: Contact kontakt@logicnodes.ai immediately. We'll rotate your secret and invalidate all sessions.
-
-### Data & Privacy
-
-**Q: Do you use customer data for AI training?**  
-A: No. We do not use customer data for training or fine-tuning AI models.
-
-**Q: How do I comply with GDPR deletion requests?**  
-A: Use our DELETE APIs. Cascading deletes ensure complete data removal within 24 hours (production) + 30 days (backups).
-
-**Q: Are audit logs deleted on user deletion?**  
-A: No. Audit logs retained for 1 year for compliance. They contain only user IDs (no PII).
-
-**Q: Can data remain within the EU only?**  
-A: Yes. All data is stored in AWS EU-North-1 (Stockholm) by default, and no data is transferred outside the EU unless explicitly requested.
-
-### Compliance
-
-**Q: Do you have a DPA?**  
-A: Yes. Template available at [data-processing-agreement.md](./data-processing-agreement.md).
-
-**Q: Are you HIPAA compliant?**
-A: Infrastructure is HIPAA-capable (Supabase Business plan). HIPAA compliance available upon request for healthcare customers. Additional security controls, legal consultation, and fees required. Contact kontakt@logicnodes.ai for details.
-
-**Q: Can you provide a sub-processor list?**  
-A: Yes. See the Sub-Processors section above. Full list in DPA template.
+Please review our full [Responsible Disclosure Policy](https://legal.logicnodes.ai/en/responsible-disclosure/) for scope and testing guidelines before conducting security research.
 
 ## Request Full Security Architecture
 
@@ -342,7 +317,7 @@ Our full Security Architecture document is available to qualified partners under
 
 ### Security Team
 **Email:** kontakt@logicnodes.ai  
-**PGP Fingerprint:** Published at [https://logicnodes.ai/.well-known/security.txt](https://logicnodes.ai/.well-known/security.txt)  
+**PGP Fingerprint:** Published at [https://legal.logicnodes.ai/en/pgp.txt](https://legal.logicnodes.ai/en/pgp.txt)  
 **Response Time:** 24 hours for critical issues  
 **Full Security Architecture:** Available under NDA or by request  
 
@@ -364,6 +339,5 @@ Our full Security Architecture document is available to qualified partners under
 **Last Updated:** 2026-05-14  
 **Status:** This page is informational and subject to change  
 
-**© 2026 LogicNodes ApS. All rights reserved.**
 
 This document is intended for partner evaluation. The full Security Architecture is available upon request.

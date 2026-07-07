@@ -6,13 +6,15 @@ lang_equivalent: /en/support/
 last_updated: 2025-11-04
 ---
 
-# Få Support
+# Support
 
-<p class="last-updated">Senest opdateret: {{ page.last_updated | date: "%B %-d, %Y" }}</p>
+<p class="last-updated">Senest opdateret: {{ page.last_updated | date: "%-d. %B %Y" }}</p>
+
+## Få Support
 
 Har du brug for hjælp med LogicNodes? Vi er her for at hjælpe dig.
 
-## Kontakt support
+### Kontakt support
 
 For teknisk support, kontoproblemer eller generelle forespørgsler, kontakt venligst vores supportteam:
 
@@ -20,7 +22,7 @@ For teknisk support, kontoproblemer eller generelle forespørgsler, kontakt venl
 
 **Svartid:** Vi sigter mod at svare på alle supportanmodninger inden for 24-48 timer på hverdage.
 
-## Hvad du skal inkludere i din supportanmodning
+### Hvad du skal inkludere i din supportanmodning
 
 For at vi kan hjælpe dig mere effektivt, bedes du inkludere:
 
@@ -29,12 +31,24 @@ For at vi kan hjælpe dig mere effektivt, bedes du inkludere:
 - Trin til at genskabe problemet (hvis relevant)
 - Din konto-e-mailadresse (hvis kontorelateret)
 
-## Privatlivs- og juridiske forespørgsler
+### Privatlivs- og juridiske forespørgsler
 
-For privatlivsrelaterede spørgsmål eller juridiske anliggender, kontakt venligst:
+For privatlivsrelaterede spørgsmål, kontakt venligst:
 
-**E-mail:** [kontakt@logicnodes.ai](mailto:kontakt@logicnodes.ai)
+**Privatlivsteam:** [legal@logicnodes.ai](mailto:legal@logicnodes.ai)
+
+For sikkerhedsproblemer, kontakt venligst:
+
+**Sikkerhedsteam:** [kontakt@logicnodes.ai](mailto:kontakt@logicnodes.ai)
 
 ---
+
+### Virksomhedsoplysninger
+
+**LogicNodes ApS**
+Sletvej 2D
+8310 Tranbjerg
+Danmark
+CVR: DK45318362
 
 *Vi værdsætter din feedback og er forpligtet til at levere fremragende support.*

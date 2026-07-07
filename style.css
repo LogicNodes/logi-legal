@@ -487,6 +487,16 @@ footer {
     text-align: center;
 }
 
+.footer-contact {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.825rem;
+    text-decoration: none;
+}
+
+.footer-contact:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+
 @media (max-width: 768px) {
     .footer-inner {
         grid-template-columns: 1fr;

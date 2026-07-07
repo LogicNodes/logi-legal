@@ -9,6 +9,9 @@ vendor/
 
 # Claude Code
 /.claude
+/CLAUDE.md
 
 # Private internal documentation
 /private-docs/
+
+.dev

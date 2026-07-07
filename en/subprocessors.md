@@ -1,7 +1,7 @@
 ---
 layout: legal
 title: Sub-Processor List
-last_updated: 2026-04-23
+last_updated: 2026-07-07
 lang: en
 lang_equivalent: /da/underbehandlere
 description: "Complete list of third-party sub-processors engaged by LogicNodes ApS for service delivery. GDPR-compliant notification page."
@@ -35,6 +35,13 @@ Copies of all executed or click-through DPAs are maintained internally and can b
 | **ElevenLabs** | Speech-to-text transcription |
 | **Pyannote** | Speaker identification (optional; involves biometric data — GDPR Art. 9) |
 | **OpenAI / Anthropic / Google / xAI** | AI language model inference |
+| **Mistral AI** | AI language model inference — EU-only data processing only (France) |
+| **Hugging Face, Inc.** | AI model hosting and inference |
+| **Amazon Web Services (Bedrock)** | AI language model inference — EU-only data processing only (eu-central-1, Frankfurt) |
+
+ElevenLabs and Pyannote are only engaged when the voice transcription and speaker identification features are explicitly enabled. They are not used on standard agent runs.
+
+> **EU-only data processing:** When an organisation has activated EU-only data processing (see DPA §2.4), AI inference is handled exclusively by EU-based models via Amazon Bedrock (Frankfurt), Mistral AI (France), Google Cloud Gemini (EU region), or Microsoft Azure OpenAI Service (EU region). ElevenLabs transcription is not available in this configuration. No data is transferred to US-based LLM providers. Amazon Web Services (Bedrock) is only engaged in this configuration; contact: aws-privacy@amazon.com.
 
 ---
 
@@ -57,11 +64,22 @@ Partners may choose to provide their own API keys for LLM services. In this conf
 - LogicNodes is not responsible for LLM provider data handling in this configuration
 
 **Partner Control:**
-Partners can specify which LLM provider(s) to use or disable LLM features entirely. This flexibility allows Partners to:
+Partners can specify which LLM provider(s) to use. This flexibility allows Partners to:
 - Use LogicNodes-managed keys (default, covered under this sub-processor list)
 - Provide their own keys (Partner's direct relationship with LLM provider)
 - Disable specific LLM providers
 - Use only EU-based providers (e.g., Google Cloud EU regions)
+
+### AI Training Prohibition
+
+No sub-processor engaged by LogicNodes may use Customer Content, Outputs, or any data derived from them for the purpose of training, fine-tuning, benchmarking, or evaluating any AI or machine learning model. Where LLM providers offer zero data retention (ZDR) or equivalent no-training options, LogicNodes enables these settings.
+
+| Provider | Training Prevention | Zero Data Retention |
+|---|---|---|
+| OpenAI | Training disabled via API agreement | ZDR available on Enterprise; enabled for LogicNodes-managed traffic |
+| Anthropic | Training disabled via API agreement | No training on API traffic by default |
+| Google Cloud | Training disabled via API agreement | Per-request opt-out available |
+| xAI | Training disabled via DPA | Per DPA |
 
 ---
 
@@ -94,22 +112,14 @@ Available upon Partner request. Additional fees may apply. Contact kontakt@logic
 **LLM Processing:**
 When partners configure LLM providers, data processing may occur in the provider's global infrastructure (typically USA for OpenAI, Anthropic, xAI; EU/Global for Google). Partners should review each provider's data residency options.
 
+**EU-only data processing:**
+When an organisation has activated EU-only data processing, all AI inference is restricted to EU-based models only. No data is transferred to US-based providers in this configuration. Contact kontakt@logicnodes.ai to activate.
+
 ---
 
 ## Security & Compliance
 
-All sub-processors meet or exceed LogicNodes' security requirements:
-
-| Requirement | Status |
-|-------------|--------|
-| GDPR Compliance | ✅ All sub-processors |
-| Standard Contractual Clauses (SCCs) | ✅ All international transfers |
-| SOC 2 Type II | ✅ Mailgun, OpenAI, Anthropic, Google |
-| ISO 27001 | ✅ Mailgun, Google, AWS (via Supabase) |
-| EU-US Data Privacy Framework (DPF) | ✅ ElevenLabs |
-| HIPAA-Eligible Infrastructure | ✅ Mailgun, AWS (via Supabase), Google |
-| Encryption at Rest (AES-256) | ✅ All data storage providers |
-| Encryption in Transit (TLS 1.2+) | ✅ All sub-processors |
+All sub-processors meet or exceed LogicNodes' security requirements, including GDPR compliance, appropriate transfer mechanisms (SCCs or adequacy decisions), and encryption in transit and at rest.
 
 ---
 
@@ -124,20 +134,12 @@ All sub-processors meet or exceed LogicNodes' security requirements:
 **Last Full Review:** April 2026
 **Next Scheduled Review:** October 2026
 
-**Change Log:**
-- **2025-11-04:** Initial publication with complete sub-processor list
-- **2025-11-04:** Added LLM providers (OpenAI, Anthropic, Google, xAI)
-- **2025-11-04:** Clarified EU data residency and routing
-- **2026-04-23:** Replaced Render with Hetzner Online GmbH for backend hosting
-- **2026-04-23:** Added ElevenLabs Inc. (speech transcription) and Pyannote SAS (speaker identification)
-- **2026-04-23:** Updated xAI enterprise contact email
-
 ---
 
 ## Notification of Changes
 
-**30-Day Advance Notice:**
-LogicNodes ApS will update this page at least **30 days prior** to:
+**7-Day Advance Notice:**
+LogicNodes ApS will update this page at least **7 days prior** to:
 - Adding a new sub-processor
 - Materially changing an existing sub-processor relationship
 - Changing data processing locations
@@ -148,12 +150,7 @@ LogicNodes ApS will update this page at least **30 days prior** to:
 3. Version history tracked via GitHub Pages commit log
 
 **Partner Objection Rights:**
-Partners may object to new sub-processors on reasonable data protection grounds by notifying LogicNodes within 30 days. See your Data Processing Agreement (DPA) for full details.
-
-**Monitoring This Page:**
-- Subscribe to updates via RSS feed: [/subprocessors.xml](/subprocessors.xml)
-- Monitor GitHub Pages commit history for version tracking
-- Bookmark this page: [/en/subprocessors](/en/subprocessors)
+Partners may object to new sub-processors on reasonable data protection grounds by notifying LogicNodes within 7 days. See your Data Processing Agreement (DPA) for full details.
 
 ---
 
@@ -161,12 +158,11 @@ Partners may object to new sub-processors on reasonable data protection grounds 
 
 **Core Legal Documents:**
 - [Data Processing Agreement (DPA)](/en/data-processing-agreement/) – GDPR Art. 28 compliant processor agreement
-- [Privacy Policy (Partner Embedded)](/en/partner-privacy-policy/) – Privacy policy for partner-embedded users
 - [Responsible Disclosure Policy](/en/responsible-disclosure/) – Security vulnerability reporting
 - **Security Architecture** – Available on request (contact kontakt@logicnodes.ai)
 
 **Partner Resources:**
-- [Partner Documentation](https://docs.logicnodes.ai/partners) – Integration guides and API documentation
+- **Partner Documentation** – Integration guides and API documentation available on request at kontakt@logicnodes.ai
 - [Security Questionnaires](mailto:kontakt@logicnodes.ai) – Request completed security assessments
 
 ---
@@ -209,6 +205,9 @@ For direct inquiries to sub-processors regarding their data processing practices
 | Anthropic PBC | privacy@anthropic.com | [Anthropic Privacy](https://www.anthropic.com/legal/privacy) |
 | Google Cloud | cloud-privacy@google.com | [Google Cloud Privacy](https://cloud.google.com/privacy) |
 | xAI Corp. | privacy+enterprise@x.ai | [xAI Privacy](https://x.ai/privacy/) |
+| Mistral AI SAS | privacy@mistral.ai | [Mistral AI Privacy](https://mistral.ai/terms/#privacy-policy) |
+| Hugging Face, Inc. | privacy@huggingface.co | [Hugging Face Privacy](https://huggingface.co/privacy) |
+| Amazon Web Services Inc. | aws-privacy@amazon.com | [AWS GDPR Centre](https://aws.amazon.com/compliance/gdpr-center/) |
 | ElevenLabs Inc. | legal@elevenlabs.io | [ElevenLabs Trust Center](https://compliance.elevenlabs.io/) |
 | Pyannote SAS | support@pyannote.ai | [PyAnnoteAI](https://pyannote.ai/) |
 
@@ -216,9 +215,9 @@ For direct inquiries to sub-processors regarding their data processing practices
 
 ---
 
-**Version:** 1.1
+**Version:** 1.2
 **Effective Date:** April 23, 2026
-**Last Updated:** April 23, 2026
+**Last Updated:** July 7, 2026
 
 **© 2025 LogicNodes ApS. All rights reserved.**
 

@@ -1,174 +1,109 @@
 ---
 layout: legal
-title: Sikkerhedsarkitektur
-last_updated: 2026-05-14
+title: Sikkerhedsoversigt
+description: "LogicNodes Platform – Sikkerhedsoversigt, databeskyttelse og compliance for virksomheder."
+last_updated: 2026-07-03
 lang: da
 lang_equivalent: /en/security-architecture/
 ---
 
-# LogicNodes Platform - Sikkerhedsarkitektur
+# LogicNodes Platform - Sikkerhedsoversigt
 
-**Til Partner Teknisk Evaluering**  
+<p class="last-updated">Senest opdateret: {{ page.last_updated | date: "%-d. %B %Y" }}</p>
+**Målgruppe:** Potentielle partnere, sikkerhedsteams, compliance-ansvarlige
 
-**Version:** 2.1  
+**Distribution:** Dette er en overordnet sikkerhedsoversigt til offentlig evaluering. Vores detaljerede sikkerhedsarkitekturdokument (herunder implementeringsspecifikationer, API-endpoints og operationelle parametre) er tilgængeligt på anmodning for kvalificerede partnere under NDA.
 
-<p class="last-updated">Senest opdateret: {{ page.last_updated | date: "%B %-d, %Y" }}</p>
-
-**Målgruppe:** Tekniske beslutningstagere, sikkerhedsteams, compliance-ansvarlige
-
----
+**Anmod om fuld dokumentation:** Kontakt [kontakt@logicnodes.ai](mailto:kontakt@logicnodes.ai)
 
 ## Resumé
 
-LogicNodes embeddable AI agent platform er designet med **enterprise-grade sikkerhed** for at beskytte dine data og dine kunders data. Dette dokument forklarer vores sikkerhedsgarantier, datahåndteringspraksis og compliance-muligheder.
+LogicNodes AI agent platform er designet med enterprise-grade sikkerhed for at beskytte dine data og dine kunders data. Denne oversigt forklarer vores sikkerhedsgarantier, datahåndteringspraksis og compliance-muligheder. LogicNodes anvendes både direkte via LogicNodes-frontenden og indlejret i partner-SaaS-platforme, og følger principperne om mindste privilegium og dataminimering i begge konfigurationer.
 
-### Sikkerhedsgarantier
+Vi anvender **ikke** kundedata til træning eller finjustering af AI-modeller.
 
-✅ **Komplet Dataisolering** - Dine organisationers data er kryptografisk isoleret
-✅ **Krypterede Secrets** - API-nøgler og legitimationsoplysninger krypteret i hvile, aldrig eksponeret til frontend
-✅ **Automatiseret Dataopbevaring** - Du kontrollerer opbevaring (1-90 dage), vi håndterer automatisk oprydning
-✅ **Omfattende Audit Logging** - 1-årigt audit trail af alle sikkerhedshændelser
-✅ **Sikre API-nøgler** - Industristandard hashing, vis-én-gang workflow
-✅ **Rate Limiting** - Beskyttelse mod misbrug og brute force-angreb
-✅ **GDPR-Klar** - Ret til sletning, dataeksport, cascading deletes
+## Sikkerhedsgarantier
 
----
+**Komplet dataisolering** - Dine organisationers data er kryptografisk isoleret via multi-tenant-arkitektur
 
-## Indholdsfortegnelse
+**Krypterede data** - Alle data krypteret i hvile og under transport (TLS 1.2 eller højere)
 
-1. [Autentificering](#1-autentificering)
-2. [Datasikkerhed](#2-datasikkerhed)
-3. [API Key Management](#3-api-key-management)
-4. [Secrets Management](#4-secrets-management)
-5. [Dataopbevaring & Privatliv](#5-dataopbevaring--privatliv)
-6. [Audit & Compliance](#6-audit--compliance)
-7. [Partner-muligheder](#7-partner-muligheder)
-8. [Compliance & Certificeringer](#8-compliance--certificeringer)
-9. [Incident Response](#9-incident-response)
-10. [Sikkerhedsbest Practices](#10-sikkerhedsbest-practices)
+**Konfigurerbar opbevaring** - Du styrer opbevaringsperioderne; automatiseret oprydning håndterer GDPR-overholdelse
 
----
+**Revisionslogning** — opbevares 5 år
 
-## 1. Autentificering
+**Sikker autentificering** - Supabase Auth til direkte brugere; JWT-baseret autentificering til partner-indlejrede brugere
 
-### 1.1 Sådan Fungerer Autentificering
+**Hastighedsbegrænsning** - Beskyttelse mod misbrug og uautoriserede adgangsforsøg
 
-Du autentificerer dine brugere til LogicNodes via signerede JWTs. Dette betyder:
-- ✅ **Du kontrollerer autentificering** - Brugere opretter aldrig LogicNodes passwords
-- ✅ **Øjeblikkelig tilbagekaldelse** - Stop med at udstede tokens for at tilbagekalde adgang øjeblikkeligt
-- ✅ **Nul legitimationsdeling** - Vi ser aldrig dine brugeres passwords
-- ✅ **Fuldt audit trail** - Alle autentificeringsforsøg logget
+**GDPR-klar** - Ret til sletning, dataeksport, dataportabilitet, kaskaderende sletninger
 
-**Flow:**
-```
-Bruger logger ind på DIN platform
-    ↓
-DIN backend genererer JWT (signeret med dit secret)
-    ↓
-DIN frontend sender JWT til LogicNodes (/api/v1/embed/auth)
-    ↓
-LogicNodes validerer signatur og opretter session
-    ↓
-Bruger får adgang til AI-funktionalitet
-```
+## Autentificering & Adgangskontrol
 
-### 1.2 JWT-krav
+### Sådan fungerer det
 
-**Påkrævede Claims:**
-- `user_id` - Bruger-ID i dit system
-- `org_id` - Organisations-ID i dit system
-- `email` - Brugerens emailadresse
-- `name` - Brugerens visningsnavn
-- `exp` - Token udløb (Unix timestamp)
+LogicNodes understøtter to autentificeringsmodeller afhængigt af, hvordan platformen tilgås:
 
-**Valgfrie Claims:**
-- `org_name` - Organisationens visningsnavn
+**Direkte brugere (LogicNodes-frontend)**
+Brugere logger ind via e-mail/adgangskode eller OAuth (Google, Microsoft Azure). Legitimationsoplysninger administreres udelukkende af Supabase Auth — LogicNodes implementerer ikke egen adgangskodelagring eller -verifikation. Supabase Auth er SOC 2 Type II-certificeret og håndterer hashing, salting og sikker lagring. OAuth-brugere afgiver aldrig en adgangskode til LogicNodes.
 
-**Eksempel JWT Payload:**
-```json
-{
-  "user_id": "user_12345",
-  "org_id": "org_67890",
-  "email": "john@acme.com",
-  "name": "John Doe",
-  "org_name": "Acme Corporation",
-  "exp": 1735689600
-}
-```
+**Partner-indlejrede brugere (integration JWT)**
+Partnere, der indlejrer LogicNodes i deres egen platform, autentificerer brugere ved at udstede et signeret JWT fra deres egen backend. LogicNodes validerer JWT-signaturen ved hjælp af partnerens RSA public key og opretter automatisk en session — brugeren interagerer aldrig direkte med LogicNodes, og der oprettes ingen LogicNodes-konto eller adgangskode.
 
-**Signering:**
-- **Algoritme:** RS256 (RSA with SHA-256)
-- **Public Key:** Du leverer din RSA public key under onboarding (gemt i vores database)
-- **Private Key:** Du holder din RSA private key sikker (aldrig delt med LogicNodes)
-- **Udløb:** Anbefaler maksimalt 1 time
+**I begge tilfælde:**
+- **Fuldt audit trail** - Alle autentificeringsforsøg logges
+- **Øjeblikkelig tilbagekaldelse** - Sessioner udløber automatisk; partnere kan tilbagekalde indlejret adgang ved at stoppe JWT-udstedelse
+- **Nul adgang på tværs af lejere** - Autentificering er altid begrænset til én organisation
 
-### 1.3 Session Management
+**Autentificeringsmetode:** Supabase Auth (direkte brugere) / RS256-signerede JWTs (partner-indlejrede brugere)
 
-Efter succesfuld JWT-validering returnerer vi standard session tokens:
+**Sessionssikkerhed:** Token-baserede sessioner med automatisk udløb og mulighed for fornyelse
 
-```json
-{
-  "user_id": "uuid",
-  "organization_id": "uuid",
-  "is_new_user": false,
-  "session": {
-    "access_token": "eyJhbGc...",
-    "refresh_token": "v1.MR5S...",
-    "expires_at": 1735693200,
-    "expires_in": 3600
-  }
-}
-```
+**Tilbagekaldelse af adgang:** For direkte brugere: slet eller deaktiver kontoen via platform-UI'en. For partner-indlejrede brugere: stop med at udstede JWTs — eksisterende sessioner udløber automatisk inden for 1 time.
 
-**Session-egenskaber:**
-- Access tokens udløber efter 1 time
-- Refresh tokens kan bruges til at få nye access tokens
-- Al sessionaktivitet logges til audit logs
+**Kompromitteret partner-signeringssecret:** Kontakt kontakt@logicnodes.ai øjeblikkeligt. Vi roterer signeringssecret og invaliderer alle aktive sessioner for den pågældende integration.
 
-### 1.4 Sikkerhedsfunktioner
+## Datasikkerhed
 
-- **Rate Limiting:** Hastighedsbegrænsning på autentificeringsendpoints (forhindrer brute force)
-- **Audit Logging:** Alle autentificeringsforsøg logget (succes og fejl)
-- **Token-validering:** Hver API-forespørgsel validerer access token
-- **Automatisk Udløb:** Sessioner udløber efter 1 times inaktivitet
-
----
-
-## 2. Datasikkerhed
-
-### 2.1 Multi-Tenant Isolering
+### Multi-Tenant Isolering
 
 Dine data er fuldstændigt isoleret fra andre organisationer gennem flere sikkerhedslag:
 
 **Database-niveau:**
 - Row-level security policies håndhæver organisationsgrænser
-- Forespørgsler automatisk filtreret efter organization_id
-- Selv privilegeret adgang respekterer organisationsscopning
+- Forespørgsler automatisk filtreret efter organisation
+- Privilegeret adgang respekterer organisationsscopning
 
 **Applikationsniveau:**
 - Al dataadgang kræver eksplicit organisationskontekst
 - Cross-organisation forespørgsler forhindres by design
 - Omfattende testdækning for isoleringsscenarier
 
-**Session-niveau:**
-- Organisations-ID indlejret i JWT (kan ikke manipuleres)
-- Hver forespørgsel scopet til autentificeret brugers organisation
+**Resultat:** Nul cross-organisation datalækage. Overholder princippet om mindste privilegium og håndhæver strict tenant separation.
 
-**Resultat:** Nul cross-organisation datalækage. Verificeret af omfattende sikkerhedstest.
+### Miljøadskillelse
 
-### 2.2 Kryptering
+Produktionsdata er strengt adskilt fra udviklings-, staging- og testmiljøer:
 
-**Data i Hvile:**
-- Database: Krypteret (industristandard)
-- Secrets: Krypteret i Vault (kan ikke dekrypteres uden korrekt adgang)
-- Fillager: Krypteret (industristandard)
+- Separate Supabase-projekter til produktion og ikke-produktion
+- Adskilte databaser, legitimationsoplysninger og API-endpoints pr. miljø
+- Ingen produktionsdata kopieres til ikke-produktion; udvikling og test bruger syntetiske eller seeded data
+- Separate secret stores pr. miljø; produktionssecrets er aldrig tilgængelige uden for produktion
+- Backend-adgang til produktion er begrænset, MFA-beskyttet og audit-logget uafhængigt af ikke-produktion
 
-**Data Under Transport:**
-- TLS 1.2+ til al API-kommunikation
-- HTTPS-håndhævelse (HTTP omdirigerer til HTTPS)
-- Certificate pinning anbefalet til mobile apps
+### Kryptering
 
-### 2.3 Adgangskontrol
+**Data i hvile:**
+- Database: Industristandard kryptering
+- Hemmeligheder: Krypteret og gemt i sikre vaults (kan ikke dekrypteres uden autoriseret backend-adgang)
+- Fillager: Industristandard kryptering
+
+**Data under transport:**
+- TLS 1.2 eller højere til al API-kommunikation
+- HTTPS-håndhævelse
+
+
+### Adgangskontrol
 
 **Brugeradgang:**
 - Rollebaseret adgangskontrol (admin, medlem, viewer)
@@ -176,21 +111,23 @@ Dine data er fuldstændigt isoleret fra andre organisationer gennem flere sikker
 - Tilladelser håndhævet på database- og applikationsniveau
 
 **Partner API-adgang:**
-- API-nøgler til backend-til-backend kommunikation
-- Secrets scopet efter organisation
-- Al API-adgang logget til audit logs
+- Sikre API-nøgler til backend-til-backend kommunikation
+- Hemmeligheder scopet efter organisation
+- Al API-adgang logget til revisionslogfiler
 
-### 2.4 Miljøadskillelse
+### Personale- og Adminadgang
 
-Produktionsdata er strengt adskilt fra udviklings-, staging- og testmiljøer:
+Et begrænset antal autoriserede LogicNodes-medarbejdere har adgang til interne administrationsværktøjer til drifts- og supportformål. Inden adgang tildeles, skal enhver medarbejder:
 
-- Separate Supabase-projekter til produktion og ikke-produktion
-- Adskilte databaser, legitimationsoplysninger og API-endpoints pr. miljø
-- Ingen produktionsdata kopieres til ikke-produktion; udvikling og test bruger udelukkende syntetiske eller seeded testdata
-- Separate secret stores pr. miljø; produktionssecrets er aldrig tilgængelige uden for produktion
-- Backend-adgang til produktion er begrænset, MFA-beskyttet og audit-logget uafhængigt af ikke-produktion
+- Underskrive en fortrolighedsaftale (NDA), der dækker fortrolige kundedata
+- Gennemføre obligatorisk sikkerhedsbevidsthedsuddannelse
+- Gennemføre obligatorisk uddannelse i personoplysninger og GDPR
 
-### 2.5 Data Loss Prevention
+Adgang gives kun, når alle tre krav er opfyldt, og tilbagekaldes øjeblikkeligt ved ophør af ansættelses- eller konsulentaftale. Enhver handling foretaget via interne administrationsværktøjer er knyttet til et ansvarligt personalmedlem og er revisionslogget. MFA er obligatorisk for alt personale med administrationsadgang.
+
+**Kontosupportadgang:** I begrænsede tilfælde kan autoriserede medarbejdere tilgå og handle inden for en brugers konto for at yde effektiv teknisk support eller for at undersøge utilsigtet platformsadfærd — ved at inspicere de relevante agentkørsel(er) udelukkende med henblik på at identificere årsagen og løse platformsproblemet. Al sådan adgang er revisionslogget og oplyst i vores Privatlivspolitik (§6a).
+
+### Data Loss Prevention
 
 Vores strategi for forebyggelse af datatab kombinerer forebyggende, gendannelige og operationelle kontroller:
 
@@ -198,549 +135,209 @@ Vores strategi for forebyggelse af datatab kombinerer forebyggende, gendannelige
 - Kryptering i hvile og under transport
 - Multi-tenant isolering via row-level security
 - Mindste-privilegium adgang med MFA for personale
-- Uforanderlige, manipulationssikre audit logs
+- Uforanderlige, manipulationssikre revisionslogfiler
 
 **Gendannelige:**
 - Krypterede automatiserede backups med point-in-time recovery
 - 30-dages backup-opbevaring med dokumenterede gendannelsesprocedurer
-- Cascading deletes forhindrer forældreløse datafragmenter
+- Kaskaderende sletninger forhindrer forældreløse datafragmenter
 
 **Operationelle:**
 - Daglig automatiseret oprydning håndhæver konfigurerede opbevaringsperioder
 - Ingen kundedata kopieres til udviklingsmiljøer eller bruges til modeltræning
 - Begrænset backend-adgang forhindrer eksfiltration af produktionsdata
 
----
+## Dataopbevaring & Privatliv
 
-## 3. API Key Management
+### Hvad vi gemmer
 
-### 3.1 Oversigt
-
-Generer API-nøgler til programmatisk adgang til organisationssecrets og admin-operationer. Muliggør sikker backend-til-backend kommunikation uden brugerautentificering.
-
-### 3.2 API Key Format
-
-**Eksempel:** `pk_yourcompany_7j2k9f3n8m4q1p6r5t0w2x9y8z7a6b5c4d3e2f1g0h`
-
-**Struktur:**
-- Præfiks: `pk_` (partner key)
-- Dit firma-ID: Identificerer din organisation
-- Tilfældig komponent: Kryptografisk sikker tilfældig streng
-
-### 3.3 Sikkerhed
-
-- **Hashing:** Industristandard bcrypt (samme som Stripe, GitHub)
-- **Vis Én Gang:** Nøgle vises kun under generering, kan ikke hentes senere
-- **Opbevaring:** Kun hash gemt i database (databaselækage eksponerer ikke brugbare nøgler)
-- **Validering:** Constant-time sammenligning (forhindrer timing-angreb)
-
-### 3.4 Livscyklus
-
-**Generering:**
-```bash
-POST /api/v1/partner/api-key/generate
-→ Returns: { "api_key": "pk_...", "prefix": "pk_yourcompany_..." }
-```
-⚠️ **Gem øjeblikkeligt - nøgle kan ikke hentes senere**
-
-**Brug:**
-```bash
-Authorization: Bearer pk_yourcompany_...
-```
-
-**Rotation:**
-- Generer ny nøgle (samme endpoint)
-- Opdater dine systemer til at bruge ny nøgle
-- Gammel nøgle automatisk invalideret
-
-**Overvågning:**
-```bash
-GET /api/v1/partner/api-key/info
-→ Returns: { "prefix": "pk_...", "created_at": "...", "last_used_at": "..." }
-```
-
-**Best Practice:** Roter nøgler hver 90. dag
-
----
-
-## 4. Secrets Management
-
-### 4.1 Oversigt
-
-Gem krypterede API-nøgler og legitimationsoplysninger (OpenAI, Anthropic, dine platformlegitimationsoplysninger) til AI agent-eksekvering. Secrets er:
-- ✅ Krypteret i hvile (kan ikke dekrypteres uden korrekt adgang)
-- ✅ Aldrig eksponeret til frontend-kode
-- ✅ Scopet efter organisation (isoleret fra andre orgs)
-- ✅ Audit-logget (oprettelse, sletning, opdateringer)
-
-### 4.2 Management Modes
-
-**Partner-Managed Secrets:**
-- Du kontrollerer via API (anbefalet til sikkerhedskritiske legitimationsoplysninger)
-- Brugere kan ikke ændre eller slette
-- Ideel til: Dine platform API-nøgler, faste integrationer
-
-**User-Managed Secrets:**
-- Brugere kan ændre via dashboard
-- Ideel til: Brugers personlige API-nøgler (OpenAI, Anthropic)
-
-### 4.3 API-operationer
-
-**Opret/Opdater Secret (via API-nøgle):**
-```bash
-POST /api/v1/partner/secrets
-{
-  "org_id": "org_67890",
-  "key": "YOUR_PLATFORM_API_KEY",
-  "value": "sk_live_...",
-  "description": "API key for customer integration",
-  "managed_by": "partner"
-}
-```
-
-**List Secrets (kun metadata):**
-```bash
-GET /api/v1/partner/secrets/{org_id}
-→ Returns: [{ "key": "YOUR_PLATFORM_API_KEY", "description": "...", "managed_by": "partner" }]
-```
-⚠️ **Værdier returneres aldrig** (sikkerhed by design)
-
-**Slet Secret:**
-```bash
-DELETE /api/v1/partner/secrets/{org_id}/{key}
-```
-
-### 4.4 Runtime Sikkerhed
-
-Når AI-agenter eksekverer:
-1. Secrets dekrypteres **på vores backend** (aldrig sendt til frontend)
-2. Injiceret i agent-eksekverings-miljø
-3. Aldrig persisteret i logs eller database
-4. Automatisk ryddet efter eksekvering afsluttes
-
----
-
-## 5. Dataopbevaring & Privatliv
-
-### 5.1 Hvad Vi Gemmer
-
-| Datatype | Opbevaring | Formål | Din Kontrol |
+| Datatype | Opbevaring | Formål | Din kontrol |
 |----------|-----------|---------|-------------|
-| Brugerprofil (email, navn) | Indtil sletning | Kontoadministration | DELETE API |
-| Agent eksekveringshistorik | 1-90 dage (du konfigurerer) | Samtale kontinuitet, debugging | Konfigurerbar opbevaring |
-| API forespørgsler/svar | 1-90 dage (du konfigurerer) | Agent kontekst, gennemsigtighed | Konfigurerbar opbevaring |
-| Stemmetransskriptioner | 1-90 dage (du konfigurerer) | Stemmeindtastningsbehandling | Konfigurerbar opbevaring |
-| Agent eksekveringskontekst (checkpoints) | 1-90 dage (du konfigurerer) | Agent state kontinuitet | Konfigurerbar opbevaring |
-| Krypterede secrets | Indtil sletning | Værktøjseksekvering | DELETE API |
-| Audit logs | 1 år (fast) | Sikkerhedsovervågning, compliance | Skrivebeskyttet |
+| Brugerprofil (e-mail, navn) | Indtil sletning | Kontoadministration | Platform-UI |
+| Agent eksekveringshistorik | Konfigurerbar (1-90 dage, standard: 90 dage) | Samtalekontinuitet, debugging | Konfigurerbar opbevaring |
+| API-forespørgsler/svar | Konfigurerbar (1-90 dage, standard: 90 dage) | Agentkontekst, gennemsigtighed | Konfigurerbar opbevaring |
+| AI-modelinteraktioner | Konfigurerbar (1-90 dage, standard: 90 dage) | Forbedre agentkontinuitet og debugging | Konfigurerbar opbevaring; **bruges ikke til modeltræning** |
+| Krypterede hemmeligheder | Indtil sletning | Værktøjseksekvering | Platform-UI |
+| Revisionslogfiler | 5 år | Compliance | Skrivebeskyttet |
 
-### 5.2 Automatiseret Oprydning
+### Automatiseret oprydning
 
-**Daglig Oprydning (2:00 AM UTC):**
-- Agent-kørsler ældre end opbevaringsperiode → **Slettet**
-- Tilknyttede filer og transskriptioner → **Slettet**
-- Lagerfiler uden databaserecords → **Slettet**
+**Daglig automatiseret oprydning** (kører kl. 02:00 UTC via databasescheduler) sletter agentkørselsregistreringer og tilknyttede hændelser ældre end din konfigurerede opbevaringsperiode.
 
-**Ingen manuel indgriben påkrævet.** Vi håndterer GDPR compliance automatisk.
+Opbevaring af lagerfiler følger livscyklussen for det element, filen tilhører:
+- **Agentkørselsfiler** (uploadede dokumenter og lydoptagelser tilknyttet en specifik kørsel) slettes sammen med den overordnede agentkørsel, når denne udløber
+- **App- og platformsfiler** (filer tilknyttet apps eller andre vedvarende platformselementer) opbevares i elementets levetid og slettes, når appen eller elementet slettes
+- **Revisionslogfiler** er undtaget fra automatisk oprydning og opbevares i 5 år
 
-### 5.3 Konfigurerbar Opbevaring
+### Datasletning
 
-**Indstil opbevaringsperiode pr. organisation:**
-```bash
-# Via dashboard eller API
-default_retention_period = 30  # dage (1-90)
-```
+**Bruger- og organisationssletnings-API'er** understøtter GDPR-retten til sletning:
+- Øjeblikkelig sletning af brugerregistrering og profildata fra produktionsdatabasen (synkront)
+- Agentkørsler, hændelser, samtalehistorik og organisationsmedlemskaber slettes via database-cascade
+- Uploadede filer (dokumenter, avatarer) slettes fra storage som del af sletningsflowet
+- Krypterede hemmeligheder slettes ved organisationssletning
+- Alle data fjernes fra krypterede backups inden for 30 dage
 
-**Use cases:**
-- **Kort opbevaring (1-7 dage):** Meget følsomme data, minimal GDPR-risiko
-- **Mellem opbevaring (30 dage):** Balance mellem funktionalitet og compliance
-- **Lang opbevaring (90 dage):** Maksimal samtalekontinuitet
+**Undtagelse for stemmeaftryk:** Stemmeaftryk oprettet via talefunktionen er lagret separat og er ikke dækket af det automatiserede kontosletningsflow. Stemmeaftryk kan slettes direkte fra platform-UI'en under den tilknyttede trigger på chatsiden.
 
-### 5.4 Datasletning
+**Undtagelse:** Revisionslogfiler opbevares i 5 år af hensyn til svindelundersøgelse (Art. 17(3)(e) GDPR). Se [Privatlivspolitik afsnit 6a - Internt Personaladgang](/da/privatlivspolitik/#6a-internt-personaladgang) for detaljer. De slettes permanent ved udløbet af 5-årsperioden.
 
-**Brugersletning:**
-```bash
-DELETE /api/v1/partner/organizations/{org_id}/users/{user_id}
-```
+**Revisionslogbeskyttelse:**
+- Manipulationssikre og skrivebeskyttede via Row-Level Security
+- Kun autoriserede operationer kan ændre logfiler (kræver forhøjede rettigheder)
+- Organisationssletning bevarer revisionshistorik (logfiler opbevares til compliance-formål)
 
-**Organisationssletning:**
-```bash
-DELETE /api/v1/partner/organizations/{org_id}
-```
+## Compliance & Certificeringer
 
-**Hvad Bliver Slettet:**
-- ✅ Bruger/organisationsrecords
-- ✅ Alle agent-kørsler og eksekveringshistorik
-- ✅ Alle uploadede filer og transskriptioner
-- ✅ Alle krypterede secrets
-- ✅ Organisationsmedlemskaber
+### GDPR-overholdelse
 
-**Sletningstidslinje:**
-- Øjeblikkeligt: Slettet fra produktionsdatabase (synkron CASCADE)
-- Inden for 30 dage: Fjernet fra krypterede backups
+**Dataansvarlig vs. databehandler:**
 
-**Undtagelse:** Audit logs bevaret i 1 år (compliance-krav)
+Ved **partner-indlejrede deployments:** Du (partneren) er den Dataansvarlige; LogicNodes er Databehandleren og behandler data på dine vegne.
 
----
+Ved **direkte platformbrug:** LogicNodes fungerer som Dataansvarlig for konto- og profildata (e-mail, navn, loginhistorik) og som Databehandler for det indhold, din organisation behandler via platformen (agentkørsler, uploadede dokumenter, AI-interaktioner).
 
-## 6. Audit & Compliance
+**GDPR-rettigheder vi understøtter:**
 
-### 6.1 Hvad Vi Logger
+For en fuld juridisk beskrivelse af dine rettigheder under GDPR, se [GDPR-meddelelsen](/da/gdpr-notice/).
 
-**Autentificeringshændelser:**
-- JWT-valideringsforsøg (succes/fejl)
-- Sessionoprettelse
-- API-nøgle autentificering
+- Ret til indsigt — dashboard-eksport af profil, organisationsmedlemskab, kørselsmetadata og transskriptionsliste; fuldt indhold af agentkørsler tilgængeligt via skriftlig henvendelse til kontakt@logicnodes.ai (leveres inden for 30 dage)
+- Ret til sletning — platform-UI med kaskaderende sletninger for alle standarddataregistreringer; stemmeaftryk kan slettes direkte fra platform-UI'en under den tilknyttede trigger på chatsiden
+- Ret til dataportabilitet — samme omfang som Ret til indsigt; fuld indholdseksport tilgængelig via skriftlig henvendelse
+- Ret til berigtigelse (opdater via dashboard og API)
+- Dataminimering (opbevaringspolitikker, automatiseret oprydning)
 
-**Secret-operationer:**
-- Secret oprettelse, opdateringer, sletning
-- Hvem udførte handlingen
-- Tidsstempel og IP-adresse
+**Databehandleraftale:** Skabelon tilgængelig på [Databehandleraftale](/da/databehandleraftale/)
+- GDPR Artikel 28-kompatibel
+- Standardkontraktbestemmelser (SCCs) til internationale overførsler
 
-**Admin-operationer:**
-- Organisations-/brugersletning
-- API-nøglegenerering
-- Konfigurationsændringer
+### Datalokalisering
 
-### 6.2 Audit Log Adgang
+**Primær datalokalisering:** Den Europæiske Union (Sverige)
 
-**Din Adgang:**
-```bash
-# Forespørg audit logs for dit partner-ID
-GET /api/v1/partner/audit-logs?partner_id=yourcompany
-```
+**Amerikansk datalokalisering:** Tilgængelig på anmodning (tillægsgebyrer kan gælde)
 
-**Hvad Du Ser:**
-- Hændelsestype (f.eks. "jwt_validation", "api_key_authenticated")
-- Tidsstempel
-- IP-adresse og User-Agent
-- Bruger/organisationskontekst
-- Succes/fejl status
-- Hændelsesdetaljer (JSON)
-
-**Opbevaring:** Minimum 1 år
-
-### 6.3 Use Cases
-
-- **Sikkerhedsovervågning:** Spor mislykkede autentificeringsforsøg
-- **Compliance Audits:** Demonstrer GDPR compliance
-- **Incident-undersøgelse:** Gennemgå sikkerhedshændelser
-- **Brugsanalyse:** Forstå partner aktivitetsmønstre
-
----
-
-## 7. Partner-muligheder
-
-### 7.1 Organisationsadministration
-
-**List Organisationer:**
-```bash
-GET /api/v1/partner/organizations
-```
-Returnerer: Organisationsliste med brugsstatistikker (brugerantal, nylig aktivitet)
-
-**Slet Organisation:**
-```bash
-DELETE /api/v1/partner/organizations/{org_id}
-```
-Sletter: Organisation + alle brugere, kørsler, secrets, filer (GDPR-compliant)
-
-### 7.2 Brugeradministration
-
-**List Brugere i Organisation:**
-```bash
-GET /api/v1/partner/organizations/{org_id}/users
-```
-
-**Slet Bruger:**
-```bash
-DELETE /api/v1/partner/organizations/{org_id}/users/{user_id}
-```
-
-### 7.3 Secret Provisionering
-
-**Use Case:** Automatisk provisionering af dine platform API-nøgler når kunder tilmelder sig
-
-**Workflow:**
-1. Kunde aktiverer AI-funktion i din platform
-2. Din backend genererer API-nøgle (POST /api/v1/partner/secrets)
-3. AI-agenter kan nu kalde din platform på kundens vegne
-4. Kunde deaktiverer → Du sletter secret (DELETE /api/v1/partner/secrets/{org_id}/{key})
-
----
-
-## 8. Compliance & Certificeringer
-
-### 8.1 GDPR Compliance
-
-**Dataansvarlig vs Databehandler:**
-- **Du** er Dataansvarlig (du bestemmer formål og midler til behandling)
-- **Vi** er Databehandler (vi behandler data på dine vegne)
-
-**GDPR-rettigheder Vi Understøtter:**
-- ✅ Ret til Adgang (via dashboard og API)
-- ✅ Ret til Sletning (DELETE APIs, cascading deletes)
-- ✅ Ret til Dataportabilitet (via dashboard og API)
-- ✅ Ret til Berigtigelse (opdater via dashboard og API)
-- ✅ Dataminimering (opbevaringspolitikker, automatiseret oprydning)
-
-**Databehandleraftale:**
-- Skabelon tilgængelig på [/da/databehandleraftale/](/da/databehandleraftale/)
-- GDPR Artikel 28 compliant
-- Standard Contractual Clauses (SCCs) til internationale overførsler
-
-### 8.2 Datalokalitet
-
-**Primær:** Den Europæiske Union (AWS EU-North-1, Stockholm)
-
-**US Residency:** Tilgængelig efter anmodning (yderligere gebyrer kan gælde)
-
-**Internationale Overførsler:**
-- Standard Contractual Clauses (EU-Kommissionen godkendt)
+**Internationale overførsler:**
+- Standardkontraktbestemmelser (EU-Kommissionen godkendt)
 - Tilstrækkelige sikkerhedsforanstaltninger pr. GDPR Artikel 46
 
-### 8.3 Infrastruktur Compliance
+Primær datalagring sker som standard i EU (Sverige). Standard agentkørsler sender forespørgsler og svar til AI-modeludbydere — OpenAI, Anthropic og xAI har servere i USA, hvilket udgør en international overførsel dækket af Standardkontraktbestemmelser. Partnere, der kræver, at al behandling forbliver inden for EU, kan anmode om EU-only databehandling (se nedenfor).
 
-**Vores Infrastrukturudbyder (Supabase):**
-- ✅ SOC 2 Type II certificeret
-- ✅ ISO 27001 certificeret
-- ✅ GDPR-compliant
-- ✅ HIPAA tilgængelig (efter anmodning)
+### Infrastruktur-compliance
+
+LogicNodes' infrastruktur kører på Supabase (bygget på AWS). Supabase drives på Amazon Web Services (AWS) og arver dermed dets fysiske og netværksmæssige sikkerhedskontroller.
+
+**Vores infrastrukturudbyder (Supabase):**
+- SOC 2 Type II certificeret
+- ISO 27001 certificeret
+- GDPR-kompatibel
+
+
 
 **Cloud-udbyder (AWS):**
-- ✅ SOC 1, 2, 3
-- ✅ ISO 27001
-- ✅ PCI DSS
+- SOC 1, 2, 3
+- ISO 27001
+- PCI DSS
 
-### 8.4 LogicNodes Certificeringer
+### LogicNodes Certificeringer
 
 **Aktuel:**
-- ✅ SOC 2 Ready (bygget på SOC 2-principper)
-- ✅ Omfattende sikkerhedsdokumentation
-- ✅ Årlig penetrationstest (gennemføres årligt)
+- Designet til at opfylde SOC 2 Trust Service Criteria — formel audit planlagt til Q1 2027
+- Omfattende sikkerhedsdokumentation tilgængelig for kvalificerede partnere under NDA; tilpassede sikkerhedsspørgeskemaer besvares (send til kontakt@logicnodes.ai, svartid 5-10 arbejdsdage)
+- Penetrationstest planlagt (første engagement planlagt til Q1 2027, herefter årlig kadence)
 
 **Planlagt:**
-- ⏳ SOC 2 Type II audit (som del af vores 2026-overholdelses-milepæl)
-- ⏳ ISO 27001 (til EU-kunder, estimeret 2026)
-- ⏳ Bug bounty-program (planlagt)
+- SOC 2 Type II audit (planlagt Q1 2027)
+- ISO 27001 (til EU-kunder, planlagt Q1 2027)
+- Bug bounty-program (planlagt Q1 2027)
 
-### 8.5 Sub-Processors
+### Underbehandlere
 
-| Udbyder | Service | Lokalitet | Certificeringer |
-|---------|---------|-----------|-----------------|
-| Supabase | Database, Auth, Storage | EU (Stockholm) | SOC 2 Type II, ISO 27001, GDPR DPA |
-| AWS | Cloud Infrastructure (via Supabase) | EU (Stockholm) | SOC 1/2/3, ISO 27001 |
-| Mailgun | Transaktionelle Emails | USA/EU | SOC 2, ISO 27001, GDPR DPA |
+Den autoritative, aktuelle liste over underbehandlere vedligeholdes nedenfor. Vi giver 7 dages forhåndsvarsel inden tilføjelse af nye underbehandlere. Den komplette og altid opdaterede liste vedligeholdes på [/da/underbehandlere/](/da/underbehandlere/).
 
-**Ændringsnotifikation:** 30 dages forhåndsvarsel før tilføjelse af nye sub-processors
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRHy76XGvurEqCuaIjMYAKlogtBJg4Maz1EOIptwtBQth89Vyaq3CM929kRdwEEf8mSbESwZrfnd9o7/pubhtml?gid=0&single=true" width="100%" height="550" frameborder="0" scrolling="no"></iframe>
 
----
+Fulde detaljer, DPA-status og kontaktoplysninger for hver underbehandler er tilgængelige på vores [Underbehandlerliste](/da/underbehandlere/).
 
-## 9. Incident Response
+## Incident Response
 
-### 9.1 Sikkerhedskontakt
+### Sikkerhedskontakt
 
-**Email:** kontakt@logicnodes.ai
-**PGP-nøgle:** Tilgængelig efter anmodning
+**E-mail:** kontakt@logicnodes.ai  
+**PGP-fingeraftryk:** Publiceret på [https://legal.logicnodes.ai/en/pgp.txt](https://legal.logicnodes.ai/en/pgp.txt)  
 **Svartid:** Inden for 24 timer for kritiske problemer
 
-### 9.2 Databrudnotifikation
+### Databrudnotifikation
 
 Hvis vi opdager uautoriseret adgang til dine data:
 
-**Inden for 24 Timer:**
+**Inden for 24 timer:**
 - Inddæm bruddet (stop uautoriseret adgang)
-- Underret dig via email
+- Rotér alle adgangstokens og API-nøgler som del af inddæmningen (manuel rotation gennemført inden for 24 timer)
+- Underret dig via e-mail
 - Lever foreløbig incident-rapport
 
-**Inden for 72 Timer:**
-- Detaljeret incident-rapport (tidslinje, berørte data, grundårsag)
+**Inden for 72 timer:**
+- Detaljeret incident-rapport (tidslinje, berørte data, grundårsag), i overensstemmelse med GDPR Artikel 33
 - Afhjælpningsplan (trin taget, forebyggende foranstaltninger)
 - Assistance med lovpligtig notifikation (hvis påkrævet)
 
-**Dit Ansvar:**
+**Dit ansvar:**
 - Underret berørte brugere (hvis påkrævet af GDPR Artikel 34)
 - Vi leverer: Berørte brugerlister, konsekvensanalyse, tekniske detaljer
 
-### 9.3 Ansvarlig Offentliggørelse
+### Ansvarlig Offentliggørelse
 
 Sikkerhedsforskere kan rapportere sårbarheder:
-- **Email:** kontakt@logicnodes.ai
-- **Safe Harbor:** Vi vil ikke forfølge retssager for god-faith forskning
-- **90-dages Embargo:** Giv os 90 dage til at fixe før offentlig offentliggørelse
+- **E-mail:** kontakt@logicnodes.ai
+- **Safe Harbor:** Vi vil ikke indlede retssag mod god-faith forskning
+- **90-dages embargo:** Giv os 90 dage til at løse problemet inden offentlig offentliggørelse
 - **Anerkendelse:** Offentlig anerkendelse i vores Security Hall of Fame
 
-Fuld politik: [RESPONSIBLE_DISCLOSURE_POLICY.md](./RESPONSIBLE_DISCLOSURE_POLICY.md)
+Fuld politik: [https://legal.logicnodes.ai/da/ansvarlig-offentliggorelse/](https://legal.logicnodes.ai/da/ansvarlig-offentliggorelse/)
 
----
+Gennemgå venligst vores fulde [Politik for Ansvarlig Offentliggørelse](https://legal.logicnodes.ai/da/ansvarlig-offentliggorelse/) for omfang og testretningslinjer inden sikkerhedsforskning.
 
-## 10. Sikkerhedsbest Practices
+## Anmod om fuld sikkerhedsarkitektur
 
-### 10.1 JWT Autentificering
+For detaljerede tekniske specifikationer herunder:
+- Komplet API-endpoint-dokumentation
+- Detaljerede autentificeringsflows og sessionsstyring
+- API-nøglehåndtering og rotationsprocedurer
+- Implementeringsdetaljer for hemmelighedsstyring
+- Revisionslog-skemaer og adgangsprocedurer
+- Partner API-kapaciteter
+- Bedste sikkerhedspraksis og anbefalinger
 
-**GØR:**
-- ✅ Gem signeringssecret i miljøvariabler (aldrig i kode)
-- ✅ Brug HTTPS til alle API-kald
-- ✅ Indstil JWT-udløb til 1 time eller mindre
-- ✅ Overvåg mislykkede autentificeringsforsøg i audit logs
-- ✅ Roter signeringssecrets hver 90. dag
+**Kontakt:** [kontakt@logicnodes.ai](mailto:kontakt@logicnodes.ai)
 
-**GØR IKKE:**
-- ❌ Hardcode signeringssecret i kildekode
-- ❌ Del signeringssecret på tværs af miljøer (dev/staging/prod)
-- ❌ Indstil JWT-udløb >24 timer
-- ❌ Inkluder følsomme data i JWT claims (de er synlige for alle med token)
-- ❌ Prøv igen mislykkede auth gentagne gange i hurtig rækkefølge (du rammer rate limits)
+Vores fulde sikkerhedsarkitekturdokument er tilgængeligt for kvalificerede partnere under NDA til sikkerhedsevaluering og compliance-gennemgang.
 
-### 10.2 API Key Management
-
-**GØR:**
-- ✅ Roter API-nøgler hver 90. dag
-- ✅ Gem API-nøgler i secret management system (AWS Secrets Manager, Vault)
-- ✅ Overvåg last_used_at for at opdage forældede nøgler
-- ✅ Generer ny nøgle før tilbagekaldelse af gammel (zero-downtime rotation)
-- ✅ Brug API-nøgler kun fra backend (aldrig frontend)
-
-**GØR IKKE:**
-- ❌ Commit API-nøgler til versionskontrol
-- ❌ Del API-nøgler på tværs af teams/projekter
-- ❌ Brug API-nøgler i frontend JavaScript
-- ❌ Gem API-nøgler i plaintext-konfigurationsfiler
-
-### 10.3 Secret Management
-
-**GØR:**
-- ✅ Brug `managed_by: "partner"` til sikkerhedskritiske secrets
-- ✅ Roter LLM-udbyder API-nøgler hver 90. dag
-- ✅ Slet secrets under kundeafvikling
-- ✅ Brug separate secrets pr. miljø (dev/staging/prod)
-
-**GØR IKKE:**
-- ❌ Gem secrets på brugersynlige steder (beskrivelser, noter)
-- ❌ Del secrets på tværs af organisationer
-- ❌ Brug produktionssecrets i staging-miljøer
-
-### 10.4 Dataopbevaring
-
-**GØR:**
-- ✅ Indstil opbevaringsperiode baseret på dine compliance-krav
-- ✅ Kommuniker opbevaringspolitik til slutbrugere
-- ✅ Eksporter kritiske data før opbevaring udløber (hvis nødvendigt)
-- ✅ Gennemgå audit logs kvartalsvis
-
-**GØR IKKE:**
-- ❌ Indstil opbevaring til 1 dag (bryder samtalekontinuitet)
-- ❌ Indstil opbevaring til 90 dage hvis du gemmer meget følsomt PII
-- ❌ Stol på LogicNodes til langtidsarkivering (vi auto-sletter)
-
-### 10.5 Sikkerhedsovervågning
-
-**Anbefalet:**
-- ✅ Overvåg audit logs for mislykkede autentificeringsforsøg
-- ✅ Opsæt alarmer for usædvanlig aktivitet (f.eks. 10+ mislykkede logins)
-- ✅ Gennemgå API-nøgle last_used_at månedligt (opdage kompromitterede nøgler)
-- ✅ Tjek for uautoriserede organisations-/brugersletninger
-- ✅ Eksporter audit logs til din egen compliance (1-års opbevaring)
-
----
-
-## 11. Ofte Stillede Spørgsmål
-
-### 11.1 Generel Sikkerhed
-
-**Q: Hvor gemmes data?**
-A: Den Europæiske Union (AWS EU-North-1, Stockholm). US data residency tilgængelig efter anmodning.  
-
-**Q: Er data krypteret?**
-A: Ja. Krypteret i hvile (database, secrets, lager) og under transport (TLS 1.2+).  
-
-**Q: Har I SOC 2?**
-A: Vi er SOC 2-klar (bygget på SOC 2 Trust Service Principles). Formel SOC 2 Type II-audit er en del af vores 2026-overholdelses-roadmap.  
-
-**Q: Kan I signere tilpassede sikkerhedsspørgeskemaer?**
-A: Ja. Send til kontakt@logicnodes.ai. Svartid: 5-10 arbejdsdage.  
-
-### 11.2 Autentificering
-
-**Q: Kan brugere logge direkte ind på LogicNodes?**
-A: Brugere autentificeret via din JWT kan ikke (by design). De kan kun tilgå gennem din platform.  
-
-**Q: Hvordan tilbagekalder jeg adgang for en bruger?**
-A: Stop med at udstede JWTs til den bruger. Eksisterende sessioner udløber inden for 1 time.  
-
-**Q: Hvad hvis mit signeringssecret kompromitteres?**
-A: Kontakt kontakt@logicnodes.ai øjeblikkeligt. Vi roterer dit secret og invaliderer alle sessioner.  
-
-### 11.3 Data & Privatliv
-
-**Q: Logger I API-forespørgsler til min platform?**
-A: Ja, i agent eksekveringslogs (til debugging og samtalekontinuitet). Opbevaring: 1-90 dage (du konfigurerer).  
-
-**Q: Hvordan overholder jeg GDPR-sletteanmodninger?**
-A: Brug vores DELETE APIs. Cascading deletes sikrer komplet datafjernelse inden for 24 timer (produktion) + 30 dage (backups).  
-
-**Q: Slettes audit logs ved brugersletning?**
-A: Nej. Audit logs bevaret i 1 år for compliance. De indeholder kun bruger-IDs (ingen PII).  
-
-**Q: Kan jeg eksportere alle data for en bruger?**
-A: Brugere kan se og eksportere deres data via dashboard. API-adgang til agent-kørsler tilgængelig via GET endpoints.  
-
-### 11.4 Secrets
-
-**Q: Hvad hvis jeg mister min API-nøgle?**
-A: Generer en ny (POST /api/v1/partner/api-key/generate). Gammel nøgle automatisk invalideret.  
-
-**Q: Kan LogicNodes-medarbejdere se mine secrets?**
-A: Secrets er krypteret. Service role kan dekryptere (logget og begrænset til on-call engineers til support), men adgang er sjælden og logget.  
-
-**Q: Er secrets synlige for mine brugere?**
-A: Nej. Secrets er backend-only. Aldrig eksponeret til frontend-kode.  
-
-### 11.5 Compliance
-
-**Q: Har I en DPA?**
-A: Ja. Skabelon tilgængelig på [/da/databehandleraftale/](/da/databehandleraftale/).  
-
-**Q: Er I HIPAA-compliant?**
-A: Infrastruktur er HIPAA-capable (Supabase Business plan). Applikationsniveau BAA tilgængelig for healthcare-kunder.  
-
-**Q: Kan I levere en sub-processor liste?**
-A: Ja. Se afsnit 8.5 ovenfor. Den komplette og autoritative liste vedligeholdes på [/da/underbehandlere/](/da/underbehandlere/).  
-
----
-
-## 12. Kontakt & Support
+## Kontakt & Support
 
 ### Sikkerhedsteam
-**Email:** kontakt@logicnodes.ai
-**Svartid:** 24 timer for kritiske problemer
+**E-mail:** kontakt@logicnodes.ai  
+**PGP-fingeraftryk:** Publiceret på [https://legal.logicnodes.ai/en/pgp.txt](https://legal.logicnodes.ai/en/pgp.txt)  
+**Svartid:** 24 timer for kritiske problemer  
+**Fuld sikkerhedsarkitektur:** Tilgængelig under NDA eller på anmodning  
 
 ### Privatliv & Compliance
-**Email:** kontakt@logicnodes.ai
-**Svartid:** 5 arbejdsdage
+**E-mail:** kontakt@logicnodes.ai  
+**Svartid:** 5 arbejdsdage  
 
 ### Salg & Partnerskaber
-**Email:** kontakt@logicnodes.ai
-**Formål:** DPA-eksekvering, tilpassede aftaler, sikkerhedsspørgeskemaer
+**E-mail:** kontakt@logicnodes.ai  
+**Formål:** DPA-eksekvering, tilpassede aftaler, sikkerhedsspørgeskemaer  
 
 ### Teknisk Support
-**Email:** kontakt@logicnodes.ai
-**Svartid:** 4 arbejdstimer
+**E-mail:** kontakt@logicnodes.ai  
+**Svartid:** 4 arbejdstimer  
 
----
+## Dokumentoplysninger
 
-## Dokumenthistorik
+**Version:** 1.2 (Offentlig oversigt)  
+**Senest opdateret:** 2026-07-03  
+**Status:** Denne side er informativ og kan ændres  
 
-| Version | Dato | Ændringer |
-|---------|------|-----------|
-| 1.0 | 2025-01-31 | Indledende sikkerhedsoversigt |
-| 2.0 | 2025-11-03 | Omfattende omskrivning (API-nøgler, audit logs, partner admin) |
-| 2.1 | 2025-11-03 | Partner-fokuseret revision (fjernede interne implementeringsdetaljer) |
-| 2.2 | 2026-04-21 | Opdatering til ny platform-infrastruktur; ret virksomhedsnavn; opdater compliance-status |
-| 2.3 | 2026-05-14 | Tilføj miljøadskillelse (2.4) og Data Loss Prevention (2.5) sektioner |
 
----
-
-**© 2026 LogicNodes ApS. Alle rettigheder forbeholdes.**
-
-Dette dokument er fortroligt og beregnet kun til partnerevaluering. Må ikke distribueres uden tilladelse.
+Dette dokument er beregnet til partnerevaluering. Den fulde sikkerhedsarkitektur er tilgængelig på anmodning.

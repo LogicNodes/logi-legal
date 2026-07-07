@@ -35,7 +35,7 @@ To help us assist you more efficiently, please include:
 
 For privacy-related questions, please contact:
 
-**Privacy Team:** [kontakt@logicnodes.ai](mailto:kontakt@logicnodes.ai)
+**Privacy Team:** [legal@logicnodes.ai](mailto:legal@logicnodes.ai)
 
 For security issues, please contact:
 
