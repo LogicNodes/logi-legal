@@ -15,6 +15,8 @@ These Terms & Conditions ("Terms") govern your access to and use of the LogicNod
 
 By accessing or using LogicNodes, you agree to be bound by these Terms. If you do not agree, you may not use the platform.
 
+The LogicNodes platform is offered exclusively to business customers and is not directed at consumers. The Danish Consumer Contracts Act (forbrugeraftaleloven), including the 14-day right of withdrawal, does not apply to your use of the platform. By creating an account or activating a paid subscription, you confirm that you are entering into this agreement in the course of your business activities.
+
 ---
 
 ## 0. Definitions
@@ -244,7 +246,23 @@ LogicNodes may delete accounts that have had no login activity for a period of 1
 
 ---
 
-## 11. Governing Law
+## 11. Complaints and Dispute Resolution
+
+### 11.1 Filing a Complaint
+
+If you are dissatisfied with the platform or a charge, contact us at [kontakt@logicnodes.ai](mailto:kontakt@logicnodes.ai) with a description of the issue and any relevant information (screenshots, invoice numbers, dates).
+
+### 11.2 Response Time
+
+We will acknowledge receipt within **5 business days** and aim to provide a resolution within **30 days**. If a matter is particularly complex, the response time may be extended; we will notify you in writing if so.
+
+### 11.3 Disputes
+
+Disputes between LogicNodes ApS and you that are not resolved through the complaints process above are subject to the Governing Law section below.
+
+---
+
+## 12. Governing Law
 
 These Terms are governed by the laws of **Denmark**. Any disputes shall be subject to the exclusive jurisdiction of the courts of Denmark, without prejudice to any mandatory rights you may have under the laws of your country of residence under applicable EU regulations.
 
@@ -280,7 +298,7 @@ Any transfer that doesn't follow these rules is void.
 
 ## 14. Changes to These Terms
 
-We may update these Terms from time to time. We will notify you of material changes by email at least **30 days** before they take effect. The "Last Updated" date above reflects the most recent revision. Continued use of the platform after the notice period constitutes acceptance of the updated Terms. If you do not accept the changes, you may terminate your account before the changes take effect.
+We may update these Terms from time to time. We will notify you of material changes by email at least **7 days** before they take effect. The "Last Updated" date above reflects the most recent revision. Continued use of the platform after the notice period constitutes acceptance of the updated Terms. If you do not accept the changes, you may terminate your account before the changes take effect.
 
 ---
 

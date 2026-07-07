@@ -15,6 +15,8 @@ Disse Vilkår & Betingelser ("Vilkår") regulerer din adgang til og brug af Logi
 
 Ved at tilgå eller bruge LogicNodes accepterer du at være bundet af disse Vilkår. Hvis du ikke accepterer, må du ikke bruge platformen.
 
+LogicNodes-platformen udbydes udelukkende til erhvervsdrivende og er ikke rettet mod forbrugere. Forbrugeraftaleloven, herunder den 14-dages fortrydelsesret, finder ikke anvendelse på din brug af platformen. Ved at oprette en konto eller aktivere et betalt abonnement bekræfter du, at du indgår denne aftale som led i din erhvervsvirksomhed.
+
 ---
 
 ## 0. Definitioner
@@ -244,7 +246,23 @@ LogicNodes kan slette konti, der ikke har haft loginaktivitet i en sammenhængen
 
 ---
 
-## 11. Lovvalg
+## 11. Reklamation og Tvistløsning
+
+### 11.1 Indgivelse af Reklamation
+
+Hvis du er utilfreds med platformen eller en opkrævning, kontakt os på [kontakt@logicnodes.ai](mailto:kontakt@logicnodes.ai) med en beskrivelse af problemet samt relevante oplysninger (skærmbilleder, fakturanumre, datoer).
+
+### 11.2 Behandlingstid
+
+Vi bekræfter modtagelsen inden for **5 hverdage** og bestræber os på at have en afgørelse klar inden for **30 dage**. Er sagen særligt kompleks, kan behandlingstiden forlænges; vi giver i så fald skriftlig besked.
+
+### 11.3 Tvister
+
+Tvister mellem LogicNodes ApS og dig, som ikke løses gennem den ovenstående reklamationsproces, er underlagt afsnittet om Lovvalg nedenfor.
+
+---
+
+## 12. Lovvalg
 
 Disse Vilkår er underlagt **dansk ret**. Eventuelle tvister er underlagt de danske domstoles eksklusive jurisdiktion, med forbehold for eventuelle ufravigelige rettigheder, du måtte have i henhold til lovgivningen i dit bopælsland i medfør af gældende EU-forordninger.
 
@@ -280,7 +298,7 @@ Enhver overførsel, der ikke følger disse regler, er ugyldig.
 
 ## 14. Ændringer af Disse Vilkår
 
-Vi kan opdatere disse Vilkår fra tid til anden. Vi vil underrette dig om væsentlige ændringer via e-mail mindst **30 dage** inden de træder i kraft. Datoen "Senest opdateret" ovenfor afspejler den seneste revision. Fortsat brug af platformen efter varselsperioden udgør accept af de opdaterede Vilkår. Hvis du ikke accepterer ændringerne, kan du opsige din konto inden ændringerne træder i kraft.
+Vi kan opdatere disse Vilkår fra tid til anden. Vi vil underrette dig om væsentlige ændringer via e-mail mindst **7 dage** inden de træder i kraft. Datoen "Senest opdateret" ovenfor afspejler den seneste revision. Fortsat brug af platformen efter varselsperioden udgør accept af de opdaterede Vilkår. Hvis du ikke accepterer ændringerne, kan du opsige din konto inden ændringerne træder i kraft.
 
 ---
 
