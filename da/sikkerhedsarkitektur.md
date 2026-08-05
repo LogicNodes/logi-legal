@@ -178,7 +178,7 @@ Opbevaring af lagerfiler følger livscyklussen for det element, filen tilhører:
 - Krypterede hemmeligheder slettes ved organisationssletning
 - Alle data fjernes fra krypterede backups inden for 30 dage
 
-**Undtagelse for stemmeaftryk:** Stemmeaftryk oprettet via talefunktionen er lagret separat og er ikke dækket af det automatiserede kontosletningsflow. Stemmeaftryk kan slettes direkte fra platform-UI'en under den tilknyttede trigger på chatsiden.
+**Undtagelse for stemmeaftryk:** Stemmeaftryk oprettet via talefunktionen er lagret separat og er ikke dækket af det automatiserede kontosletningsflow. Stemmeaftryk kan slettes direkte fra platform-UI'en på chatsiden.
 
 **Undtagelse:** Revisionslogfiler opbevares i 5 år af hensyn til svindelundersøgelse (Art. 17(3)(e) GDPR). Se [Privatlivspolitik afsnit 6a - Internt Personaladgang](/da/privatlivspolitik/#6a-internt-personaladgang) for detaljer. De slettes permanent ved udløbet af 5-årsperioden.
 
@@ -202,7 +202,7 @@ Ved **direkte platformbrug:** LogicNodes fungerer som Dataansvarlig for konto- o
 For en fuld juridisk beskrivelse af dine rettigheder under GDPR, se [GDPR-meddelelsen](/da/gdpr-notice/).
 
 - Ret til indsigt — dashboard-eksport af profil, organisationsmedlemskab, kørselsmetadata og transskriptionsliste; fuldt indhold af agentkørsler tilgængeligt via skriftlig henvendelse til kontakt@logicnodes.ai (leveres inden for 30 dage)
-- Ret til sletning — platform-UI med kaskaderende sletninger for alle standarddataregistreringer; stemmeaftryk kan slettes direkte fra platform-UI'en under den tilknyttede trigger på chatsiden
+- Ret til sletning — platform-UI med kaskaderende sletninger for alle standarddataregistreringer; stemmeaftryk kan slettes direkte fra platform-UI'en på chatsiden
 - Ret til dataportabilitet — samme omfang som Ret til indsigt; fuld indholdseksport tilgængelig via skriftlig henvendelse
 - Ret til berigtigelse (opdater via dashboard og API)
 - Dataminimering (opbevaringspolitikker, automatiseret oprydning)

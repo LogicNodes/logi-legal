@@ -25,7 +25,7 @@ Størstedelen af den operationelle data slettes automatisk efter en fast daglig 
 | Agent-kørselshistorik (input, output, udførelseslog) | 90 dage | Ja (1–90 dage, konfigurerbart pr. organisation) | Automatisk daglig oprydning kl. 02:00 UTC |
 | Stemmetransskriptioner | 90 dage | Ja (1–90 dage) | Automatisk daglig oprydning |
 | Lydoptagelser (stemmefunktion) | 90 dage | Ja (1–90 dage) | Automatisk daglig oprydning |
-| Stemmeaftryk (biometriske data) | Indtil anmodning om sletning | Nej | Via platform-UI (chatside — vælg den relevante chat-trigger), eller ved at kontakte kontakt@logicnodes.ai |
+| Stemmeaftryk (biometriske data) | Indtil anmodning om sletning | Nej | Via platform-UI (chatside), eller ved at kontakte kontakt@logicnodes.ai |
 | Brugerprofil (e-mail, navn, organisation) | Indtil kontosletning | Nej | Via kontoindstillinger |
 | Krypterede hemmeligheder (API-nøgler) | Indtil sletning | Nej | Via platform-UI |
 | Revisionslogfiler | 5 år | Nej | Automatisk efter 5 år |
@@ -77,7 +77,7 @@ Organisations-administratorer kan slette hele organisationen og alle tilknyttede
 
 **Stemmeaftryk**
 
-Stemmeaftryk kan slettes direkte fra platform-UI'en. Gå til chatsiden og vælg den relevante chat-trigger, der er knyttet til stemmeaftrykket — herfra er der en slettemulighed. Du kan alternativt anmode om sletning ved at kontakte kontakt@logicnodes.ai. Sletning er permanent og kan ikke fortrydes.
+Stemmeaftryk kan slettes direkte fra platform-UI'en. Gå til chatsiden — herfra er der en slettemulighed. Du kan alternativt anmode om sletning ved at kontakte kontakt@logicnodes.ai. Sletning er permanent og kan ikke fortrydes.
 
 ---
 

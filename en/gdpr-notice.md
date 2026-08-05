@@ -44,7 +44,7 @@ The table below sets out each processing activity, the categories of personal da
 | Account authentication | Email address, session tokens | Art. 6(1)(b) — contractual necessity | Duration of session; until account deletion |
 | Platform service delivery (agent runs, conversation history, execution logs) | Agent inputs and outputs, execution logs | Art. 6(1)(b) — contractual necessity | 1–90 days (configurable by account holder) |
 | Voice transcription (optional feature) | Audio recordings | Art. 6(1)(b) — contractual necessity | Same as agent run retention (1–90 days, configurable) |
-| Speaker identification / voiceprints (optional feature) | Biometric data (Art. 9(1)) | User responsibility — by using this feature, the user accepts that LogicNodes processes biometric data as part of service delivery. The user is responsible for establishing a valid Art. 9(2) legal basis and informing the individuals whose voices are recorded. | Until deleted via the agent trigger on the chat page |
+| Speaker identification / voiceprints (optional feature) | Biometric data (Art. 9(1)) | User responsibility — by using this feature, the user accepts that LogicNodes processes biometric data as part of service delivery. The user is responsible for establishing a valid Art. 9(2) legal basis and informing the individuals whose voices are recorded. | Until deleted via the chat page |
 | Account holder-introduced personal data (including health data, national identification numbers such as CPR numbers, payment card data, racial or ethnic origin, political opinions, religious beliefs, genetic data, biometric data, trade union membership, and data concerning sex life or sexual orientation) | Any personal data introduced by the account holder, including special category data (GDPR Art. 9(1)) and data subject to specific national law requirements | Account holder responsibility — the account holder is the data controller for all personal data they introduce and is solely responsible for establishing and maintaining a valid legal basis under Art. 6(1) and, where applicable, Art. 9(2) and applicable national law (e.g., the Danish Data Protection Act §11 for CPR numbers). LogicNodes processes this data solely as data processor on documented account holder instructions and does not verify the lawfulness of those instructions. | Same as agent run retention (1–90 days, configurable by account holder) |
 | Audit logs | User ID, IP address, browser and device information, event type | Art. 6(1)(f) GDPR + Art. 17(3)(e) GDPR — defence of legal claims | 5 years |
 | Billing and payment records | Transaction data | Art. 6(1)(c) — legal obligation (Danish Bookkeeping Act, section 10) | 5 years from the end of the relevant financial year |
@@ -80,7 +80,7 @@ By using this feature, the user accepts that LogicNodes processes biometric data
 
 LogicNodes processes voiceprints solely to deliver the service and does not use them for any other purpose.
 
-**Deletion:** Voiceprint data can be deleted at any time via the agent trigger on the chat page. Deletion from production systems is immediate; purge from encrypted backups occurs within 30 days.
+**Deletion:** Voiceprint data can be deleted at any time via the chat page. Deletion from production systems is immediate; purge from encrypted backups occurs within 30 days.
 
 ### 5.2 Personal Data Introduced by Account Holders
 
@@ -141,7 +141,7 @@ Where personal data is processed for direct marketing purposes, you have an unco
 
 ### 6.7 Rights Relating to Voiceprints
 
-Voiceprint data can be deleted at any time via the agent trigger on the chat page. Individuals whose voices have been recorded should direct any GDPR rights requests (such as access, rectification, or objection) to the user who created the voiceprint — that user is responsible for the legal basis and for handling such requests.
+Voiceprint data can be deleted at any time via the chat page. Individuals whose voices have been recorded should direct any GDPR rights requests (such as access, rectification, or objection) to the user who created the voiceprint — that user is responsible for the legal basis and for handling such requests.
 
 ## 7. How to Exercise Your Rights
 

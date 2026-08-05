@@ -25,7 +25,7 @@ Most operational data is deleted automatically on a daily schedule. Account data
 | Agent run history (inputs, outputs, execution logs) | 90 days | Yes (1–90 days, org-configurable) | Automatic daily cleanup |
 | Voice transcriptions | 90 days | Yes (1–90 days) | Automatic daily cleanup |
 | Audio recordings (voice feature) | 90 days | Yes (1–90 days) | Automatic daily cleanup |
-| Voiceprints (biometric data) | Until deletion request | No | Via platform UI (chat page — select the relevant chat trigger), or by contacting kontakt@logicnodes.ai |
+| Voiceprints (biometric data) | Until deletion request | No | Via platform UI (chat page), or by contacting kontakt@logicnodes.ai |
 | User profile (email, name, organization) | Until account deletion | No | Via account settings |
 | Encrypted secrets (API keys) | Until deletion | No | Via platform UI |
 | Audit logs | 5 years | No | Automatic after 5 years |
@@ -77,7 +77,7 @@ Organization administrators can delete the entire organization and all associate
 
 **Voiceprints**
 
-Voiceprints can be deleted directly from the platform UI. Navigate to the chat page and select the relevant chat trigger associated with the voiceprint — a deletion option is available from there. Alternatively, you can request deletion by contacting kontakt@logicnodes.ai. Deletion is permanent and cannot be undone.
+Voiceprints can be deleted directly from the platform UI. Navigate to the chat page — a deletion option is available there. Alternatively, you can request deletion by contacting kontakt@logicnodes.ai. Deletion is permanent and cannot be undone.
 
 ---
 

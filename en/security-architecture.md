@@ -178,7 +178,7 @@ Storage file retention follows the lifecycle of the element the file belongs to:
 - Encrypted secrets deleted on organization deletion
 - All data purged from encrypted backups within 30 days
 
-**Exception for voiceprints:** Voiceprints created by the voice feature are stored separately and are not covered by the automated account deletion flow. Voiceprints can be deleted directly from the platform UI under the associated trigger on the chat page.
+**Exception for voiceprints:** Voiceprints created by the voice feature are stored separately and are not covered by the automated account deletion flow. Voiceprints can be deleted directly from the platform UI on the chat page.
 
 **Exception:** Audit logs are retained for 5 years for fraud investigation purposes (Art. 17(3)(e) GDPR). See [Privacy Policy Section 6a - Internal Staff Access](/en/privacy-policy/#6a-internal-staff-access) for details. They are permanently deleted at the end of the 5-year period.
 
@@ -202,7 +202,7 @@ For **direct platform use:** LogicNodes acts as Data Controller for account and 
 For a full legal description of your rights under the GDPR, see the [GDPR Notice](/en/gdpr-notice/).
 
 - Right to Access — dashboard export of profile, organization membership, run metadata, and transcription list; full agent run content available upon written request to kontakt@logicnodes.ai (delivered within 30 days)
-- Right to Deletion — platform UI with cascading deletes for all standard data records; voiceprints can be deleted directly from the platform UI under the associated trigger on the chat page
+- Right to Deletion — platform UI with cascading deletes for all standard data records; voiceprints can be deleted directly from the platform UI on the chat page
 - Right to Data Portability — same scope as Right to Access; full content export available upon written request
 - Right to Rectification (update via dashboard and API)
 - Data Minimization (retention policies, automated cleanup)

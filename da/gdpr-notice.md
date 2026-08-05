@@ -44,7 +44,7 @@ Nedenstående tabel angiver for hver behandlingsaktivitet: de berørte kategorie
 | Kontogodkendelse | E-mailadresse, sessionstoken | Art. 6(1)(b) — nødvendigt for opfyldelse af kontrakt | Sessionens varighed; til kontosletning |
 | Levering af platformsydelser (agentkørsler, samtalehistorik, udførelseslogfiler) | Agentinput og -output, udførelseslogfiler | Art. 6(1)(b) — nødvendigt for opfyldelse af kontrakt | 1–90 dage (kan konfigureres af kontohaveren) |
 | Stemmegenkendelse/transskription (valgfri funktion) | Lydoptagelser | Art. 6(1)(b) — nødvendigt for opfyldelse af kontrakt | Samme som opbevaringsperioden for agentkørsler (1–90 dage, konfigurerbar) |
-| Højttaleridentifikation / stemmeprofiler (valgfri funktion) | Biometriske oplysninger (art. 9(1)) | Brugerens ansvar — ved at bruge funktionen accepterer brugeren, at LogicNodes behandler biometriske data som led i tjenesteleveringen. Brugeren er ansvarlig for at etablere et gyldigt retsgrundlag i henhold til art. 9(2) og for at informere de registrerede. | Til sletning via agent-triggeren på chatsiden |
+| Højttaleridentifikation / stemmeprofiler (valgfri funktion) | Biometriske oplysninger (art. 9(1)) | Brugerens ansvar — ved at bruge funktionen accepterer brugeren, at LogicNodes behandler biometriske data som led i tjenesteleveringen. Brugeren er ansvarlig for at etablere et gyldigt retsgrundlag i henhold til art. 9(2) og for at informere de registrerede. | Til sletning via chatsiden |
 | Personoplysninger introduceret af kontohaveren (herunder helbredsoplysninger, CPR-numre og andre nationale identifikationsnumre, betalingskortdata, oplysninger om racemæssig eller etnisk oprindelse, politiske anskuelser, religiøse overbevisninger, genetiske data, biometriske data, fagforeningstilhørsforhold samt oplysninger om seksualliv eller seksuel orientering) | Alle personoplysninger introduceret af kontohaveren, herunder særlige kategorier (GDPR art. 9(1)) og oplysninger underlagt særlig national ret | Kontohaverens ansvar — kontohaveren er dataansvarlig for alle personoplysninger, vedkommende introducerer, og bærer eneansvar for at etablere og opretholde et gyldigt retsgrundlag i henhold til art. 6(1) og, hvor det er relevant, art. 9(2) og gældende national ret (f.eks. databeskyttelseslovens §11 for CPR-numre). LogicNodes behandler disse data udelukkende som databehandler på baggrund af dokumenterede instrukser fra kontohaveren og verificerer ikke lovligheden af disse instrukser. | Samme som opbevaringsperioden for agentkørsler (1–90 dage, konfigurerbar af kontohaveren) |
 | Revisionslogfiler | Bruger-ID, IP-adresse, browser- og enhedsoplysninger, hændelsestype | Art. 6(1)(f) GDPR + art. 17(3)(e) GDPR — forsvar af retskrav | 5 år |
 | Fakturerings- og betalingsregistreringer | Transaktionsdata | Art. 6(1)(c) — retlig forpligtelse (bogføringsloven § 10) | 5 år fra udgangen af det relevante regnskabsår |
@@ -80,7 +80,7 @@ Ved at bruge denne funktion accepterer brugeren, at LogicNodes behandler biometr
 
 LogicNodes behandler stemmeprofiler udelukkende med henblik på at levere tjenesten og anvender dem ikke til andre formål.
 
-**Sletning:** Stemmeprofildata kan til enhver tid slettes via agent-triggeren på chatsiden. Sletning fra produktionssystemer er øjeblikkelig; sletning fra krypterede sikkerhedskopier sker inden for 30 dage.
+**Sletning:** Stemmeprofildata kan til enhver tid slettes via chatsiden. Sletning fra produktionssystemer er øjeblikkelig; sletning fra krypterede sikkerhedskopier sker inden for 30 dage.
 
 ### 5.2 Personoplysninger Introduceret af Kontohavere
 
@@ -141,7 +141,7 @@ Hvor personoplysninger behandles med henblik på direkte markedsføring, har du 
 
 ### 6.7 Rettigheder vedrørende stemmeprofiler
 
-Stemmeprofildata kan til enhver tid slettes via agent-triggeren på chatsiden. Personer, hvis stemmer er blevet optaget, skal rette eventuelle GDPR-anmodninger — såsom indsigt, berigtigelse eller indsigelse — til den bruger, der oprettede stemmeprofilen. Denne bruger er ansvarlig for retsgrundlaget og for at håndtere sådanne anmodninger.
+Stemmeprofildata kan til enhver tid slettes via chatsiden. Personer, hvis stemmer er blevet optaget, skal rette eventuelle GDPR-anmodninger — såsom indsigt, berigtigelse eller indsigelse — til den bruger, der oprettede stemmeprofilen. Denne bruger er ansvarlig for retsgrundlaget og for at håndtere sådanne anmodninger.
 
 ## 7. Sådan udøver du dine rettigheder
 
