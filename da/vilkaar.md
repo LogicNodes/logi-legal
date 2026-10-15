@@ -3,7 +3,7 @@ layout: legal
 title: Vilkår & Betingelser
 lang: da
 lang_equivalent: /en/terms
-last_updated: 2026-06-25
+last_updated: 2026-10-15
 ---
 
 # Vilkår & Betingelser
@@ -139,7 +139,7 @@ Vi anvender underbehandlere til at levere vores services. Ved at bruge LogicNode
 
 ### 5.7 Databehandling udelukkende inden for EU
 
-Hvis du ønsker, at alle personoplysninger — herunder AI-inferenskald — behandles udelukkende inden for Den Europæiske Union, kan du anmode om dette ved at kontakte kontakt@logicnodes.ai. Når funktionen er aktiv, er AI-inferens begrænset til EU-baserede udbydere (Mistral AI, Google Cloud EU, Microsoft Azure OpenAI EU, Amazon Bedrock Frankfurt), og stemmetransskription via ElevenLabs er ikke tilgængelig.
+Hvis du ønsker, at alle personoplysninger — herunder AI-inferenskald — behandles udelukkende inden for Den Europæiske Union, kan du anmode om dette ved at kontakte kontakt@logicnodes.ai. Når funktionen er aktiv, er AI-inferens begrænset til EU-baserede udbydere (Mistral AI, Google Cloud EU, Microsoft Azure OpenAI EU, Amazon Bedrock Frankfurt), og stemmetransskription samt tekst-til-tale-oplæsning af beskeder via ElevenLabs er ikke tilgængelig.
 
 ### 5.5 Forbud mod AI-træning
 
@@ -316,6 +316,7 @@ E-mail: [legal@logicnodes.ai](mailto:legal@logicnodes.ai)
 
 | Dato | Afsnit |
 |---|---|
+| 2026-10-15 | §5.7 |
 | 2026-07-07 | §5.6; §5.8 |
 | 2026-05-18 | Første offentliggørelse |
 

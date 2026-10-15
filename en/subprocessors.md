@@ -1,7 +1,7 @@
 ---
 layout: legal
 title: Sub-Processor List
-last_updated: 2026-07-07
+last_updated: 2026-10-15
 lang: en
 lang_equivalent: /da/underbehandlere
 description: "Complete list of third-party sub-processors engaged by LogicNodes ApS for service delivery. GDPR-compliant notification page."
@@ -32,16 +32,16 @@ Copies of all executed or click-through DPAs are maintained internally and can b
 | **Vercel** | Web application hosting and edge delivery |
 | **Hetzner** | Backend API hosting |
 | **Mailgun** | Transactional email delivery |
-| **ElevenLabs** | Speech-to-text transcription |
+| **ElevenLabs** | Speech-to-text transcription; optional text-to-speech readout of agent messages |
 | **Pyannote** | Speaker identification (optional; involves biometric data — GDPR Art. 9) |
 | **OpenAI / Anthropic / Google / xAI** | AI language model inference |
 | **Mistral AI** | AI language model inference — EU-only data processing only (France) |
 | **Hugging Face, Inc.** | AI model hosting and inference |
 | **Amazon Web Services (Bedrock)** | AI language model inference — EU-only data processing only (eu-central-1, Frankfurt) |
 
-ElevenLabs and Pyannote are only engaged when the voice transcription and speaker identification features are explicitly enabled. They are not used on standard agent runs.
+ElevenLabs and Pyannote are only engaged when the voice transcription, speaker identification, or message readout features are used. They are not used on standard agent runs. For message readout, only the message text — not audio — is sent to ElevenLabs, and the audio is not stored by LogicNodes.
 
-> **EU-only data processing:** When an organisation has activated EU-only data processing (see DPA §2.4), AI inference is handled exclusively by EU-based models via Amazon Bedrock (Frankfurt), Mistral AI (France), Google Cloud Gemini (EU region), or Microsoft Azure OpenAI Service (EU region). ElevenLabs transcription is not available in this configuration. No data is transferred to US-based LLM providers. Amazon Web Services (Bedrock) is only engaged in this configuration; contact: aws-privacy@amazon.com.
+> **EU-only data processing:** When an organisation has activated EU-only data processing (see DPA §2.4), AI inference is handled exclusively by EU-based models via Amazon Bedrock (Frankfurt), Mistral AI (France), Google Cloud Gemini (EU region), or Microsoft Azure OpenAI Service (EU region). ElevenLabs transcription and text-to-speech message readout are not available in this configuration. No data is transferred to US-based LLM providers. Amazon Web Services (Bedrock) is only engaged in this configuration; contact: aws-privacy@amazon.com.
 
 ---
 
@@ -89,7 +89,7 @@ Each sub-processor may use their own infrastructure providers to deliver their s
 
 | Sub-Processor | Infrastructure | Purpose |
 |---|---|---|
-| Supabase | AWS (eu-north-1, Stockholm) | Managed database and object storage |
+| Supabase | AWS (eu-central-1, Frankfurt) | Managed database and object storage |
 | Vercel | AWS, Google Cloud | Edge network and CDN delivery |
 | Hetzner | Own EU data centres (Falkenstein/Nuremberg) | Dedicated server infrastructure |
 | Mailgun | Various email delivery networks | Email routing and delivery |
@@ -101,7 +101,7 @@ These relationships are governed under each vendor's own DPA and are publicly do
 ## Data Location & Residency
 
 **Default Configuration:**
-- Primary data storage: **EU (AWS eu-north-1, Stockholm via Supabase)**
+- Primary data storage: **EU (AWS eu-central-1, Frankfurt via Supabase)**
 - Web hosting: **EU (Frankfurt via Vercel)**
 - Backend services: **EU (Falkenstein/Nuremberg via Hetzner)**
 - Email delivery: **EU/USA routing-dependent (via Mailgun)**
@@ -215,10 +215,8 @@ For direct inquiries to sub-processors regarding their data processing practices
 
 ---
 
-**Version:** 1.2
+**Version:** 1.3
 **Effective Date:** April 23, 2026
-**Last Updated:** July 7, 2026
-
-**© 2025 LogicNodes ApS. All rights reserved.**
+**Last Updated:** October 15, 2026
 
 This sub-processor list is maintained as part of LogicNodes' GDPR compliance obligations under Article 28(3)(d).

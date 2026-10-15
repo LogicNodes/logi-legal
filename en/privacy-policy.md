@@ -1,7 +1,7 @@
 ---
 layout: legal
 title: Privacy Policy
-last_updated: 2026-06-17
+last_updated: 2026-10-15
 lang: en
 lang_equivalent: /da/privatlivspolitik/
 ---
@@ -161,7 +161,7 @@ You may opt out of non-essential communications at any time. Note that we may st
 
 ## 8. International Data Transfers
 
-Personal data is stored primarily in the European Union (AWS EU-North-1, Stockholm, via Supabase). Standard use of the platform involves agent prompts and responses being transmitted to AI model inference providers. Some of these providers — including OpenAI, Anthropic, and xAI — have servers in the USA, and processing by them constitutes an international data transfer. These transfers are protected by Standard Contractual Clauses (EU Commission Decision 2021/914). A full list of sub-processors and their locations is available at [/en/subprocessors](/en/subprocessors/).
+Personal data is stored primarily in the European Union (AWS eu-central-1, Frankfurt, via Supabase). Standard use of the platform involves agent prompts and responses being transmitted to AI model inference providers. Some of these providers — including OpenAI, Anthropic, and xAI — have servers in the USA, and processing by them constitutes an international data transfer. ElevenLabs (used for voice transcription and, optionally, text-to-speech readout of agent messages) also processes data in the USA. These transfers are protected by Standard Contractual Clauses (EU Commission Decision 2021/914). A full list of sub-processors and their locations is available at [/en/subprocessors](/en/subprocessors/).
 
 **EU-only data processing:** Users who require that all data stays within the EU can request EU-only data processing by contacting kontakt@logicnodes.ai. When active, AI inference is restricted to EU-based providers only, and no data is transferred outside the EU.
 
@@ -235,6 +235,7 @@ CVR: DK45318362
 
 | Date | Section |
 |---|---|
+| 2026-10-15 | §8 |
 | 2026-07-07 | §2.3; §3; §5; §5.1; §6; §6a; §9; §11 |
 | 2026-04-21 | Initial publication |
 

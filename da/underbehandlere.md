@@ -3,7 +3,7 @@ layout: legal
 title: Underbehandlere
 lang: da
 lang_equivalent: /en/subprocessors
-last_updated: 2026-07-07
+last_updated: 2026-10-15
 description: "Komplet liste over tredjepartsunderbehandlere engageret af LogicNodes ApS til servicelevering. GDPR-kompatibel notifikationsside."
 ---
 
@@ -32,16 +32,16 @@ Kopier af alle underskrevne eller klikbaserede DPA'er opbevares internt og kan u
 | **Vercel** | Hosting af webapplikation og edge-levering |
 | **Hetzner** | Hosting af backend-API |
 | **Mailgun** | Transaktionel e-maillevering |
-| **ElevenLabs** | Tale-til-tekst transskription |
+| **ElevenLabs** | Tale-til-tekst transskription; valgfri oplæsning af agentbeskeder (tekst-til-tale) |
 | **Pyannote** | Talaridentifikation (valgfrit; involverer biometriske data — GDPR Art. 9) |
 | **OpenAI / Anthropic / Google / xAI** | AI-sprogmodelsinferens |
 | **Mistral AI** | AI-sprogmodelsinferens — kun ved databehandling udelukkende inden for EU (Frankrig) |
 | **Hugging Face, Inc.** | AI-modelhosting og inferens |
 | **Amazon Web Services (Bedrock)** | AI-sprogmodelsinferens — kun ved databehandling udelukkende inden for EU (eu-central-1, Frankfurt) |
 
-ElevenLabs og Pyannote engageres kun, når funktionerne til taletranskription og talaridentifikation er eksplicit aktiveret. De anvendes ikke ved almindelige agentkørsler.
+ElevenLabs og Pyannote engageres kun, når funktionerne til taletranskription, talaridentifikation eller beskedoplæsning anvendes. De anvendes ikke ved almindelige agentkørsler. Ved beskedoplæsning sendes kun beskedteksten — ikke lyd — til ElevenLabs, og lyden gemmes ikke af LogicNodes.
 
-> **Databehandling udelukkende inden for EU:** Når en organisation har aktiveret databehandling udelukkende inden for EU (jf. DPA §2.4), håndteres al AI-inferens udelukkende af EU-baserede modeller via Amazon Bedrock (Frankfurt), Mistral AI (Frankrig), Google Cloud Gemini (EU-region) eller Microsoft Azure OpenAI Service (EU-region). ElevenLabs-transskription er ikke tilgængelig i denne konfiguration. Data overføres ikke til US-baserede LLM-udbydere. Amazon Web Services (Bedrock) engageres kun i denne konfiguration; kontakt: aws-privacy@amazon.com.
+> **Databehandling udelukkende inden for EU:** Når en organisation har aktiveret databehandling udelukkende inden for EU (jf. DPA §2.4), håndteres al AI-inferens udelukkende af EU-baserede modeller via Amazon Bedrock (Frankfurt), Mistral AI (Frankrig), Google Cloud Gemini (EU-region) eller Microsoft Azure OpenAI Service (EU-region). ElevenLabs-transskription og tekst-til-tale-oplæsning af beskeder er ikke tilgængelig i denne konfiguration. Data overføres ikke til US-baserede LLM-udbydere. Amazon Web Services (Bedrock) engageres kun i denne konfiguration; kontakt: aws-privacy@amazon.com.
 
 ---
 
@@ -89,7 +89,7 @@ Hver underbehandler kan benytte egne infrastrukturudbydere til at levere deres t
 
 | Underbehandler | Infrastruktur | Formål |
 |---|---|---|
-| Supabase | AWS (eu-north-1, Stockholm) | Administreret database og objektlagring |
+| Supabase | AWS (eu-central-1, Frankfurt) | Administreret database og objektlagring |
 | Vercel | AWS, Google Cloud | Edge-netværk og CDN-levering |
 | Hetzner | Egne EU-datacentre (Falkenstein/Nürnberg) | Dedikeret serverinfrastruktur |
 | Mailgun | Diverse e-mailleveringsnetværk | E-mailrouting og -levering |
@@ -101,7 +101,7 @@ Disse relationer er reguleret under den respektive leverandørs DPA og er offent
 ## Datalokalisering
 
 **Standardkonfiguration:**
-- Primær datalagring: **EU (AWS eu-north-1, Stockholm via Supabase)**
+- Primær datalagring: **EU (AWS eu-central-1, Frankfurt via Supabase)**
 - Webhosting: **EU (Frankfurt via Vercel)**
 - Backend-services: **EU (Falkenstein/Nürnberg via Hetzner)**
 - E-maillevering: **EU/USA afhængigt af routing (via Mailgun)**
@@ -215,10 +215,8 @@ Til direkte henvendelser til underbehandlere vedrørende deres databehandlingspr
 
 ---
 
-**Version:** 1.2
+**Version:** 1.3
 **Ikrafttrædelsesdato:** 23. april 2026
-**Sidst opdateret:** 7. juli 2026
-
-**© 2025 LogicNodes ApS. Alle rettigheder forbeholdes.**
+**Sidst opdateret:** 15. oktober 2026
 
 Denne underbehandlerliste opretholdes som en del af LogicNodes' GDPR-overholdelseforpligtelser i henhold til Artikel 28(3)(d).

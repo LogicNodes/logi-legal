@@ -3,7 +3,7 @@ layout: legal
 title: GDPR Notice
 lang: en
 lang_equivalent: /da/gdpr-notice
-last_updated: 2026-06-25
+last_updated: 2026-10-15
 ---
 
 # GDPR Supplemental Notice
@@ -160,7 +160,7 @@ Responses are provided free of charge. Where requests are manifestly unfounded o
 
 ### 8.1 Primary Data Storage
 
-Personal data is stored primarily in the **European Union**. Our primary database infrastructure is operated by Supabase on AWS eu-north-1 (Stockholm, Sweden). Data is not transferred outside the EEA for storage purposes.
+Personal data is stored primarily in the **European Union**. Our primary database infrastructure is operated by Supabase on AWS eu-central-1 (Frankfurt, Germany). Data is not transferred outside the EEA for storage purposes.
 
 ### 8.2 LLM Inference Transfers
 
@@ -174,7 +174,7 @@ These transfers are protected by **Standard Contractual Clauses** pursuant to EU
 
 Google Cloud is also used for AI inference; Google processes data in EU and global regions under its own EU data processing terms and SCCs.
 
-ElevenLabs Inc. is used for voice transcription when that feature is used; ElevenLabs processes audio data in the USA, protected by Standard Contractual Clauses and the EU-US Data Privacy Framework.
+ElevenLabs Inc. is used for voice transcription when that feature is used, and optionally for text-to-speech readout of agent messages; ElevenLabs processes data in the USA, protected by Standard Contractual Clauses and the EU-US Data Privacy Framework. For the message readout feature, only the message text — not audio — is transmitted to ElevenLabs, and the resulting audio is not stored by LogicNodes.
 
 A full list of sub-processors is available at [/en/subprocessors](/en/subprocessors/).
 
@@ -184,7 +184,7 @@ In addition to SCCs, LogicNodes implements supplementary technical measures incl
 
 ### 8.4 EU-Only Data Processing
 
-Partners and direct users who require that all personal data — including AI inference calls — stays within the European Union can request EU-only data processing by contacting kontakt@logicnodes.ai. When active, AI inference is restricted to EU-based providers only (Mistral AI, Google Cloud EU region, Microsoft Azure OpenAI Service EU region, Amazon Bedrock Frankfurt). ElevenLabs transcription is not available in this configuration, and no personal data is transferred to providers outside the EU.
+Partners and direct users who require that all personal data — including AI inference calls — stays within the European Union can request EU-only data processing by contacting kontakt@logicnodes.ai. When active, AI inference is restricted to EU-based providers only (Mistral AI, Google Cloud EU region, Microsoft Azure OpenAI Service EU region, Amazon Bedrock Frankfurt). ElevenLabs transcription and text-to-speech message readout are not available in this configuration, and no personal data is transferred to providers outside the EU.
 
 ### 8.5 UK and Swiss Transfers
 

@@ -2,7 +2,7 @@
 layout: legal
 title: Sikkerhedsoversigt
 description: "LogicNodes Platform – Sikkerhedsoversigt, databeskyttelse og compliance for virksomheder."
-last_updated: 2026-07-03
+last_updated: 2026-10-15
 lang: da
 lang_equivalent: /en/security-architecture/
 ---
@@ -213,7 +213,7 @@ For en fuld juridisk beskrivelse af dine rettigheder under GDPR, se [GDPR-meddel
 
 ### Datalokalisering
 
-**Primær datalokalisering:** Den Europæiske Union (Sverige)
+**Primær datalokalisering:** Den Europæiske Union (Tyskland)
 
 **Amerikansk datalokalisering:** Tilgængelig på anmodning (tillægsgebyrer kan gælde)
 
@@ -221,7 +221,7 @@ For en fuld juridisk beskrivelse af dine rettigheder under GDPR, se [GDPR-meddel
 - Standardkontraktbestemmelser (EU-Kommissionen godkendt)
 - Tilstrækkelige sikkerhedsforanstaltninger pr. GDPR Artikel 46
 
-Primær datalagring sker som standard i EU (Sverige). Standard agentkørsler sender forespørgsler og svar til AI-modeludbydere — OpenAI, Anthropic og xAI har servere i USA, hvilket udgør en international overførsel dækket af Standardkontraktbestemmelser. Partnere, der kræver, at al behandling forbliver inden for EU, kan anmode om EU-only databehandling (se nedenfor).
+Primær datalagring sker som standard i EU (Tyskland). Standard agentkørsler sender forespørgsler og svar til AI-modeludbydere — OpenAI, Anthropic og xAI har servere i USA, hvilket udgør en international overførsel dækket af Standardkontraktbestemmelser. Partnere, der kræver, at al behandling forbliver inden for EU, kan anmode om EU-only databehandling (se nedenfor).
 
 ### Infrastruktur-compliance
 
@@ -335,8 +335,8 @@ Vores fulde sikkerhedsarkitekturdokument er tilgængeligt for kvalificerede part
 
 ## Dokumentoplysninger
 
-**Version:** 1.2 (Offentlig oversigt)  
-**Senest opdateret:** 2026-07-03  
+**Version:** 1.3 (Offentlig oversigt)  
+**Senest opdateret:** 2026-10-15  
 **Status:** Denne side er informativ og kan ændres  
 
 

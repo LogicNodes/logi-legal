@@ -2,7 +2,7 @@
 layout: legal
 title: Security Overview
 description: "LogicNodes Platform – Enterprise security overview, data protection, and compliance commitments."
-last_updated: 2026-07-03
+last_updated: 2026-10-15
 lang: en
 lang_equivalent: /da/sikkerhedsarkitektur/
 ---
@@ -213,7 +213,7 @@ For a full legal description of your rights under the GDPR, see the [GDPR Notice
 
 ### Data Location
 
-**Primary Data Residency:** European Union (Sweden)
+**Primary Data Residency:** European Union (Germany)
 
 **US Residency:** Available upon request (additional fees may apply)
 
@@ -221,7 +221,7 @@ For a full legal description of your rights under the GDPR, see the [GDPR Notice
 - Standard Contractual Clauses (EU Commission approved)
 - Adequate safeguards per GDPR Article 46
 
-Primary data storage is EU-based by default (Sweden). However, standard agent runs transmit prompts and responses to AI model providers — OpenAI, Anthropic, and xAI have servers in the USA, which constitutes an international transfer covered by Standard Contractual Clauses. Partners who require that all processing stays within the EU can request EU-only data processing (see below).
+Primary data storage is EU-based by default (Germany). However, standard agent runs transmit prompts and responses to AI model providers — OpenAI, Anthropic, and xAI have servers in the USA, which constitutes an international transfer covered by Standard Contractual Clauses. Partners who require that all processing stays within the EU can request EU-only data processing (see below).
 
 ### Infrastructure Compliance
 
@@ -335,8 +335,8 @@ Our full Security Architecture document is available to qualified partners under
 
 ## Document Information
 
-**Version:** 1.2 (Public Overview)  
-**Last Updated:** 2026-05-14  
+**Version:** 1.3 (Public Overview)  
+**Last Updated:** 2026-10-15  
 **Status:** This page is informational and subject to change  
 
 

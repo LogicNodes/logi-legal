@@ -1,7 +1,7 @@
 ---
 layout: legal
 title: Privatlivspolitik
-last_updated: 2026-06-17
+last_updated: 2026-10-15
 lang: da
 lang_equivalent: /en/privacy-policy/
 ---
@@ -163,7 +163,7 @@ Du kan til enhver tid afmelde dig ikke-essentiel kommunikation. Bemærk, at vi s
 
 ## 8. Internationale dataoverførsler
 
-Personoplysninger opbevares primært i Den Europæiske Union (AWS EU-North-1, Stockholm, via Supabase). Almindelig brug af platformen indebærer, at agent-prompts og -svar sendes til udbydere af AI-modelinferens. Nogle af disse udbydere — herunder OpenAI, Anthropic og xAI — har servere i USA, og behandling hos dem udgør en international overførsel. Disse overførsler er beskyttet af standardkontraktbestemmelser (EU-Kommissionens afgørelse 2021/914). En komplet liste over underbehandlere og deres lokationer er tilgængelig på [/da/underbehandlere](/da/underbehandlere/).
+Personoplysninger opbevares primært i Den Europæiske Union (AWS eu-central-1, Frankfurt, via Supabase). Almindelig brug af platformen indebærer, at agent-prompts og -svar sendes til udbydere af AI-modelinferens. Nogle af disse udbydere — herunder OpenAI, Anthropic og xAI — har servere i USA, og behandling hos dem udgør en international overførsel. ElevenLabs (anvendt til stemmetransskription og, valgfrit, tekst-til-tale-oplæsning af agentbeskeder) behandler ligeledes data i USA. Disse overførsler er beskyttet af standardkontraktbestemmelser (EU-Kommissionens afgørelse 2021/914). En komplet liste over underbehandlere og deres lokationer er tilgængelig på [/da/underbehandlere](/da/underbehandlere/).
 
 **Databehandling udelukkende inden for EU:** Brugere, der ønsker, at alle oplysninger forbliver inden for EU, kan anmode om dette ved at kontakte kontakt@logicnodes.ai. Når funktionen er aktiv, er AI-inferens begrænset til EU-baserede udbydere, og ingen data overføres uden for EU.
 
@@ -238,6 +238,7 @@ CVR: DK45318362
 
 | Dato | Afsnit |
 |---|---|
+| 2026-10-15 | §8 |
 | 2026-07-07 | §2.3; §3; §5; §5.1; §6; §6a; §9; §11 |
 | 2026-04-21 | Første offentliggørelse |
 

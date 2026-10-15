@@ -3,7 +3,7 @@ layout: legal
 title: GDPR-meddelelse
 lang: da
 lang_equivalent: /en/gdpr-notice
-last_updated: 2026-06-25
+last_updated: 2026-10-15
 ---
 
 # GDPR-tillægsmeddelelse
@@ -160,7 +160,7 @@ Svar gives gratis. Hvor anmodninger er åbenbart grundløse eller overdrevne, ka
 
 ### 8.1 Primær dataopbevaring
 
-Personoplysninger opbevares primært i **Den Europæiske Union**. Vores primære databaseinfrastruktur drives af Supabase på AWS eu-north-1 (Stockholm, Sverige). Oplysninger overføres ikke til tredjelande med henblik på opbevaring.
+Personoplysninger opbevares primært i **Den Europæiske Union**. Vores primære databaseinfrastruktur drives af Supabase på AWS eu-central-1 (Frankfurt, Tyskland). Oplysninger overføres ikke til tredjelande med henblik på opbevaring.
 
 ### 8.2 Overførsler i forbindelse med LLM-inferens
 
@@ -174,7 +174,7 @@ Disse overførsler er beskyttet ved brug af **standardkontraktbestemmelser** i h
 
 Google Cloud anvendes ligeledes til AI-inferens; Google behandler data i EU-regioner og globale regioner i henhold til egne EU-databehandlingsvilkår og standardkontraktbestemmelser.
 
-ElevenLabs Inc. anvendes til stemmetransskription, når denne funktion anvendes. ElevenLabs behandler lyddata i USA, beskyttet af standardkontraktbestemmelser og EU-US Data Privacy Framework.
+ElevenLabs Inc. anvendes til stemmetransskription, når denne funktion anvendes, samt valgfrit til oplæsning af agentbeskeder (tekst-til-tale). ElevenLabs behandler data i USA, beskyttet af standardkontraktbestemmelser og EU-US Data Privacy Framework. Ved oplæsningsfunktionen sendes kun beskedteksten — ikke lyd — til ElevenLabs, og den resulterende lyd gemmes ikke af LogicNodes.
 
 En fuldstændig liste over underdatabehandlere er tilgængelig på [/da/underbehandlere](/da/underbehandlere/).
 
@@ -184,7 +184,7 @@ Ud over standardkontraktbestemmelserne implementerer LogicNodes supplerende tekn
 
 ### 8.4 Databehandling udelukkende inden for EU
 
-Partnere og direkte brugere, der ønsker, at alle personoplysninger — herunder AI-inferenskald — behandles udelukkende inden for Den Europæiske Union, kan anmode om dette ved at kontakte kontakt@logicnodes.ai. Når funktionen er aktiv, er AI-inferens begrænset til EU-baserede udbydere (Mistral AI, Google Cloud EU-region, Microsoft Azure OpenAI Service EU-region, Amazon Bedrock Frankfurt). ElevenLabs-transskription er ikke tilgængelig i denne konfiguration, og ingen personoplysninger overføres til udbydere uden for EU.
+Partnere og direkte brugere, der ønsker, at alle personoplysninger — herunder AI-inferenskald — behandles udelukkende inden for Den Europæiske Union, kan anmode om dette ved at kontakte kontakt@logicnodes.ai. Når funktionen er aktiv, er AI-inferens begrænset til EU-baserede udbydere (Mistral AI, Google Cloud EU-region, Microsoft Azure OpenAI Service EU-region, Amazon Bedrock Frankfurt). ElevenLabs-transskription og tekst-til-tale-oplæsning af beskeder er ikke tilgængelig i denne konfiguration, og ingen personoplysninger overføres til udbydere uden for EU.
 
 ### 8.5 Overførsler underlagt britisk og schweizisk ret
 

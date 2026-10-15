@@ -3,7 +3,7 @@ layout: legal
 title: Terms & Conditions
 lang: en
 lang_equivalent: /da/vilkaar
-last_updated: 2026-06-25
+last_updated: 2026-10-15
 ---
 
 # Terms & Conditions
@@ -139,7 +139,7 @@ We engage sub-processors to deliver our services. By using LogicNodes, you autho
 
 ### 5.7 EU-Only Data Processing
 
-If you require that all personal data — including AI inference calls — is processed exclusively within the European Union, you may request EU-only data processing by contacting kontakt@logicnodes.ai. When active, AI inference is restricted to EU-based providers only (Mistral AI, Google Cloud EU, Microsoft Azure OpenAI EU, Amazon Bedrock Frankfurt), and voice transcription via ElevenLabs is not available.
+If you require that all personal data — including AI inference calls — is processed exclusively within the European Union, you may request EU-only data processing by contacting kontakt@logicnodes.ai. When active, AI inference is restricted to EU-based providers only (Mistral AI, Google Cloud EU, Microsoft Azure OpenAI EU, Amazon Bedrock Frankfurt), and voice transcription and text-to-speech message readout via ElevenLabs are not available.
 
 ### 5.5 AI Training Prohibition
 
@@ -316,6 +316,7 @@ Email: [legal@logicnodes.ai](mailto:legal@logicnodes.ai)
 
 | Date | Section |
 |---|---|
+| 2026-10-15 | §5.7 |
 | 2026-07-07 | §5.6; §5.8 |
 | 2026-05-18 | Initial publication |
 

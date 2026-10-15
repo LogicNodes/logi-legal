@@ -1,7 +1,7 @@
 ---
 layout: legal
 title: Partner Documentation Hub
-last_updated: 2026-06-25
+last_updated: 2026-10-15
 lang: en
 lang_equivalent: /da/partner-dokumentation/
 ---
@@ -119,7 +119,7 @@ This documentation hub provides everything you need to evaluate, integrate, and 
 **Key Questions Answered:**
 - Are you GDPR compliant? → Yes (see Privacy Policy)
 - Can we sign a DPA? → Yes (see DPA template)
-- Where is data stored? → EU (AWS EU-North-1, Stockholm)
+- Where is data stored? → EU (AWS eu-central-1, Frankfurt)
 - How long is data retained? → 1-90 days (configurable), audit logs 5 years
 
 ### For Developers
@@ -255,8 +255,6 @@ Partners will be notified via email of material changes to:
 **Data Processor:** Entity that processes data on behalf of controller (LogicNodes)
 
 ## 📄 License & Usage
-
-**Copyright:** © 2025 LogicNodes ApS. All rights reserved.
 
 **Usage Rights:**
 -  Share with internal teams (legal, security, engineering)

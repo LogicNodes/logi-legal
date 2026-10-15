@@ -1,7 +1,7 @@
 ---
 layout: legal
 title: Data Processing Agreement
-last_updated: 2026-07-07
+last_updated: 2026-10-15
 lang: en
 lang_equivalent: /da/databehandleraftale/
 description: "Data Processing Agreement between LogicNodes ApS (Processor) and Partner (Controller). GDPR Art. 28 compliant."
@@ -91,7 +91,7 @@ This DPA applies to all Personal Data processed by LogicNodes on Partner's behal
 
 Partner may request EU-only data processing for their organisation by contacting kontakt@logicnodes.ai. When EU-only data processing is active, the following restrictions and guarantees apply:
 
-- **Voice transcription disabled** — when EU-only data processing is active, voice transcription is not available. Voice recordings are not transmitted to ElevenLabs (LogicNodes' transcription provider), as ElevenLabs cannot guarantee that processing takes place exclusively within the EU. Partners who require voice transcription must not activate EU-only data processing.
+- **Voice transcription and message readout disabled** — when EU-only data processing is active, voice transcription and the optional text-to-speech message readout feature are not available. Voice recordings and message text are not transmitted to ElevenLabs (LogicNodes' transcription and readout provider), as ElevenLabs cannot guarantee that processing takes place exclusively within the EU. Partners who require voice transcription or message readout must not activate EU-only data processing.
 - **AI model selection restricted** — only AI models where processing takes place exclusively within the EU may be used. As of the effective date of this DPA, these include: Mistral AI (France), Google Cloud Platform Gemini (EU region), Microsoft Azure OpenAI Service (EU region), and Amazon Bedrock (Frankfurt — eu-central-1).
 - **EU processing guarantee** — when EU-only data processing is active, LogicNodes confirms that all Personal Data is processed and stored exclusively within the European Union.
 
@@ -298,7 +298,7 @@ LogicNodes remains fully liable to Partner for Sub-Processor performance. If Sub
 
 ### 6.1 Data Location
 
-**Primary Storage:** European Union (AWS EU-North-1, Stockholm via Supabase)
+**Primary Storage:** European Union (AWS eu-central-1, Frankfurt via Supabase)
 
 **US Data Residency (Optional):** Partner may request US data residency. Additional fees may apply.
 
@@ -649,7 +649,7 @@ For Swiss FADP transfers, references in the SCCs to the GDPR and EU law shall be
 ### 7. Availability & Resilience
 
 **Infrastructure:**
-- Multi-AZ deployment (AWS EU-North-1, via Supabase)
+- Multi-AZ deployment (AWS eu-central-1, via Supabase)
 - Automated failover (Supabase managed)
 - High availability architecture (multi-AZ) provided by Supabase/AWS
 
@@ -748,6 +748,7 @@ The authoritative sub-processor list is maintained at https://legal.logicnodes.a
 
 | Date | Section |
 |---|---|
+| 2026-10-15 | §2.4; §6.1 |
 | 2026-07-07 | §2.3; §3.3; §4.1; §4.2; §7.1; §7.3; §9.3; App. B §1; App. B §10; App. B §11; App. B §12 |
 | 2026-04-21 | Initial publication |
 

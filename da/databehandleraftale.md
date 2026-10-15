@@ -1,7 +1,7 @@
 ---
 layout: legal
 title: Databehandleraftale
-last_updated: 2026-07-07
+last_updated: 2026-10-15
 lang: da
 lang_equivalent: /en/data-processing-agreement/
 ---
@@ -92,7 +92,7 @@ Denne DPA gælder for alle Personoplysninger, som behandles af LogicNodes på de
 
 Den Dataansvarlige kan anmode om databehandling udelukkende inden for EU for sin organisation ved at kontakte kontakt@logicnodes.ai. Når denne funktion er aktiveret, gælder følgende begrænsninger og garantier:
 
-- **Stemmetransskription deaktiveret** — når databehandling udelukkende inden for EU er aktiveret, er stemmetransskription ikke tilgængelig. Stemmeoptagelser transmitteres ikke til ElevenLabs (LogicNodes' transskriptionsudbyder), da ElevenLabs ikke kan garantere, at behandling finder sted udelukkende inden for EU. Den Dataansvarlige, der har behov for stemmetransskription, må ikke aktivere databehandling udelukkende inden for EU.
+- **Stemmetransskription og beskedoplæsning deaktiveret** — når databehandling udelukkende inden for EU er aktiveret, er stemmetransskription og den valgfrie tekst-til-tale-oplæsningsfunktion ikke tilgængelige. Stemmeoptagelser og beskedtekst transmitteres ikke til ElevenLabs (LogicNodes' transskriptions- og oplæsningsudbyder), da ElevenLabs ikke kan garantere, at behandling finder sted udelukkende inden for EU. Den Dataansvarlige, der har behov for stemmetransskription eller beskedoplæsning, må ikke aktivere databehandling udelukkende inden for EU.
 - **Valg af AI-model begrænset** — kun AI-modeller, hvor behandling finder sted udelukkende inden for EU, kan anvendes. Pr. ikrafttrædelsesdatoen for denne DPA omfatter dette: Mistral AI (Frankrig), Google Cloud Platform Gemini (EU-region), Microsoft Azure OpenAI Service (EU-region) og Amazon Bedrock (Frankfurt — eu-central-1).
 - **EU-behandlingsgaranti** — når databehandling udelukkende inden for EU er aktiveret, bekræfter LogicNodes, at alle Personoplysninger behandles og opbevares udelukkende inden for Den Europæiske Union.
 
@@ -309,7 +309,7 @@ LogicNodes forbliver fuldt ansvarlig over for den Dataansvarlige for Underdatabe
 
 ### 6.1 Datalokation
 
-**Primær Opbevaring:** Den Europæiske Union (AWS EU-North-1, Stockholm via Supabase)
+**Primær Opbevaring:** Den Europæiske Union (AWS eu-central-1, Frankfurt via Supabase)
 
 **US Data-residens (Valgfrit):** Den Dataansvarlige kan anmode om dataopbevaring i USA. Yderligere gebyrer kan forekomme.
 
@@ -675,7 +675,7 @@ For schweiziske FADP-overførsler skal henvisninger i SCC'erne til GDPR og EU-lo
 ### 7. Tilgængelighed & Modstandsdygtighed
 
 **Infrastruktur:**
-- Multi-AZ-deployment (AWS EU-North-1, via Supabase)
+- Multi-AZ-deployment (AWS eu-central-1, via Supabase)
 - Automatiseret failover (Supabase-administreret)
 - Høj tilgængelighed via Supabase/AWS
 
@@ -779,6 +779,7 @@ Den autoritative underdatabehandler-liste vedligeholdes på https://legal.logicn
 
 | Dato | Afsnit |
 |---|---|
+| 2026-10-15 | §2.4; §6.1 |
 | 2026-07-07 | §2.3; §3.3; §4.1; §4.2; §7.1; §7.3; §9.3; App. B §1; App. B §10; App. B §11; App. B §12 |
 | 2026-04-21 | Første offentliggørelse |
 

@@ -1,7 +1,7 @@
 ---
 layout: legal
 title: Partner Dokumentationshub
-last_updated: 2026-06-25
+last_updated: 2026-10-15
 lang: da
 lang_equivalent: /en/partner-docs/
 ---
@@ -127,7 +127,7 @@ Dette dokumentationshub giver dig alt, hvad du har brug for til at evaluere, int
 **Vigtige spørgsmål besvaret:**
 - Er I GDPR-kompatible? → Ja (se Privatlivspolitik)
 - Kan vi underskrive en DPA? → Ja (se DPA-skabelon)
-- Hvor opbevares data? → EU (AWS EU-North-1, Stockholm)
+- Hvor opbevares data? → EU (AWS eu-central-1, Frankfurt)
 - Hvor længe opbevares data? → 1-90 dage (konfigurerbar), revisionslogfiler 5 år
 
 ---
@@ -211,8 +211,6 @@ Partnere underrettes via e-mail om væsentlige ændringer til:
 - Underbehandlerliste (7 dages forudgående varsel)
 
 ## 📄 Licens & Brug
-
-**Ophavsret:** © 2025 LogicNodes ApS. Alle rettigheder forbeholdes.
 
 **Brugsrettigheder:**
 - Del med interne teams (juridisk, sikkerhed, teknik)
