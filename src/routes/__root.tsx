@@ -8,27 +8,29 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "UTF-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1.0" },
+      { name: "color-scheme", content: "light dark" },
     ],
     links: [
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap",
-      },
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "https://logiai.dk/favicon.png", type: "image/png" },
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
     ],
   }),
   shellComponent: RootDocument,
   notFoundComponent: NotFound,
 });
 
+// The product tokens switch to dark under `.dark`; this follows the system
+// setting, before first paint and when it changes. Without JavaScript the page
+// stays light.
+const FOLLOW_SYSTEM_THEME = `(function(){var m=window.matchMedia("(prefers-color-scheme: dark)");function a(){document.documentElement.classList.toggle("dark",m.matches)}a();m.addEventListener("change",a)})()`;
+
 function RootDocument({ children }: { children: ReactNode }) {
   const { lang } = useParams({ strict: false });
   return (
-    <html lang={lang === "da" ? "da" : "en"}>
+    // The theme script sets the class before React hydrates.
+    <html lang={lang === "da" ? "da" : "en"} suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: FOLLOW_SYSTEM_THEME }} />
         <HeadContent />
       </head>
       <body>
@@ -41,7 +43,7 @@ function RootDocument({ children }: { children: ReactNode }) {
 
 function NotFound() {
   return (
-    <main className="container">
+    <main className="sheet">
       <article className="legal-document">
         <h1>404</h1>
         <p>

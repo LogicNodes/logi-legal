@@ -1,9 +1,13 @@
-/* Tailwind without its preflight reset: the site keeps the reset and element
-   styles of the original stylesheet (legal.css), so the pages look as before.
-   Only src/ is scanned for class names; the Markdown's words are not utilities.
-   legal.css is unlayered, so it wins over any utility on the same property. */
+/* Tailwind without its preflight reset: legal.css carries the reset and the
+   element styles. Only src/ is scanned for class names; the Markdown's words
+   are not utilities. legal.css is unlayered, so it wins over any utility on
+   the same property. */
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities) source("../");
 
+/* tokens.css is the hub's brand/tokens/product.css, copied as it is (the
+   platform's v4 palette); `logi brand sync` replaces it wholesale. */
 @import "./tokens.css";
+/* Instrument Sans, self-hosted: no font host sees the visitor's IP. */
+@import "@fontsource-variable/instrument-sans";
 @import "./legal.css";

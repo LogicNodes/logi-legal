@@ -11,11 +11,11 @@ export function PageView({ page }: { page: Page }) {
       langEquivalent={page.langEquivalent}
     >
       {page.layout === "legal" ? (
-        <main className="container">
+        <main className="sheet">
           <article className="legal-document" dangerouslySetInnerHTML={content} />
         </main>
       ) : (
-        <main className="container" dangerouslySetInnerHTML={content} />
+        <main className="sheet" dangerouslySetInnerHTML={content} />
       )}
     </SiteLayout>
   );
