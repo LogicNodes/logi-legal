@@ -11,7 +11,7 @@ description: "LogicNodes sikkerhedsteams PGP/GPG-offentlige nøgle til krypteret
 
 **Formål:** Denne side indeholder PGP/GPG-offentlige nøgle til krypteret kommunikation med LogicNodes' sikkerhedsteam.
 
-<p class="last-updated">Senest opdateret: {{ page.last_updated | date: "%B %-d, %Y" }}</p>
+<p class="last-updated">Senest opdateret: {{ page.last_updated | date: "%-d. %B %Y" }}</p>
 
 ---
 
@@ -216,7 +216,7 @@ Hvis du ikke kan bruge PGP-kryptering, kan du sende ukrypteret e-mail til kontak
 
 ## Nøglefil
 
-Nøglen er også tilgængelig som en ren tekstfil på [/da/pgp.txt](/da/pgp.txt), egnet til direkte import via `curl` eller lignende værktøjer.
+Nøglen er også tilgængelig som en ren tekstfil på [/en/pgp.txt](/en/pgp.txt), egnet til direkte import via `curl` eller lignende værktøjer.
 
 ---
 
@@ -227,7 +227,7 @@ Du er velkommen til at inkludere din egen PGP-offentlige nøgle eller nøgle-ID 
 ## Downloadmuligheder
 
 **Kopiér fra denne side:** Se ASCII-armeret nøgle ovenfor
-**Kun tekst-version:** Skift `.html` til `.txt` i URL'en: /da/pgp.txt
+**Kun tekst-version:** /en/pgp.txt
 
 ---
 

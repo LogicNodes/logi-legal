@@ -10,7 +10,7 @@ description: "Komplet liste over tredjepartsunderbehandlere engageret af LogicNo
 # LogicNodes – Autoriserede Underbehandlere
 
 **Ikrafttrædelsesdato:** 23. april 2026
-<p class="last-updated">Senest opdateret: {{ page.last_updated | date: "%B %-d, %Y" }}</p>
+<p class="last-updated">Senest opdateret: {{ page.last_updated | date: "%-d. %B %Y" }}</p>
 
 Denne side viser alle tredjepartsunderbehandlere engageret af **LogicNodes ApS** (CVR: DK45318362) i forbindelse med levering af LogicNodes-platformen og relaterede services.
 

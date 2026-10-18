@@ -8,7 +8,7 @@ lang_equivalent: /en/privacy-policy/
 
 # Privatlivspolitik
 
-<p class="last-updated">Senest opdateret: {{ page.last_updated | date: "%B %-d, %Y" }}</p>
+<p class="last-updated">Senest opdateret: {{ page.last_updated | date: "%-d. %B %Y" }}</p>
 
 ---
 

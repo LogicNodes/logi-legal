@@ -226,7 +226,7 @@ You are welcome to include your own PGP public key or key ID in your first email
 ## Download Options
 
 **Copy from this page:** See ASCII-armored key above
-**Text-only version:** Change `.html` to `.txt` in the URL: /en/pgp.txt
+**Text-only version:** /en/pgp.txt
 
 ---
 

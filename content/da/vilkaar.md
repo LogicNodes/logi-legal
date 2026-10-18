@@ -9,7 +9,7 @@ last_updated: 2026-10-15
 # Vilkår & Betingelser
 
 **Ikrafttrædelsesdato:** 20. april 2026
-<p class="last-updated">Senest opdateret: {{ page.last_updated | date: "%B %-d, %Y" }}</p>
+<p class="last-updated">Senest opdateret: {{ page.last_updated | date: "%-d. %B %Y" }}</p>
 
 Disse Vilkår & Betingelser ("Vilkår") regulerer din adgang til og brug af LogicNodes-platformen og relaterede services leveret af **LogicNodes ApS** (CVR: DK45318362), Sletvej 2D, 8310 Tranbjerg, Danmark ("LogicNodes", "vi", "os" eller "vores").
 

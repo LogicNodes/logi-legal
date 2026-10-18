@@ -10,7 +10,7 @@ lang_equivalent: /en/responsible-disclosure/
 
 **Ikrafttrædelsesdato:** 3. november 2025
 
-<p class="last-updated">Senest opdateret: {{ page.last_updated | date: "%B %-d, %Y" }}</p>
+<p class="last-updated">Senest opdateret: {{ page.last_updated | date: "%-d. %B %Y" }}</p>
 
 ---
 

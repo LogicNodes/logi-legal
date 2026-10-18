@@ -1,14 +1,13 @@
 Contact: mailto:security@logicnodes.ai
 Encryption: https://legal.logicnodes.ai/en/pgp
 Encryption: https://legal.logicnodes.ai/en/pgp.txt
-Expires: 2026-11-04T00:00:00.000Z
+Expires: 2027-10-18T00:00:00.000Z
 Preferred-Languages: en, da
 Canonical: https://legal.logicnodes.ai/.well-known/security.txt
 Policy: https://legal.logicnodes.ai/en/responsible-disclosure
-Acknowledgments: https://logicnodes.ai/security/hall-of-fame
 
 # LogicNodes ApS Security Contact
-# Last Updated: 2026-07-03
+# Last Updated: 2026-10-18
 # PGP Key ID: 707941C4
 # PGP Fingerprint: FD15 E817 5925 8403 5F53  0A4A 389B 966F 7079 41C4
 # For vulnerability reports, see our responsible disclosure policy.
