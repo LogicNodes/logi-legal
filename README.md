@@ -73,13 +73,24 @@ public/                  files served unchanged
 src/lib/                 Markdown rendering (content.server.ts, markdown.server.ts)
 src/components/          header, footer and page layout
 src/routes/              /, /$lang/, /$lang/$slug/
-src/styles/tokens.css    every colour and font, in one place
-src/styles/legal.css     the stylesheet
+src/styles/tokens.css    every colour, font and radius: the brand hub's product.css, as is
+src/styles/legal.css     the stylesheet (uses only the variables from tokens.css)
+public/favicon.ico       the brand hub's favicon
 scripts/                 comparison with the old Jekyll build
 ```
 
 The Markdown is rendered at build time to match what Jekyll (kramdown) produced: smart
 quotes, kramdown's heading ids, and HTML blocks that may contain blank lines.
+
+## Look
+
+The site wears the Logi AI platform's v4 look: Instrument Sans (self-hosted from
+`@fontsource-variable/instrument-sans`, so no font host sees visitors), warm neutrals and
+the brand orange, a document on one canvas sheet over the desk, and dark mode when the
+system asks for it (a small script in `__root.tsx` sets `.dark` on `<html>`, which the
+tokens switch on). `src/styles/tokens.css` is `brand/tokens/product.css` from the brand
+hub, copied unchanged, and `logi brand sync` replaces it wholesale: never edit it here.
+"Logi AI" in the header and footer is a text wordmark until the new logo exists.
 
 ## Moving off Jekyll
 
@@ -89,7 +100,8 @@ React version lives on the `react` branch. At cutover:
 1. Port any content changes made on `main` since the branch was cut.
 2. Build both and compare. Build `main` with Jekyll in Docker, so nobody installs Ruby:
    `git archive origin/main | tar -x -C ../legal-main` then
-   `docker run --rm -v "$PWD/../legal-main:/srv/jekyll" jekyll/jekyll:4 jekyll build`.
+   `docker run --rm -v "$PWD/../legal-main:/srv/jekyll" jekyll/jekyll:4 sh -c "bundle install && bundle exec jekyll build"`
+   (the image does not carry the gems `Gemfile.lock` pins, so a bare `jekyll build` fails).
    Then `pnpm build && pnpm compare ../legal-main/_site`. It checks URLs, visible text,
    element ids and links, and lists intended differences.
 3. Create the Vercel project from this repository and move the domain

@@ -19,8 +19,10 @@ it, how pages work and the URL rule.
   only `page.*` with the `date` filter and the `relative_url` filter.
 - **Heading text is part of the URL.** Heading ids come from heading text, and people link
   to `#anchors`; reword a heading only knowing that its anchor changes.
-- **Look stays in `src/styles/`.** Colours and fonts live only in `tokens.css`; reference
-  them as `var(--color-…)`. Tailwind is wired without preflight and scans `src/` only;
+- **Look stays in `src/styles/`.** Colours, fonts and radii live only in `tokens.css`,
+  which is the brand hub's `brand/tokens/product.css` copied unchanged (`logi brand sync`
+  overwrites it): never edit it here, and reference its variables (`var(--color-…)`,
+  `var(--font-sans)`, `var(--radius-…)`) instead of any literal colour. Tailwind is wired without preflight and scans `src/` only;
   `legal.css` is unlayered, so it wins over utilities.
 - pnpm only (no npm, yarn or bun lockfiles).
 
