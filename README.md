@@ -87,9 +87,11 @@ Until cutover, the live site is GitHub Pages building the Jekyll site from `main
 React version lives on the `react` branch. At cutover:
 
 1. Port any content changes made on `main` since the branch was cut.
-2. Build both and compare: a Jekyll build of `main` (`bundle install && bundle exec jekyll
-   build`, in a copy of `main`), then `pnpm build && pnpm compare <that copy>/_site`. It
-   checks URLs, visible text, element ids and links, and lists intended differences.
+2. Build both and compare. Build `main` with Jekyll in Docker, so nobody installs Ruby:
+   `git archive origin/main | tar -x -C ../legal-main` then
+   `docker run --rm -v "$PWD/../legal-main:/srv/jekyll" jekyll/jekyll:4 jekyll build`.
+   Then `pnpm build && pnpm compare ../legal-main/_site`. It checks URLs, visible text,
+   element ids and links, and lists intended differences.
 3. Create the Vercel project from this repository and move the domain
    `legal.logicnodes.ai` to it. The `CNAME` file was GitHub Pages configuration and is gone
    on this branch; GitHub Pages must be switched off when the domain moves.
