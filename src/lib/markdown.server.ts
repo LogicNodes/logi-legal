@@ -81,6 +81,10 @@ md.block.ruler.before("html_block", "kramdown_html_block", kramdownHtmlBlock, {
   alt: ["paragraph", "reference", "blockquote"],
 });
 
+// A table sits in a box that scrolls sideways on its own at phone width.
+md.renderer.rules.table_open = () => '<div class="table-scroll">\n<table>\n';
+md.renderer.rules.table_close = () => "</table>\n</div>\n";
+
 export function renderMarkdown(source: string): string {
   return md.render(source, {});
 }
