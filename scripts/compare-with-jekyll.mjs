@@ -10,7 +10,10 @@
 //   English ones);
 // - signature lines: kramdown turned "_______________________________" into five bold
 //   "__" and one "_"; they now render as written;
-// - links that were already broken in the Jekyll build.
+// - links that were already broken in the Jekyll build;
+// - the "Logi AI" text wordmark (`.wordmark`, header and footer) that replaced the
+//   Jekyll footer's hotlinked logo image; it is left out of the text compared;
+// - /favicon.ico, now served from this site instead of hotlinked from logiai.dk.
 // Exits 1 on any other difference.
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
@@ -25,7 +28,7 @@ const SITE_ORIGIN = "https://legal.logicnodes.ai";
 
 // Files that are expected to exist in only one of the two builds.
 const ONLY_OLD = new Set(["/style.css", "/CNAME"]); // CSS now under /assets/, CNAME is GitHub Pages config
-const ONLY_NEW = [/^\/assets\//, /^\/\.well-known\/security\.txt$/]; // Jekyll skipped dot-directories
+const ONLY_NEW = [/^\/assets\//, /^\/\.well-known\/security\.txt$/, /^\/favicon\.ico$/]; // Jekyll skipped dot-directories; the favicon was hotlinked
 
 const MONTHS_DA = {
   January: "januar", February: "februar", March: "marts", April: "april", May: "maj", June: "juni",
@@ -87,6 +90,8 @@ for (const url of newUrls.keys()) {
   if (oldUrls.has(url)) continue;
   if (!ONLY_NEW.some((re) => re.test(url))) failures.push(`(a) only in new build: ${url}`);
 }
+if (newUrls.has("/favicon.ico") && !oldUrls.has("/favicon.ico"))
+  intended.push("(a) /favicon.ico is now served (the Jekyll site hotlinked logiai.dk/favicon.png)");
 if (newUrls.has("/.well-known/security.txt") && !oldUrls.has("/.well-known/security.txt"))
   intended.push("(a) /.well-known/security.txt is now served (Jekyll skipped the dot-directory)");
 
@@ -94,6 +99,7 @@ if (newUrls.has("/.well-known/security.txt") && !oldUrls.has("/.well-known/secur
 const pages = [...oldUrls.keys()].filter((u) => u.endsWith("/") && newUrls.has(u));
 const parsedNew = new Map();
 let monthChanges = 0;
+let wordmarks = 0;
 for (const url of pages) {
   const $old = cheerio.load(readFileSync(oldUrls.get(url), "utf8"));
   const $new = cheerio.load(readFileSync(newUrls.get(url), "utf8"));
@@ -110,6 +116,14 @@ for (const url of pages) {
       }
     });
   }
+
+  // The text wordmark is new; any other text in a .wordmark is a failure.
+  $new(".wordmark").each((_, el) => {
+    const text = norm($new(el).text());
+    if (text === "Logi AI") wordmarks++;
+    else failures.push(`(b) ${url}: unexpected wordmark text "${text}"`);
+  });
+  $new(".wordmark").remove();
 
   let [oldText, newText] = [visibleText($old), visibleText($new)];
   if (oldText !== newText) {
@@ -176,6 +190,7 @@ for (const [url, $] of parsedNew) {
 
 console.log(`URLs: ${oldUrls.size} in Jekyll build, ${newUrls.size} in new build; ${pages.length} pages compared`);
 console.log(`Links checked: ${linkCount}; Danish month names changed: ${monthChanges}`);
+if (wordmarks) intended.push(`(b) the "Logi AI" text wordmark, left out of the text compared: ${wordmarks} on ${pages.length} pages`);
 console.log(`\nIntended differences (${intended.length}):`);
 for (const line of intended) console.log("  " + line);
 console.log(`\nUnexpected differences (${failures.length}):`);
