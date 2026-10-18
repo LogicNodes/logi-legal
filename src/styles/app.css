@@ -1,0 +1,9 @@
+/* Tailwind without its preflight reset: the site keeps the reset and element
+   styles of the original stylesheet (legal.css), so the pages look as before.
+   Only src/ is scanned for class names; the Markdown's words are not utilities.
+   legal.css is unlayered, so it wins over any utility on the same property. */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source("../");
+
+@import "./tokens.css";
+@import "./legal.css";

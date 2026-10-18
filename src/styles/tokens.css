@@ -1,0 +1,29 @@
+/* Brand tokens: every colour, font and radius the site uses, in one place.
+   These will later come from the hub's central brand tokens. */
+
+:root {
+    --color-purple:       #111827;
+    --color-purple-dark:  #0B1220;
+    --color-orange:       #D9690C;
+    --color-orange-dark:  #B8560A;
+
+    --color-text:         #111827;
+    --color-text-body:    #374151;
+    --color-text-muted:   #6B7280;
+    --color-border:       #E5E7EB;
+    --color-bg:           #F9FAFB;
+    --color-white:        #ffffff;
+    --color-footer-bg:    #111827;
+    --color-gray:         #D1D5DB;
+    --color-cream:        #F3EEE3;
+    --color-orange-tint:  #FDF1E7;
+    --color-notice-bg:    #F3F4F6;
+    --color-footer-text:       rgba(255, 255, 255, 0.45);
+    --color-footer-text-hover: rgba(255, 255, 255, 0.75);
+
+    --font-heading: 'Plus Jakarta Sans', Helvetica, Arial, sans-serif;
+    --font-body:    'DM Sans', Helvetica, Arial, sans-serif;
+
+    --radius: 6px;
+    --shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+}
