@@ -2,9 +2,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Jekyll Serve",
+            "label": "Dev server",
             "type": "shell",
-            "command": "jekyll serve",
+            "command": "pnpm dev",
             "group": {
                 "kind": "build",
                 "isDefault": true
